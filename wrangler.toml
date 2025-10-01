@@ -1,0 +1,7 @@
+name = "dialog-docs"
+compatibility_date = "2024-09-27"
+
+[site]
+bucket = "./dist"
+
+# No main entry point needed for --assets deployment

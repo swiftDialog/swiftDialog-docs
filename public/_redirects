@@ -1,0 +1,6 @@
+# Redirects for swiftDialog Documentation
+# Format: from to [status]
+
+# Example redirects (uncomment and modify as needed):
+# /old-page /new-page 301
+# /docs/* /documentation/:splat 301

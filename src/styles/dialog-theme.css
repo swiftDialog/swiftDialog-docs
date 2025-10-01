@@ -1,0 +1,218 @@
+/* ============================================
+   swiftDialog Documentation - Enhanced Theme
+   Based on Starlight Default with Minor Tweaks
+   ============================================ */
+
+/* ===========================================
+   1. COLOR ADJUSTMENTS
+   Only override specific accent colors
+   =========================================== */
+:root {
+  /* Keep all Starlight defaults, only adjust accent color to swiftDialog blue */
+  --sl-color-accent-low: #e8f4fd;
+  --sl-color-accent: #007aff;
+  --sl-color-accent-high: #0051d5;
+
+  /* Slightly increase content width for better use of screen space */
+  --sl-content-width: 50rem; /* Default is 45rem */
+
+  /* Slightly rounded corners for modern look */
+  --sl-border-radius: 0.5rem;
+}
+
+/* Dark mode: Use subtly purple-tinted blue closer to Starlight's default */
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #1e293b;
+  --sl-color-accent: #4f7fff;  /* Blue with subtle purple tint */
+  --sl-color-accent-high: #6b9fff; /* Lighter blue */
+}
+
+/* ===========================================
+   2. HERO SECTION ENHANCEMENT
+   =========================================== */
+/* Make hero section slightly more prominent */
+.hero {
+  padding: 3rem 1rem 4rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===========================================
+   3. BUTTON ENHANCEMENTS
+   =========================================== */
+/* Slightly larger buttons in hero */
+.hero a[href],
+.action {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero a[href]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
+}
+
+/* ===========================================
+   4. SIDEBAR ENHANCEMENT
+   =========================================== */
+/* Active sidebar item - more prominent */
+.sidebar li[aria-current="page"] > a {
+  font-weight: 600;
+  background: linear-gradient(to right,
+    var(--sl-color-accent-low) 0%,
+    transparent 100%);
+  border-left: 3px solid var(--sl-color-accent);
+  padding-left: calc(1rem - 3px);
+}
+
+/* ===========================================
+   5. CODE BLOCKS
+   =========================================== */
+/* Slightly better code block styling */
+pre {
+  border: 1px solid var(--sl-color-gray-5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* ===========================================
+   6. CARDS
+   =========================================== */
+/* Add subtle hover effect to cards */
+.sl-link-card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ===========================================
+   7. TYPOGRAPHY REFINEMENTS
+   =========================================== */
+/* Better heading spacing */
+h2 {
+  margin-top: 3rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--sl-color-gray-6);
+}
+
+h3 {
+  margin-top: 2rem;
+  font-size: 1.25rem; /* Make h3 smaller */
+}
+
+/* ===========================================
+   8. SEARCH BAR POLISH
+   =========================================== */
+/* Ensure search bar has nice focus state */
+button[aria-label*="Search"]:focus-visible {
+  outline: 2px solid var(--sl-color-accent);
+  outline-offset: 2px;
+}
+
+/* ===========================================
+   9. TABLE OF CONTENTS
+   =========================================== */
+/* Make current section in TOC more visible */
+.toc-link[aria-current="true"] {
+  font-weight: 600;
+  color: var(--sl-color-accent);
+}
+
+/* ===========================================
+   10. HOMEPAGE GRID ADJUSTMENTS
+   =========================================== */
+/* Support for flex-start alignment */
+.sl-markdown-content [style*="align-items: flex-start"] {
+  align-items: flex-start !important;
+}
+
+.sl-markdown-content [style*="align-self: flex-start"] {
+  align-self: flex-start !important;
+}
+
+/* Better spacing for documentation sections */
+.sl-markdown-content [style*="display: grid"] {
+  row-gap: 2.5rem;
+  column-gap: 3rem;
+}
+
+/* Ensure h3 headers in grids have consistent spacing and size */
+.sl-markdown-content h3 {
+  margin-top: 0;
+  font-size: 1.25rem !important;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Fix h2 headers alignment and size in grids */
+.sl-markdown-content h2 {
+  margin-top: 0;
+  padding-top: 0;
+  font-size: 1.5rem !important; /* Make h2 smaller in content */
+}
+
+/* Special sizing for the top section headers */
+.not-content h2 {
+  font-size: 1.5rem !important;
+  font-weight: 600;
+}
+
+/* ===========================================
+   11. SMOOTH TRANSITIONS
+   =========================================== */
+/* Add smooth transitions to interactive elements */
+a,
+button,
+.sl-link-card {
+  transition: all 0.2s ease-in-out;
+}
+
+/* ===========================================
+   12. BLOCKQUOTES AND CALLOUTS
+   =========================================== */
+blockquote {
+  border-left: 4px solid var(--sl-color-accent);
+  padding-left: 1rem;
+  color: var(--sl-color-gray-2);
+  font-style: italic;
+}
+
+/* ===========================================
+   13. FOCUS ACCESSIBILITY
+   =========================================== */
+/* Better focus indicators for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--sl-color-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ===========================================
+   14. MOBILE OPTIMIZATIONS
+   =========================================== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* ===========================================
+   15. DARK MODE SUPPORT
+   Keep Starlight's excellent dark mode intact
+   =========================================== */
+/* No dark mode overrides - Starlight handles this perfectly */
