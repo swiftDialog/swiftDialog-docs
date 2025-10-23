@@ -12,7 +12,7 @@ You can then generate JSON that can be used to re-create the dialog as you desig
 
 ** NOTE - This feature does not have 100% coverage of all of swiftDialog's features and some settings are not available or will not appear in the generated JSON. Development is ongoing **
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_main.png" />
+<img width="500" alt="image" src="../../../assets/builder/builder_main.png" />
 
 
 ### Basic
