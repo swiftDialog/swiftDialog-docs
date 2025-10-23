@@ -5,7 +5,7 @@ description: Edit the properties and appearance of a dialog window and output th
 
 Lets you adjust `--icon` settings
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_icon.png" />
+<img width="500" alt="image" src="/builder/builder_icon.png" />
 
 ## Properties
 
@@ -13,9 +13,9 @@ Lets you adjust `--icon` settings
 
 Drag and drop an image or application onto the icon representation in the builder window to set the icon value
 
-<img width="200" alt="image" src="/src/content/docs/builder/assets/builder_icon_drag.png" />
+<img width="200" alt="image" src="/builder/builder_icon_drag.png" />
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_icon_drop.png" />
+<img width="500" alt="image" src="/builder/builder_icon_drop.png" />
 
 You can also use the "Select" button to open up a file select dialog or type in the name of an SF symbol in the format `sf=name` into the icon value text box (where `name` is the name of a valid SF symbol)
 

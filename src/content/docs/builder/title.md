@@ -7,7 +7,7 @@ description: Edit the properties and appearance of a dialog window and output th
 
 These settings let you modify the title and titlebar area
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_title.png" />
+<img width="500" alt="image" src="/builder/builder_title.png" />
 
 The following settings are available:
 

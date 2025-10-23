@@ -5,7 +5,7 @@ description: Edit the properties and appearance of a dialog window and output th
 
 Configure Web or Video content
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_media.png" />
+<img width="500" alt="image" src="/builder/builder_media.png" />
 
 ### Video
 

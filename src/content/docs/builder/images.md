@@ -5,7 +5,7 @@ description: Edit the properties and appearance of a dialog window and output th
 
 Set one or more images to display
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_images.png" />
+<img width="500" alt="image" src="/builder/builder_images.png" />
 
 Click the `[+]` button to create a new image entry. You can do this one or more times
 
@@ -20,7 +20,7 @@ Drop an image from the Finder onto the image preview to add or replace the image
 Select one or more images in the Finder and drop onto the image list area in the Builder window. A new entry will be added for each image
 
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_images_populated.png" />
+<img width="500" alt="image" src="/builder/builder_images_populated.png" />
 
 Click the `≡` drag handle next to the image preview to re-arrange items in the list
 

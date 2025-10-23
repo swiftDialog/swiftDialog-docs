@@ -5,7 +5,7 @@ description: Edit the properties and appearance of a dialog window and output th
 
 Lets you set properties of the button area
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder buttons.png" />
+<img width="500" alt="image" src="/builder/builder buttons.png" />
 
 #### Button Size
 

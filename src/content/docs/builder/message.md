@@ -5,13 +5,13 @@ description: Edit the properties and appearance of a dialog window and output th
 
 The message editor allows you to update message contents.
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_message.png" />
+<img width="500" alt="image" src="/builder/builder_message.png" />
 
 Use markdown to style the message text
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_message_populated.png" />
+<img width="500" alt="image" src="/builder/builder_message_populated.png" />
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_message_dialog.png" />
+<img width="500" alt="image" src="/builder/builder_message_dialog.png" />
 
 ### Properties
 

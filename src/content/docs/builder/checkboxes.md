@@ -5,14 +5,14 @@ description: Edit the properties and appearance of a dialog window and output th
 
 Add one or more checkbox items to the dialog
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_checkbox.png" />
+<img width="500" alt="image" src="/builder/builder_checkbox.png" />
 
 Click the `[+]` button to add a new entry to the checkbox item list
 
 Click the trash icon to remove a checkbox entry
 
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_checkbox_populated.png" />
+<img width="500" alt="image" src="/builder/builder_checkbox_populated.png" />
 
 ## Properties
 

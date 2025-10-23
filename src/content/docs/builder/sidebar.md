@@ -5,7 +5,7 @@ description: Edit the properties and appearance of a dialog window and output th
 
 Set peoperties of the dialog sidebar
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_sidebar.png" />
+<img width="500" alt="image" src="/builder/builder_sidebar.png" />
 
 ## Properties
 

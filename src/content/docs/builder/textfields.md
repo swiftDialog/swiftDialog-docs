@@ -5,14 +5,14 @@ description: Edit the properties and appearance of a dialog window and output th
 
 Configure `--textfield` entries
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_textfields.png" />
+<img width="500" alt="image" src="/builder/builder_textfields.png" />
 
 Click the `[+]` button to add an new entry
 
 Click the trash icon to remove an entry
 
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_textfields_popualated.png" />
+<img width="500" alt="image" src="/builder/builder_textfields_popualated.png" />
 
 
 ## Properties

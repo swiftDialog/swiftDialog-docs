@@ -5,13 +5,13 @@ description: Edit the properties and appearance of a dialog window and output th
 
 Add one or more `--listitem` entries
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_listitems.png" />
+<img width="500" alt="image" src="/builder/builder_listitems.png" />
 
 Click the `[+]` icon to add a new listitem entry
 
 Click the trash icon to remove a specified listitem entry
 
-<img width="500" alt="image" src="/src/content/docs/builder/assets/builder_listitems_populated.png" />
+<img width="500" alt="image" src="/builder/builder_listitems_populated.png" />
 
 ## Properties
 
@@ -27,7 +27,7 @@ Drop an image resource or application bundle onto the icon preview area to set t
 
 Click the icon preview area to display the SF symbol popup. From here you can set the sf symbol value and colour
 
-<img width="200" alt="image" src="/src/content/docs/builder/assets/builder_listitem_sfsymbol.png" />
+<img width="200" alt="image" src="/builder/builder_listitem_sfsymbol.png" />
 
 #### Title
 
