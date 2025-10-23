@@ -14,21 +14,24 @@ You can then generate JSON that can be used to re-create the dialog as you desig
 
 <img width="500" alt="image" src="/builder/builder_main.png" />
 
+<div style="display: flex; gap: 2rem; justify-content: center; align-items: start;">
+<div>
 
 ### Basic
-
  - [Title](/builder/title/)
  - [Message](/builder/message/)
  - [Icon](/builder/icon/)
  - [Sidebar](/builder/sidebar/)
  - [Window](/builder/window/)
  - [Buttons](/builder/buttons/)
+</div>
+<div>
 
 ### Advanced
-
  - [Checkboxes](/builder/checkboxes/)
  - [Images](/builder/images/)
  - [List Items](/builder/listitems/)
  - [Media](/builder/media/)
  - [Text Fields](/builder/textfields/)
-
+</div>
+</div>

@@ -3,9 +3,6 @@ title: Inspect Mode
 description: Starter guide to swiftDialog's Inspect Mode - monitoring installations and system compliance
 ---
 
-Here’s the revised text with duplication removed:
-
----
 
 # swiftDialog Inspect Mode
 
@@ -125,6 +122,7 @@ Traditional sidebar layout with icon, progress bar, and item list. Best for stan
   "icon": "sf=apps.iphone.badge.plus"
 }
 ```
+<img width="500" alt="image" src="/inspect/preset_1.png" />
 
 ### Preset 2: Card Style
 Features a logo or top banner image with streamlined Card item display. Ideal for branded deployments.
@@ -137,6 +135,7 @@ Features a logo or top banner image with streamlined Card item display. Ideal fo
   "bannerTitle": "Company Setup"
 }
 ```
+<img width="500" alt="image" src="/inspect/preset_2.png" />
 
 ### Preset 3: Condensed List
 This is a condensed list layout with a logo or top banner image. Automatically scrolls through items, highlighting current installations.
@@ -149,8 +148,10 @@ This is a condensed list layout with a logo or top banner image. Automatically s
 }
 ```
 
+<img width="500" alt="image" src="/inspect/preset_3.png" />
+
 ### Preset 4: Dashboard
-Modern dashboard layout with cards and status indicators. Great for system compliance overview screens. Use the
+Modern dashboard layout with cards and status indicators. Great for system compliance overview screens.
 
 ```json
 {
@@ -160,6 +161,8 @@ Modern dashboard layout with cards and status indicators. Great for system compl
   "gradientColors": ["#1e3c72", "#2a5298", "#7e8ba3"],
 }
 ```
+
+<img width="500" alt="image" src="/inspect/preset_4.png" />
 
 ## Advanced Features
 
@@ -249,6 +252,8 @@ Define custom compliance levels and colors:
   }
 ```
 
+<img width="500" alt="image" src="/inspect/preset_4_compliance.png" />
+
 ## Complete Examples
 
 ### Basic Application Installer
@@ -331,7 +336,4 @@ export DIALOG_DEBUG=1
    - Installation tracking: Preset 1 or 2 or 3
    - Compliance display: Preset 4
 
-## Support
 
-For additional help and examples, visit:
-- [swiftDialog Documentation](https://github.com/swiftDialog/swiftDialog/wiki)

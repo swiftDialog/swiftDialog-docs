@@ -65,6 +65,7 @@ export default defineConfig({
             { label: 'Layout', slug: 'advanced/layout' },
             { label: 'Presentation Mode', slug: 'advanced/presentation' },
             { label: 'Notifications', slug: 'advanced/notifications' },
+            { label: 'Inspect Mode', slug: 'advanced/inspect-mode'}
           ],
         },
         {
