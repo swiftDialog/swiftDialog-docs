@@ -1,5 +1,5 @@
 ---
-title: Builder media
+title: Builder Mode - media
 description: Edit the properties and appearance of a dialog window and output the results as a json config
 ---
 

@@ -14,8 +14,9 @@ You can then generate JSON that can be used to re-create the dialog as you desig
 
 <img width="500" alt="image" src="/builder/builder_main.png" />
 
-<div style="display: flex; gap: 2rem; justify-content: center; align-items: start;">
-<div>
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
 
 ### Basic
  - [Title](/builder/title/)
@@ -24,8 +25,10 @@ You can then generate JSON that can be used to re-create the dialog as you desig
  - [Sidebar](/builder/sidebar/)
  - [Window](/builder/window/)
  - [Buttons](/builder/buttons/)
+
 </div>
-<div>
+
+<div style="align-self: flex-start;">
 
 ### Advanced
  - [Checkboxes](/builder/checkboxes/)
@@ -33,5 +36,7 @@ You can then generate JSON that can be used to re-create the dialog as you desig
  - [List Items](/builder/listitems/)
  - [Media](/builder/media/)
  - [Text Fields](/builder/textfields/)
+
 </div>
+
 </div>

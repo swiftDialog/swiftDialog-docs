@@ -1,5 +1,5 @@
 ---
-title: Data Entry - Textfields
+title: Builder Mode - Textfields
 description: Edit the properties and appearance of a dialog window and output the results as a json config
 ---
 

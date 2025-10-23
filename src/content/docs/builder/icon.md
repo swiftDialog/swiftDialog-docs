@@ -1,5 +1,5 @@
 ---
-title: Builder Icons
+title: Builder Mode - Icons
 description: Edit the properties and appearance of a dialog window and output the results as a json config
 ---
 

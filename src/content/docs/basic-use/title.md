@@ -53,10 +53,10 @@ Example 1: `--titlefont "colour=#00A4C7,weight=light,size=60"`
 
 This example sets the colour to the value `#00A4C7`, weight to `light` and the font size to `60` and will appear like so:
 
-![image](https://user-images.githubusercontent.com/3598965/171405145-60ba8f2c-1e9b-4c30-8c1a-ea6e75bde6fc.png)
+<img width="400" alt="image" src="/images/titlefont1.png" />
 
 Example 2: `--titlefont "name=Chalkboard-Bold,colour=#D054A0,size=40"`
 
 This example sets the colour to the value `#D054A0 `, size to `40` and use the font name "Chalkboard-Bold":
 
-![image](https://user-images.githubusercontent.com/3598965/171405515-79784e11-6de6-4a8e-9314-448617886fa7.png)
+<img width="400" alt="image" src="/images/titlefont2.png" />

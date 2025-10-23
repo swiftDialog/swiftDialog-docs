@@ -1,5 +1,5 @@
 ---
-title: Buttons
+title: Builder Mode - Buttons
 description: Edit the properties and appearance of a dialog window and output the results as a json config
 ---
 
