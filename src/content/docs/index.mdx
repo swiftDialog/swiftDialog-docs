@@ -4,7 +4,8 @@ description: A modern macOS dialog utility for administrators
 template: splash
 hero:
   title: swiftDialog
-  tagline: A modern macOS dialog utility for administrators that displays beautiful, customizable dialogs from the command line
+  tagline: |
+    A modern macOS dialog utility for administrators that displays beautiful, customizable dialogs from the command line
   image:
     file: ../../assets/dialog_logo.png
   actions:
@@ -17,7 +18,9 @@ hero:
       icon: external
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import DownloadButton from '../../components/DownloadButton.astro';
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components'
 
 <div style="max-width: 1400px; margin: 0 auto; padding: 2rem;">
 
@@ -27,13 +30,7 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ## 🚀 Latest Release
 
-**swiftDialog v2.5.6** - [Download from GitHub](https://github.com/swiftDialog/swiftDialog/releases/latest)
-
-**What's New:**
-- Enhanced JSON configuration support
-- Improved dark mode detection
-- New timer and progress bar features
-- Bug fixes and performance improvements
+<DownloadButton repo="swiftDialog/swiftDialog" />
 
 [View Full Changelog →](/reference/whats-new/)
 
@@ -162,7 +159,7 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ### Resources & Tools
 
-- [Dialog Builder](/reference/builder/) - Visual configuration tool
+- [Dialog Builder](/builder/builder/) - Visual configuration tool
 - [Community Showcase](/examples/showcase/) - Real-world implementations
 - [Common Issues](/operation/gotchas/) - Troubleshooting guide
 - [Help System](/operation/help-message/) - Built-in documentation

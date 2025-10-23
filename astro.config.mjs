@@ -100,7 +100,7 @@ export default defineConfig({
           items: [
             { label: 'What\'s New', slug: 'reference/whats-new' },
             { label: 'Updates', slug: 'reference/updates' },
-            { label: 'Builder', slug: 'reference/builder' },
+            { label: 'Builder', slug: 'builder/builder' },
           ],
         },
       ],
