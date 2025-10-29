@@ -21,7 +21,19 @@ Use this option to allow the window to be dragged around the screen.
 
 `--position [topleft | left | bottomleft | top | center/centre | bottom | topright | right | bottomright]`
 
-Positions the dialog window a the the defined location on the screen
+Positions the dialog window at the the defined location on the screen
+
+`--positionoffset <num>`
+
+Sets the edge offset for the window (distance from the edges of the screen to the window)
+
+`--position <x>,<y>`
+
+Positions the dialog window at the provided x,y co-ordinates, example `--position 100,200`
+
+**Notes:**
+ - 0,0 position is top left of the visible screen area
+ - visible screen area excludes area taken up by the Dock or menu bar. For example, if the dock is positioned on the left side of the screen the origin point will be inset.
 
 
 ## Window Size
@@ -104,3 +116,9 @@ swiftDialog supports the use of `%` as a function of the current screen size, e.
 ### Behaviour of `--ontop` with `--blurscreen` and existing dialog windows
 
 If an existing dialog is present with `--blurscreen` active, using `--ontop` will cause subsequent dialogs to appear above the blur layer. This allows for running a background dialog and launch additional dialogs and have them visible. It should be noted that if you plan to interact with these dialogs programatically, ensure you use unique command files for each.
+
+## `--showonallscreens`
+
+When used, the dialog window will appear on all virtual desktops
+
+If multiple screens are in use, the dialog will appear on all virtual desktops associated with the screen it was launched on.
