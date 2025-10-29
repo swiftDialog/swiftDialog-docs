@@ -9,37 +9,44 @@ Dialog has the ability to take a list of values and display them as a dropdown w
 
 ## How to Use
 
+
+### Select List title
+
+`--selecttitle <text>(,radio|required|searchable|name=\"<text>\")`
+
+Set the label can be given to the list with the `--selecttitle` command line option.
+e.g. `--selecttitle "Select an Option"`
+
+![image](https://user-images.githubusercontent.com/3598965/122635336-9ee98a80-d126-11eb-8839-f859eb19688e.png)
+
+
+This name will appear in swiftDialog output on STDOUT with the value of the selected item.
+For a single select list, standard output format will be:
 ```
---selecttitle <text>[,required|radio]
-            Title for dropdown selection
-
---selectvalues <text><csv>
-            List of values to be displayed in the dropdown, specivied in CSV format
-            e.g. "Option 1,Option 2,Option 3"
-
---selectdefault <text>
-            Default option to be selected (must match one of the items in the list)
-
-            If specified, the selected option will be sent to stdout in two forms:
-              SelectedOption - Outputs the text of the option seelcted
-              SelectedIndex  - Outputs the index of the option selected, starting at 0
-
-              example output:
-                SelectedOption: Option 1
-                SelectedIndex: 0
-
-            Output of select items is only shown if Dialog's exit code is 0
+    "SelectedOption" : "<value>"
+    "SelectedIndex" : <index>
+    "<name>" : "<value>"
+    "<name>" index : "<index>"
 ```
+
+Multiple `--selecttitle` arguments may be specified. Related `--selectvalues` and `--selectdefault` arguments can be specified and are associated to a select list in the order they are presented
+
+If multiple select lists are used, "SelectedOption" and "SelectedIndex" are not represented.
+
+Output of select items is only shown if swiftDialog's exit code is 0
+
+### Select List Values
+
+`--selectvalues <text><csv>`
 
 Values are specified in CSV format and passed in using the `--selectvalues` command line option
 e.g. `--selectvalues "Option 1,Option 2,Option 3,Option 4, Option 5"`
 
 ![image](https://user-images.githubusercontent.com/3598965/122635303-6053d000-d126-11eb-94f1-6950f0e3d43e.png)
 
-A label can be given to the list with the `--selecttitle` command line option.
-e.g. `--selecttitle "Select an Option"`
+### Select List Default
 
-![image](https://user-images.githubusercontent.com/3598965/122635336-9ee98a80-d126-11eb-8839-f859eb19688e.png)
+`--selectdefault <text>`
 
 The default option cen be set using the `--selectdefault` command line option
 e.g. `--selectdefault "Option 4"`
@@ -48,13 +55,87 @@ e.g. `--selectdefault "Option 4"`
 
 If a default value is _not_ specified, and the user does not select an item from the list, no output is given.
 
+
+example output:
+```
+    SelectedOption: Option 1
+    SelectedIndex: 0
+```
+
+Output of select items is only shown if Dialog's exit code is 0
+
+## JSON Schema
+
+The configuration can be specified using JSON for more direct control.
+
+```json
+{
+  "selectitems" : [
+    {
+      "title" : "Select Item",
+      "name" : "altname",
+      "values" : ["red","green","blue"],
+      "default" : "red",
+      "required" : false,
+      "style" : "default"
+    }
+  ]
+}
+```
+
+### Examples:
+
+```json
+"selectitems" : [
+  {"title" : "Select 1", "values" : ["one","two","three"]},
+  {"title" : "Select 2", "values" : ["red","green","blue"], "default" : "red"}
+]
+```
+
+![image](https://user-images.githubusercontent.com/3598965/235899756-95fc6f85-1357-40c8-bf05-aa550c0d4d7d.png)
+
+
+```json
+"selectitems" : [
+  {"title" : "Pick One", "values" : ["One","Two","Three"], "style" : "radio"}
+]
+```
+
+![image](https://github.com/bartreardon/swiftDialog/assets/3598965/1d2659c6-9048-440b-9246-2756ec097a24)
+
+
 ## Modifiers
+
+### Name
+
+Causes the output to be recorded with the specified `name` instead of using the title
+
+```bash
+% dialog --selecttitle "Alternate Name",name=alt --selectvalues "Option One, Option Two, Option Three"
+
+"SelectedOption" : "Option One"
+"SelectedIndex" : 0
+"alt" : "Option One"
+"alt" index : "0"
+```
+
+### Searchable
+
+The `searchable` modifier adds a search field to the list. Typing in the text box will filter the list.
+
+<img width="550" alt="image" src="/images/select_1.png" />
+
+<img width="550" alt="image" src="/images/select_2.png" />
+
+### Radio
 
 The `radio` modifier will change the select list to display a group with radio buttons. When using `radio` with no default item specified, the first entry in the list will become the default selected item. As such, using radio buttons _always_ forces one of the values to be selected and modifiers like `required` are ignored.
 
 `--selecttitle "Radio buttons",radio --selectvalues "Option One, Option Two, Option Three"`
 
 ![image](https://user-images.githubusercontent.com/3598965/235897669-c08fdd79-aa14-4fec-8c6d-a930861a122f.png)
+
+### Required
 
 The `required` modifier will make that particular list a required item that must have a value before swiftDialog will exit
 
@@ -103,31 +184,6 @@ or
 ## Adding multiple select lists
 
 To add multiple select lists, simply specify multiple instances of `--selectvalues` `--selecttitle` and `--selectdefault`. The title and default will be assigned in the order they are given.
-
-### json format (for use with [JSON configuration](/advanced/json-configuration))
-
-The json format give a more robust way to specify multiple select lists using the `selectitems` key followed by an array, creating the various lists of items and specifying any defaults.
-
-The format is as follows:
-
-```json
-"selectitems" : [
-    {"title" : "Select 1", "values" : ["one","two","three"]},
-    {"title" : "Select 2", "values" : ["red","green","blue"], "default" : "red"}
-]
-```
-
-![image](https://user-images.githubusercontent.com/3598965/235899756-95fc6f85-1357-40c8-bf05-aa550c0d4d7d.png)
-
-For generating a list of radio buttons using the following:
-
-```json
-"selectitems" : [
-    {"title" : "Pick One", "values" : ["One","Two","Three"], "style" : "radio"}
-]
-```
-
-![image](https://github.com/bartreardon/swiftDialog/assets/3598965/1d2659c6-9048-440b-9246-2756ec097a24)
 
 
 ### multi select output
