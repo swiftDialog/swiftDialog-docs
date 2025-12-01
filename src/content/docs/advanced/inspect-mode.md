@@ -44,14 +44,15 @@ Inspect Mode continuously monitors the specified file paths and cache directorie
 Important: guiIndex must be unique and sets the order of the items in the GUI. Lower numbers are displayed first.
 :::
 
-2. Set the environment variable:
+2. Launch swiftDialog with inspect flag:
 ```bash
-export DIALOG_INSPECT_CONFIG="/path/to/config.json"
+/usr/local/bin/dialog --inspect-mode --inspect-config /path/to/config.json
 ```
 
-3. Launch swiftDialog with inspect flag:
+3. Optionally, set the config file path environment variable:
 ```bash
-/usr/local/bin/dialog --inspect
+export DIALOG_INSPECT_CONFIG="/path/to/config.json"
+/usr/local/bin/dialog --inspect-mode
 ```
 
 ## JSON Configuration Reference
@@ -317,7 +318,7 @@ Define a base path for item icons to simplify configuration, image names are loa
 Enable debug output:
 ```bash
 export DIALOG_DEBUG=1
-/usr/local/bin/dialog --inspect
+/usr/local/bin/dialog --inspect-mode
 ```
 
 ### Common Environment Variables
