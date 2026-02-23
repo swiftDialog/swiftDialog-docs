@@ -11,16 +11,27 @@ Supported markdown follows GitHub style formatting. Tables, indents, code blocks
 
 <img width="500" alt="Screenshot 2023-08-10 at 9 06 14 am" src="https://github.com/bartreardon/swiftDialog/assets/3598965/5fd6bb4a-a5b6-46c3-9fc9-7beace658420">
 
-Some notes about markdown support:
-   - Due to the way markdown is rendered and how SwiftUI behaves with selections across views, selecting text only works within a single paragraph/block.
-   - Inline images to local sources are **not** supported
-   - Inline images to URL sources **do** support markdown `![image](https://path.to/image.png)` formatting but **not** `<img src="https://path.to/image.png>` at this time.
-
 ### Newlines
 
 In Markdown due to the [definition](https://daringfireball.net/projects/markdown/syntax#p) of how paragraphs and line breaks are handled, a single `\n` is not sufficient to create a new line. You should end a line with **two spaces**, and then a `\n` or you can trigger a new paragraph with a double `\n\n`
 
 You can also use the `<br>` tag to denote a newline which will get interpreted as `  \n` (`[space][space]\n`)
+
+### Colour Extensions
+
+swiftDialog 3+ includes extensions for supporting colour inline. The syntax is:
+
+```
+colour:[Text here]
+```
+
+For example if you wanted green text you could use `green:[My green text here]`
+
+HEX values are also supported, e.g. `:a62991[Colourful Text]`
+
+You can combine multiple colours e.g. `--message ":e74c3c[scarlet], :e67e22[tangerine], :f1c40f[gold], :2ecc71[emerald], :3498db[sapphire], and :9b59b6[amethyst]"`
+
+<img width="400" alt="image" src="/images/markdown_colour.png" />
 
 ### Examples:
 
@@ -40,4 +51,3 @@ You can also use the `<br>` tag to denote a newline which will get interpreted a
 
 **Caution** - When using inline images, you must escape the leading `!` as `\!` otherwise your shell may interpret it as a command.
 
-Suffice to say, things can get a bit crazy so use markdown with caution

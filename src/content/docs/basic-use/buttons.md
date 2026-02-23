@@ -59,6 +59,33 @@ At this stage actions are limited to opening a URL in the users default browser:
 
 e.g. `--infobuttonaction "https://github.com/"`
 
+## Button Symbols
+
+Sets the SF Symbol to use in addition to the button label
+
+```bash
+--button1symbol <sf symbol name>[,position,rendering mode,size,color]
+--button2symbol <sf symbol name>[,position,rendering mode,size,color]
+--infobuttonsymbol <sf symbol name>[,position,rendering mode,size,color]
+```
+
+Takes SF Symbol name as the argument
+
+Optional properties supplied as comma seperated values (in any order):
+ - position: one of leading, trailing, top, bottom - default leading
+ - rendering mode: one of hierarchical, monochrome, multicolour, palette - default monochrome
+ - palette: add two or three colours in the format palette=colour1-colour2-colour3
+   - e.g. palette=red-green-blue
+ - size: in the format size=<num>
+ - color: in the format color=<text|hex>
+   - if multicolour rendering mode is set, color is ignored
+
+Example:
+
+`--button1symbol heart.fill,color=red`
+
+<img width="400" alt="image" src="/images/button_symbol.png" />
+
 ## Button Position
 
 By default Button1 and Button2 are on the right and Infobutton is on the left.
