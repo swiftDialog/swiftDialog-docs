@@ -20,6 +20,16 @@ Messages will line wrap if they go beyond the width of the display area and will
 
 <img width="400" alt="image" src="/images/lorem_ipsum_2.png" />
 
+### Sourcing Content
+
+In addition to passing in a string of text, you can instead pass in the path or URL to a markdown file. Any file ending in `.md` will be treated as a markdown source file.
+
+Example:
+
+`--message "/path/to/content.md"`
+
+`--message "https://www.example.com/example.md"`
+
 ## Message positioning
 
 `--messagealignment` and `--messageposition` let you position where in the dialog the message appears. Useful for creating dialogs with the message centred vertically and horizontally.
@@ -34,7 +44,7 @@ Set the message alignment. Default is 'left'
 
 `--messagefont <text>`
 
-Lets you modify the message text size and colour.
+Lets you modify the message font, text size and colour.
 
 `color,colour=<text><hex>`
 
@@ -44,7 +54,21 @@ Lets you modify the message text size and colour.
 
 `size=<float>` accepts any float value (e.g. 15.7, 20, 32.0)
 
+`name=<fontname>` - accepts the name of any installed font
 
-Example: `"colour=#00A4C7,size=40"`
 
-<img width="400" alt="image" src="/images/messagefont.png" />
+Example: `--message "Welcome to swiftDialog" --messagefont "name=Chalkboard-Bold,colour=#D054A0,size=40"`
+
+
+<img width="400" alt="image" src="/images/message_font.png" />
+
+### Using additional colour in the message
+
+Using `colour=<value>` will set the base colour of the message however you can set the colour of individual words or letters using `:colour[text]` format.
+
+Example:
+
+`--message ":orange[Welcome] :green[to] :teal[swiftDialog]"`
+
+<img width="400" alt="image" src="/images/message_colour.png" />
+

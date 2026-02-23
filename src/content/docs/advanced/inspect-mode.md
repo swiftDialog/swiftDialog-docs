@@ -104,66 +104,13 @@ Each item in the `items` array requires:
 | `guiIndex` | Integer | **Yes** | Sort order (0-based) |
 | `paths` | Array | **Yes** | File paths to check for existence |
 | `icon` | String | No | Item-specific icon |
-<!-- | `subtitle` | String | No | Subtitle text (preset6) | -->
 | `plistKey` | String | No | Plist key to validate |
 | `expectedValue` | String | No | Expected plist value |
 | `evaluation` | String | No | Evaluation type: "equals", "boolean", "exists", "contains", "range" |
+<!-- | `subtitle` | String | No | Subtitle text (preset6) | -->
 <!-- | `category` | String | No | Category grouping (preset5) |
 | `categoryIcon` | String | No | Category icon (preset5) | -->
 
-## Preset Layouts
-
-### Preset 1: Classic Sidebar
-Traditional sidebar layout with icon, progress bar, and item list. Best for standard application installations.
-
-```json
-{
-  "preset": "preset1",
-  "title": "Installing Applications",
-  "icon": "sf=apps.iphone.badge.plus"
-}
-```
-<img width="500" alt="image" src="/inspect/preset_1.png" />
-
-### Preset 2: Card Style
-Features a logo or top banner image with streamlined Card item display. Ideal for branded deployments.
-
-```json
-{
-  "preset": "preset2",
-  "banner": "/path/to/banner.png",
-  "bannerHeight": 120,
-  "bannerTitle": "Company Setup"
-}
-```
-<img width="500" alt="image" src="/inspect/preset_2.png" />
-
-### Preset 3: Condensed List
-This is a condensed list layout with a logo or top banner image. Automatically scrolls through items, highlighting current installations.
-
-```json
-{
-  "preset": "preset3",
-  "sideMessage": ["Installing core apps...", "Please wait..."],
-  "sideInterval": 5
-}
-```
-
-<img width="500" alt="image" src="/inspect/preset_3.png" />
-
-### Preset 4: Dashboard
-Modern dashboard layout with cards and status indicators. Great for system compliance overview screens.
-
-```json
-{
-  "preset": "preset4",
-  "style": "cards",
-  "highlightColor": "#007AFF",
-  "gradientColors": ["#1e3c72", "#2a5298", "#7e8ba3"],
-}
-```
-
-<img width="500" alt="image" src="/inspect/preset_4.png" />
 
 ## Advanced Features
 
@@ -221,39 +168,7 @@ Define custom compliance levels and colors:
   }
 }
 ```
-## Example Card design
 
-```json
-  {
-    "preset": "preset4",
-    "title": "Security Compliance",
-    "icon": "sf=shield.checkered,colour=#16a34a,weight=bold",
-    "items": [
-      {
-        "id": "os_gatekeeper",
-        "displayName": "Gatekeeper",
-        "guiIndex": 0,
-        "paths": ["/Library/Preferences/com.apple.systempolicy.control.plist"],
-        "plistKey": "EnableAssessment",
-        "expectedValue": "true",
-        "evaluation": "boolean",
-        "icon": "sf=shield.lefthalf.filled,colour=#16a34a,weight=bold"
-      },
-      {
-        "id": "ssh_disable",
-        "displayName": "SSH Disabled",
-        "guiIndex": 2,
-        "paths": ["/System/Library/LaunchDaemons/ssh.plist"],
-        "plistKey": "Disabled",
-        "expectedValue": "true",
-        "evaluation": "boolean",
-        "icon": "sf=network.badge.shield.half.filled,colour=#0891b2,weight=bold"
-      }
-    ]
-  }
-```
-
-<img width="500" alt="image" src="/inspect/preset_4_compliance.png" />
 
 ## Complete Examples
 
@@ -316,6 +231,10 @@ Define a base path for item icons to simplify configuration, image names are loa
 
 ### Debug Mode
 Enable debug output:
+```bash
+/usr/local/bin/dialog --inspect-mode --debug
+```
+
 ```bash
 export DIALOG_DEBUG=1
 /usr/local/bin/dialog --inspect-mode

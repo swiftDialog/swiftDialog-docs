@@ -32,22 +32,14 @@ Properties available for modification are:
    * accepts any of thin, light, regular, medium, heavy or bold (default)
  * `name=<fontname>`
    * accepts a font name or family. list of available names can be determined with `--listfonts` or by consulting the macOS Font Book application.
+ * `alignment=[left|right]`
+   * Positions the title text with left or right alignment
 
  > **CAUTION :** Be careful when mixing font names and weights. When specifying a font or font family by name, certain weights may not be available. If this occurs, the font weight specified will be ignored.
 
 You can utilise one or more and the order in which they are specified is not important. For instance if you only wished to modify the size, you could use the following:
 
 `--titlefont "size=60"`
-
-#### Hiding the title area
-
-Use the keyword `none` to hide the title area. This will remove the title bar and the horizontal separator line
-
-e.g. `--title none`
-
-
-
-### Usage
 
 Example 1: `--titlefont "colour=#00A4C7,weight=light,size=60"`
 
@@ -60,3 +52,29 @@ Example 2: `--titlefont "name=Chalkboard-Bold,colour=#D054A0,size=40"`
 This example sets the colour to the value `#D054A0 `, size to `40` and use the font name "Chalkboard-Bold":
 
 <img width="400" alt="image" src="/images/titlefont2.png" />
+
+Example  - Alignment Left/Right:
+
+`--titlefont alignment=left` - `--titlefont alignment=right`
+
+<img width="400" alt="image" src="/images/titlefont_left.png" /> <img width="400" alt="image" src="/images/titlefont_right.png" />
+
+### Using colour in the title
+
+Using `colour=<value>` will set the base colour of the text however you can set the colour of individual words or letters using `:colour[text]` format
+
+Example:
+
+`--title ":orange[Welcome] :green[to] :teal[swiftDialog]"`
+
+<img width="400" alt="image" src="/images/title_colour.png" />
+
+#### Hiding the title area
+
+Use the keyword `none` to hide the title area. This will remove the title bar and the horizontal separator line
+
+e.g. `--title none`
+
+
+
+

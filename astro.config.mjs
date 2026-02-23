@@ -65,7 +65,26 @@ export default defineConfig({
             { label: 'Layout', slug: 'advanced/layout' },
             { label: 'Presentation Mode', slug: 'advanced/presentation' },
             { label: 'Notifications', slug: 'advanced/notifications' },
-            { label: 'Inspect Mode', slug: 'advanced/inspect-mode'}
+            { label: 'Inspect Mode',
+              collapsed: true,
+              items: [
+                { label: 'Overview', slug: 'advanced/inspect-mode' },
+                { label: 'Presets',
+                  collapsed: true,
+                  items: [
+                    { label: 'Deployment', slug: 'advanced/inspect/preset1' },
+                    { label: 'Cards', slug: 'advanced/inspect/preset2' },
+                    { label: 'Compact List', slug: 'advanced/inspect/preset3' },
+                    { label: 'Toast', slug: 'advanced/inspect/preset4' },
+                    { label: 'Unified', slug: 'advanced/inspect/preset5' },
+                    { label: 'Guidance', slug: 'advanced/inspect/preset6' },
+                  //  { label: 'Preset 7', slug: 'advanced/inspect/preset7' },
+                  //  { label: 'Preset 8', slug: 'advanced/inspect/preset8' },
+                  //  { label: 'Preset 9', slug: 'advanced/inspect/preset9' }
+                  ]
+                }
+              ]
+            }
           ],
         },
         {
