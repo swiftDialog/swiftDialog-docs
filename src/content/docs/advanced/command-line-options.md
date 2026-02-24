@@ -10,10 +10,6 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
 ## Arguments
 
-    swiftDialog v2.5.1.4775
-    ©2024 Bart Reardon
-
-
     use --help <option> for more details
 
     -t,  --title <text>
@@ -43,6 +39,10 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
     --helpmessage <text>
 
         Enable help button with content <text>
+
+    --helpimage <text>
+
+        Add an image to the help message
 
     -i,  --icon <file> | <url>
 
@@ -80,6 +80,10 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Set the Button1 action
 
+    --button1symbol <sf symbol name>[,position,rendering mode,size,color]
+
+        Set the symbol for Button1
+
     --button2text <text>
 
         Displays Button2 with <text>
@@ -87,6 +91,10 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
     --button2action <text>
 
         Custom Actions For Button 2 Is Not Implemented
+
+    --button2symbol <sf symbol name>[,position,rendering mode,size,color]
+
+        Set the symbol for Button2
 
     --infobuttontext <text>
 
@@ -96,11 +104,23 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Set the info button action
 
+    --infobuttonsymbol <sf symbol name>[,position,rendering mode,size,color]
+
+        Set the symbol for Info Button
+
     --buttonstyle center|centre|stack
 
         Configure how the button area is displayed
 
-    --selecttitle <text>(,radio|required,name="<text>")
+    --buttonsize mini|small|regular|large
+
+        Configure how large the buttons are
+
+    --buttontextsize <num>
+
+        Set the font sized used on buttons
+
+    --selecttitle <text>(,radio|required|searchable|multiselect|name="<text>")
 
         Select list name
 
@@ -123,6 +143,10 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
     --textfield <text>[,required,secure,prompt="<text>",name="<text>"]
 
         Enable a textfield with the specified label
+
+    --textfieldlivevalidation 
+
+        Enable live validation of textfield regex requirements
 
     --checkbox <text>
 
@@ -158,7 +182,7 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
     --height <number>
 
-        Set dialog window height
+        Set dialog window width
 
     -bg,  --background <file>
 
@@ -180,9 +204,9 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Enable background image scaling
 
-    --position [topleft | left | bottomleft | top | center/centre | bottom | topright | right | bottomright]
+    --position [topleft | left | bottomleft | top | center/centre | bottom | topright | right | bottomright | x,y]
 
-        Set dialog window position
+        Position the dialog window to the defined location on the screen
 
     --positionoffset <int>
 
@@ -220,6 +244,10 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Set list style [expanded|compact]
 
+    --enablelistselect <text>
+
+        Enable list selection behabiour
+
     --infotext <text>
 
         Display <text> in place of info button
@@ -248,6 +276,10 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Open a file and display the contents as it is being written
 
+    --loghistory [<int>]
+
+        Display log file history when used with --displaylog
+
     --vieworder <csv>
 
         Change the order in which some items are displayed
@@ -255,6 +287,22 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
     --appearance [dark|light]
 
         Set the preferred window appearance
+
+    -id,  --identifier <text>
+
+        Set the notification identifier
+
+    --sound <file|url>
+
+        Play an audio file on launch
+
+    --dockicon <file|url>
+
+        Dialog app icon will be visible on the Dock set to the specified value
+
+    --dockiconbadge <text>
+
+        Shows the specified value as a badge on the dock icon when visible
 
     --button1disabled <text>
 
@@ -264,15 +312,15 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Disable Button2
 
-    -2,  --button2
+    -2,  --button2 
 
         Displays Button2
 
-    -3,  --infobutton
+    -3,  --infobutton 
 
         Displays info button
 
-    -v,  --version
+    -v,  --version 
 
         Print version string
 
@@ -288,7 +336,7 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Print help
 
-    -l,  --licence
+    -l,  --licence 
 
         Print license
 
@@ -300,7 +348,7 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Enable video autoplay
 
-    --blurscreen
+    --blurscreen 
 
         Blur screen content behind dialog window
 
@@ -308,43 +356,47 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Send a system notification
 
-    -o,  --moveable
+    --showdockicon 
+
+        Dialog app icon will be visible on the Dock
+
+    -o,  --moveable 
 
         Enable dialog to be moveable
 
-    -p,  --ontop
+    -p,  --ontop 
 
         Enable dialog to be always positioned on top of other windows
 
-    -s,  --small
+    -s,  --small 
 
         Enable 25% decrease in default window size
 
-    -b,  --big
+    -b,  --big 
 
         Enable 25% increase in default window size
 
-    -f,  --fullscreen
+    -f,  --fullscreen 
 
         Enable full screen view
 
-    --quitoninfo
+    --quitoninfo 
 
         Quit when info button is selected
 
-    -j,  --json
+    -j,  --json 
 
         Enable JSON output
 
-    -jh,  --jh
+    -jh,  --jh 
 
         Enable jamfHelper mode
 
-    --mini
+    --mini 
 
         Enable mini mode
 
-    --presentation
+    --presentation 
 
         Enable presentation mode
 
@@ -352,18 +404,31 @@ you can also optionally configure dialog using [JSON](/advanced/json-configurati
 
         Enables window buttons
 
-    --resizable
+    --resizable 
 
         Enable the dialog window to be resizable
 
-    --showonallscreens
+    --showonallscreens 
 
         Enable the dialog window to appear on all screens
 
-    --loginwindow
+    --loginwindow 
 
         Enable the dialog window to be shown at login
 
-    --hidedefaultkeyboardaction
+    --hidedefaultkeyboardaction 
 
         Hides the default behaviour of Return ↵ and Esc ⎋ keys
+
+    --remove <text>
+
+        Remove a system notification
+
+    --showsoundcontrols 
+
+        Show sound playback controls
+
+    --hideotherapps 
+
+        Hide all other apps when launching a dialog window
+
