@@ -1,7 +1,7 @@
-name = "beta-swiftdialog-docs"
+name = "swiftdialog-docs-beta"
 compatibility_date = "2024-09-27"
 
 [site]
 bucket = "./dist"
-main = "workers-site/index.js"
+
 # No main entry point needed for --assets deployment
