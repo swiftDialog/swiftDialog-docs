@@ -65,6 +65,7 @@ export default defineConfig({
             { label: 'Layout', slug: 'advanced/layout' },
             { label: 'Presentation Mode', slug: 'advanced/presentation' },
             { label: 'Notifications', slug: 'advanced/notifications' },
+            { label: 'Cards', slug: 'advanced/cards' },
             { label: 'Inspect Mode',
               collapsed: true,
               items: [
@@ -118,7 +119,14 @@ export default defineConfig({
           label: 'Reference',
           collapsed: true,
           items: [
-            { label: 'What\'s New', slug: 'reference/whats-new' },
+            { label: 'Release Notes',
+              collapsed: true,
+              items: [
+                { label: '3.0.0', slug: 'reference/releasenotes/sd3-0-0' },
+                { label: '3.0.1', slug: 'reference/releasenotes/sd3-0-1' },
+                { label: '3.1.0', slug: 'reference/releasenotes/sd3-1-0' }
+              ]
+            },
             { label: 'Updates', slug: 'reference/updates' },
             { label: 'Builder', slug: 'builder/builder' },
           ],
