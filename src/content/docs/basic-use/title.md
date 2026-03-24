@@ -34,6 +34,8 @@ Properties available for modification are:
    * accepts a font name or family. list of available names can be determined with `--listfonts` or by consulting the macOS Font Book application.
  * `alignment=[left|right]`
    * Positions the title text with left or right alignment
+ * `offset=<float>`
+   * Shifts the title text horizontally by the specified number of points. Positive values move right, negative values move left. When using `alignment=right`, the offset direction is automatically flipped so a positive value still moves the text toward the right edge.
 
  > **CAUTION :** Be careful when mixing font names and weights. When specifying a font or font family by name, certain weights may not be available. If this occurs, the font weight specified will be ignored.
 
@@ -68,6 +70,16 @@ Example:
 `--title ":orange[Welcome] :green[to] :teal[swiftDialog]"`
 
 <img width="400" alt="image" src="/images/title_colour.png" />
+
+## Subtitle
+
+Use `--subtitle <text>` to display a secondary line of text below the title, rendered in the same font at a smaller size.
+
+```sh
+dialog --title "System Update" --subtitle "Please save your work before continuing"
+```
+
+The subtitle inherits the same font name, weight, and colour as the title but is rendered at `titlefont size − 10pt`.
 
 #### Hiding the title area
 

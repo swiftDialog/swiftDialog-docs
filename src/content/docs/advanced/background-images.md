@@ -19,9 +19,24 @@ Backgrounds can be controlled with the following controls:
 
 Displays the selected file as a background image. If the image is larger than the default dialog size (820x380) and no window size options are given (specifically window height), the dialog window height will be adjusted so the image fills the entire window width, 820 by default or if specified using `--width`
 
-Alternatly a solid colour can be specified using the `colour=` prefix. The colour can be specified as a hex value or a named colour.
+Alternatively a solid colour can be specified using the `colour=` prefix. The colour can be specified as a hex value or a named colour.
 
 e.g. `--background colour=red` or `--background colour=#ff0000`
+
+By default a subtle gradient overlay is applied to solid colours. Append `,nogradient` to disable it:
+
+`--background colour=red,nogradient`
+
+A linear gradient can be specified using the `gradient=` prefix. Supply two or more comma-separated colours, and optionally set the direction with `:angle=<degrees>`:
+
+```sh
+--background "gradient=red,blue"
+--background "gradient=red,orange,yellow:angle=135"
+```
+
+Angle conventions: `0` = bottom-to-top, `90` = left-to-right (default), `180` = top-to-bottom, `270` = right-to-left.
+
+If only one colour is supplied to `gradient=`, the result is identical to `colour=`.
 
 ```
 

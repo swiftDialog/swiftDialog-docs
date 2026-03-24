@@ -18,11 +18,11 @@ Use `--help <option>` for detailed information about a specific argument.
 | Argument | Short | Description |
 |---|---|---|
 | `--title <text>` | `-t` | Set the dialog title. Use `none` to hide. |
-| `--subtitle <text>` | | Subtitle text for [notifications](/advanced/notifications) |
+| `--subtitle <text>` | | Secondary line of text displayed below the title. Also used as subtitle text for [notifications](/advanced/notifications). |
 | `--message <text>` | `-m` | Set the dialog message. Supports [Markdown](/basic-use/markdown). |
 | `--messagealignment [left\|centre\|right]` | | Horizontal alignment of the message |
 | `--messageposition [top\|centre\|bottom]` | | Vertical position of the message content block |
-| `--titlefont <params>` | | Modify title font (color, size, name, weight, alignment) |
+| `--titlefont <params>` | | Modify title font. Accepts comma-separated `key=value` pairs: `colour`, `size`, `weight`, `name`, `alignment`, `offset`, `shadow` |
 | `--messagefont <params>` | | Modify message font (color, size) |
 
 See [Title](/basic-use/title) and [Message](/basic-use/message) for details.
