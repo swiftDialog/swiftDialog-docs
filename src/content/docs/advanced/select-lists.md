@@ -12,7 +12,7 @@ Dialog has the ability to take a list of values and display them as a dropdown w
 
 ### Select List title
 
-`--selecttitle <text>(,radio|required|searchable|name=\"<text>\")`
+`--selecttitle <text>(,radio|required|searchable|multiselect|name="<text>")`
 
 Set the label can be given to the list with the `--selecttitle` command line option.
 e.g. `--selecttitle "Select an Option"`
@@ -77,7 +77,7 @@ The configuration can be specified using JSON for more direct control.
       "values" : ["red","green","blue"],
       "default" : "red",
       "required" : false,
-      "style" : "default"
+      "style" : "default | radio | searchable | multiselect"
     }
   ]
 }
@@ -144,6 +144,38 @@ The `required` modifier will make that particular list a required item that must
 ![image](https://user-images.githubusercontent.com/3598965/235898090-5f7e9fac-2913-413f-ae85-c850ae86ee6b.png)
 
 ![image](https://user-images.githubusercontent.com/3598965/235898473-6fb9749f-3406-4f8d-b112-b214e95dccd4.png)
+
+### Multiselect
+
+The `multiselect` modifier allows more than one option to be selected from the list. Selected items appear as removable tags and the output is a comma-separated list of the chosen values.
+
+`--selecttitle "Choose options",multiselect --selectvalues "Option One, Option Two, Option Three, Option Four"`
+
+When using `multiselect`, the selected values are returned as a single comma-separated string:
+
+```
+"Choose options" : "Option One, Option Three"
+```
+
+Or in JSON format:
+```json
+{
+  "Choose options" : "Option One, Option Three"
+}
+```
+
+## Global Style
+
+`--selectstyle [list | radio | searchable | multiselect]`
+
+Sets the display style for **all** select list items in the dialog. This is a global equivalent of setting the style modifier on every `--selecttitle` individually. Per-list style modifiers on `--selecttitle` take precedence over this global setting.
+
+| Value | Description |
+|---|---|
+| `list` | Standard dropdown menu (default) |
+| `radio` | Radio button group |
+| `searchable` | Dropdown with a filter text field |
+| `multiselect` | Searchable field that allows multiple selections |
 
 ## Adding sections to the list
 

@@ -100,6 +100,7 @@ export default defineConfig({
             { label: 'Command-Q Behavior', slug: 'operation/command-q' },
             { label: 'Built-in Variables', slug: 'operation/builtin-variables' },
             { label: 'Help Message', slug: 'operation/help-message' },
+            { label: 'Dialog CLI Launcher', slug: 'operation/dialogcli' },
             { label: 'Gotchas', slug: 'operation/gotchas' },
           ],
         },

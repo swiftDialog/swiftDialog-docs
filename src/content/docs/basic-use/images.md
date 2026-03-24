@@ -36,3 +36,5 @@ Specifying more than one `--image` will display the images in a carousel with ne
 <img width="932" alt="image" src="https://user-images.githubusercontent.com/3598965/148642555-96247bff-8d95-414d-bf96-1fe28e27ed9c.png">
 
 In addition to displaying the images statically, you can use `--autoplay <sec>` to have the next image display after the specified number of seconds (default is 10). A progress indicator will show beneath the image display to indicate when the next transition will occur. After the last image is shown the display will reset and start from the first image.
+
+Use `--hidetimer` to hide the countdown indicator shown during autoplay transitions.
