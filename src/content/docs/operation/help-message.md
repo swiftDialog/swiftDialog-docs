@@ -31,3 +31,15 @@ Add an image with `--helpimage /path/to/image.png`.
 Supports standard icon arguments, including qr code:
 
 <img width="550" alt="image" src="https://github.com/user-attachments/assets/1c4c99bc-8548-4547-b16b-0dd02cc2c02d" />
+
+### `--helpalignment`
+
+`--helpalignment [left | centre | center | right]`
+
+Sets the text alignment of the help sheet message content. Default alignment matches the current message alignment setting.
+
+### `--helpsheetbuttontext`
+
+`--helpsheetbuttontext <text>`
+
+Sets the label on the button used to dismiss the help sheet. Default is `OK`.

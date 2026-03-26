@@ -27,6 +27,23 @@ Example:
 
 `--bannerimage colour=red` or `--bannerimage colour=#ff0000`
 
+By default a subtle white-to-colour-to-black gradient overlay is applied to solid colours. Append `,nogradient` to disable it:
+
+`--bannerimage colour=red,nogradient`
+
+### Gradient banners
+
+A linear gradient can be specified using the `gradient=` prefix. Supply two or more comma-separated colours, and optionally set the direction with `:angle=<degrees>`:
+
+```sh
+--bannerimage "gradient=red,blue"
+--bannerimage "gradient=red,orange,yellow:angle=135"
+```
+
+Angle conventions: `0` = bottom-to-top, `90` = left-to-right (default), `180` = top-to-bottom, `270` = right-to-left.
+
+If only one colour is supplied to `gradient=`, the result is identical to `colour=` (white-to-colour-to-black overlay).
+
 ## Title text within the banner area
 
 `--bannertitle`
@@ -35,8 +52,10 @@ Using this command you can opt to display title text within the banner using the
 
 You can use it as an option to `--title` or you can pass in a string to display as the title. If both `--title` and `--bannertitle` have string arguments, `--bannertitle` will take precedence.
 
-An additional `--titlefont` modifier is available with text over a banner image.
+All `--titlefont` modifiers apply to banner title text, including `shadow`, `colour`, `size`, `weight`, `alignment`, and `offset`.
 
-`--titlefont shadow=1` will place a drop shadow underneath the text and can be used in combination with other title font arguments either as a command line argument or as json.
+`--titlefont shadow=1` places a drop shadow underneath the text.
+
+If `--subtitle` is also set, the subtitle is rendered below the title inside the banner area, inheriting the same font at a smaller size.
 
 ![image](https://user-images.githubusercontent.com/3598965/216027666-5e4433d5-9e1e-4590-b34d-8d7943cbe5a5.png)

@@ -3,80 +3,238 @@ title: Command File
 description: Updating Dialog with new content dynamically using command files
 ---
 
-Some dialog content can be updated on the fly after it has been launched. This is facilitated by sending commands to a command file which Dialog will read and interpret.
+Some dialog content can be updated on the fly after it has been launched. This is facilitated by sending commands to a command file which Dialog reads and interprets.
 
-<hr />
+---
 
-Dialog will need to be launched in the background in order for you to be able to send commands to it (assuming you're calling and commanding dialog from the same script. To do this and allow time for dialog to initiate before sending commands, use the following:
+Dialog must be launched in the background to allow commands to be sent to it from the same script:
 
-`/usr/local/bin/dialog & sleep 0.1`
+```sh
+/usr/local/bin/dialog & sleep 0.1
+```
 
-This will launch dialog, background it and sleep for 100 milliseconds which should be enough time to avoid any race conditions.
+The `sleep 0.1` gives Dialog 100ms to initialise before the first command is sent.
 
-The default command file is `/var/tmp/dialog.log` but a custom command file can be set using the `--commandfile` argument followed by a path where the command file will be written to and read from.
+The default command file path is `/var/tmp/dialog.log`. A custom path can be set with the `--commandfile` argument:
 
-e.g. `dialog --commandfile /var/tmp/custom_command_file.log`
+```sh
+dialog --commandfile /var/tmp/my.log
+```
 
-Commands can be sent in the following manner:
+Send commands using:
 
-`/bin/echo "<command>: <value>" >> /var/tmp/dialog.log`
+```sh
+echo "<command>: <value>" >> /var/tmp/dialog.log
+```
 
-## Available Commands
+---
 
-Commands take the same format as they would if used on the command line or via json input
+## Content
 
-|Command &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Effect|
-|---|-|
-|`title: <text>`             |Updates the dialog title with the specified `<text>`|
-|`title: none`.            |Hides the title area|
-|`message: (+)<text>`            |Updates the dialog title with the specified `<text>`  <br>For inserting newlines into the message you can use a `<br>` tag.  <br>You can also append to an existing message by prepending message content with a `+`, e.g. `message: + Additional Content` and the contents will be added to the end of an existing message.|
-|`alignment: [left \| center \| right]`|Sets the message alignment|
-|`image: <path/url>`          |Displays the selected image|
-|`imagecaption: <text>`       |Displays the specified text underneath any displayed image|
-|`progress: <int>/<text>`     |When Dialog is initiated with the `--progress` command line option, this will update the progress value<br />If an integer value is sent, this will move the progress bar to that value of steps<br />Other options are: <br /> * `increment` - increments the progress by one<br /> * `reset` - resets the progress bar to 0<br /> * `complete` - maxes out the progress bar|
-|`progress: hide/show`    |Hides or shows the progress bar |
-|`progresstext: <text>`       |Will update the label associated with the progress bar|
-|`helpmessage: <text>`|Update help message content|
-|`list: <text/csv>`           |Create a list from the provided comma separated items|
-|`list: clear`           |Clears the list and removes it from display|
-|`listitem: <item>: [<text>/wait]` |Update the named item with the additional status text `<text>` or display a spinning wait cursor|
-|`listitem: add, title: <text>[, status: <status>, statustext: <text>]` |Add a new item to the end of the current list with the specified title and optionally status and status text|
-|`listitem: delete, title: <text>` |Delete an item by name|
-|`listitem: delete, index: <index>` |Delete an item by index number (starting at 0)|
-|`button1: [disable/enable]`  |Will enable or disable the default button|
-|`button2: [disable/enable]`  |Will enable or disable button 2|
-|`button1text: <text>`        |Changes the button 1 label to the value in `<text>`|
-|`button2text: <text>`        |Changes the button 2 label to the value in `<text>`|
-|`buttonsize: [mini \| small \| regular \| large]`|Set the button size|
-|`infobuttontext: <text>`     |Changes the info button label to the value in `<text>`|
-|`infotext: <text>`|Set the info text (not visible if infobutton is also in use)|
-|`infobox: <text>`            |Update the content in the info box  <br>For inserting newlines into the content you can use a `<br>` tag.  <br>You can also append to existing content by prepending the text with a `+`, e.g. `infobox: + Additional Content` and the text will be added to the end of any existing infobox content.|
-|`icon: <path/url/SF Symbol>`           |Changes the displayed icon|
-|`icon: <centre/center/left/default>`           |Moves the icon being shown to the centre or to the default location|
-|`icon: none`           |Hide the icon|
-|`icon: size: <num>`           |Changes the size of the displayed icon to the requested size.|
-|`iconalpha: <float> (0.0 -> 1.0)`|Set the transparancy/alpha value. Accepts float valuse between 0.0 and 1.0|
-|`overlayicon: <path/url/SF Symbol>`|Set the overlay icon|
-|`bannerimage: <path/url>`|Set the banner image|
-|`bannertext: [enable \| disable \| shadow \| <text>]`|Enable banner text mode, text shadow or set the title value. If a text value is not set, `title:` value is used|
-|`width: <num>`           |Changes the width of the window maintaining the current position.|
-|`height: <num>`           |Changes the height of the window maintaining the current position.|
-|`position: <position>`           |Changes the window position. One of `top`, `bottom`, `left`, `right`, `centre` or a combination (e.g. `topright`)|
-|`webcontent: <url>`           |Display content from the specified URL. send `webcontent: none` to reset|
-|`video: <path/url>`           |Display a video from the specified path or URL. send `video: none` to reset|
-|`blurscreen: [disable/enable]`                 |Activates the blur window layer|
-|`activate:`                |Activates the dialog window and brings it to the forground.|
-|`hide:`|Hides the dialog window|
-|`show:`|Unhides a hidden dialog window|
-|`quit:`                      |Quits dialog with exit code 5|
+| Command | Description |
+|---|---|
+| `title: <text>` | Update the dialog title |
+| `title: none` | Hide the title area |
+| `titlefont: <params>` | Update title font properties. Accepts space-separated `key=value` pairs: `size=<float>`, `weight=<value>`, `colour=<color\|hex>`, `name=<fontname>`, `shadow=<bool>` |
+| `message: <text>` | Replace the message content. Supports Markdown. |
+| `message: + <text>` | Append to the existing message (adds a newline before the new content) |
+| `message: /path/to/file.md` | Load message content from a local Markdown file |
+| `alignment: [left\|center\|right]` | Set the message text alignment |
 
-## Additional Command line options
+---
 
-The following command line options are also available for use
+## Icon
 
-|Command &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Action|
-|-|-|
-|`--commandfile <path>`|Lets you provide an alternate path to read status commands from. The default is `/var/tmp/dialog.log`|
-|`--progress <int>`|Shows a progress bar with `<int>` number of increments.<br /><br />The progress bar is updated by sending `progress: ...` commands to the status log file.<br />e.g. if you launch dialog with `--progress 100` then sending a `progress: 20` command will set the progress bar 20 increments<br /><br />Specifying no value for `<int>` will start the progress bar in indeterminate mode with a default step count of 100 |
-|`--blurscreen`|Will blur out the screen contents behind the dialog window making them unavailable|
-|`--button1disabled`|Will disable button1 on launch|
+| Command | Description |
+|---|---|
+| `icon: <path\|url\|SF Symbol>` | Change the displayed icon |
+| `icon: none` | Hide the icon |
+| `icon: centre` / `icon: center` | Move the icon to the centre position |
+| `icon: left` / `icon: default` | Move the icon back to the default left position |
+| `icon: size: <num>` | Change the icon size |
+| `iconalpha: <float>` | Set icon opacity (0.0 transparent → 1.0 opaque) |
+| `overlayicon: <path\|url\|SF Symbol>` | Set the overlay icon |
+| `overlayicon: none` | Hide the overlay icon |
+
+---
+
+## Banner & Background
+
+| Command | Description |
+|---|---|
+| `bannerimage: <path\|url>` | Set the banner image |
+| `bannerimage: none` | Remove the banner image |
+| `bannertext: enable` | Show the title as banner text (sets font colour to white) |
+| `bannertext: disable` | Restore default title appearance |
+| `bannertext: shadow` | Enable drop shadow on banner title text |
+| `bannertext: <text>` | Set the banner title text and enable banner text mode |
+
+---
+
+## Images & Media
+
+| Command | Description |
+|---|---|
+| `image: <path\|url>` | Display an image (appends to carousel if one is already shown) |
+| `image: show` | Show the current image |
+| `image: hide` | Hide the current image |
+| `image: clear` | Remove all images |
+| `imagecaption: <text>` | Set the caption below the displayed image |
+| `video: <path\|url>` | Display a video. Supports `youtube=<id>` and `vimeo=<id>` shortcuts. |
+| `video: none` | Remove the video |
+| `webcontent: <url>` | Load a URL in the web content area |
+| `webcontent: none` | Remove the web content |
+
+---
+
+## Buttons
+
+| Command | Description |
+|---|---|
+| `button1: enable` / `button1: show` | Enable Button 1 |
+| `button1: disable` / `button1: hide` | Disable Button 1 |
+| `button1text: <text>` | Update Button 1 label |
+| `button2: enable` / `button2: show` | Enable Button 2 |
+| `button2: disable` / `button2: hide` | Disable Button 2 |
+| `button2text: <text>` | Update Button 2 label |
+| `buttonsize: [mini\|small\|regular\|large]` | Set button size |
+| `infobutton: <text>` | Update the info button label |
+| `infotext: <text>` | Update the info text area |
+| `infotext: disable` / `infotext: hide` | Hide the info text |
+| `infotext: reset` / `infotext: clear` | Clear the info text value |
+
+---
+
+## Info Box
+
+| Command | Description |
+|---|---|
+| `infobox: <text>` | Replace the info box content. Supports Markdown. |
+| `infobox: + <text>` | Append to the existing info box content |
+| `infobox: /path/to/file.md` | Load info box content from a local Markdown file |
+
+---
+
+## Progress Bar
+
+| Command | Description |
+|---|---|
+| `progress: <int>` | Set the progress bar to a specific step value |
+| `progress: increment` | Increment the progress bar by one step |
+| `progress: increment <n>` | Increment the progress bar by `n` steps |
+| `progress: complete` | Set the progress bar to maximum |
+| `progress: reset` / `progress: indeterminate` | Reset the progress bar to indeterminate mode |
+| `progress: show` / `progress: enable` / `progress: create` | Show the progress bar |
+| `progress: hide` / `progress: disable` / `progress: delete` / `progress: remove` | Hide the progress bar |
+| `progresstext: <text>` | Update the label below the progress bar |
+
+---
+
+## Lists
+
+| Command | Description |
+|---|---|
+| `list: <csv>` | Replace the list with new comma-separated items |
+| `list: clear` | Clear all list items and hide the list |
+| `list: show` | Show the list |
+| `list: hide` | Hide the list without clearing its contents |
+
+### Updating List Items
+
+Update an existing item by title (simple form):
+
+```sh
+echo "listitem: My Item: success" >> /var/tmp/dialog.log
+echo "listitem: My Item: Processing..." >> /var/tmp/dialog.log
+```
+
+Update an item with full control using comma-separated properties:
+
+```sh
+echo "listitem: title: My Item, status: success, statustext: Done" >> /var/tmp/dialog.log
+echo "listitem: index: 0, status: fail, statustext: Error occurred" >> /var/tmp/dialog.log
+```
+
+Add a new item to the end of the list:
+
+```sh
+echo "listitem: add:, title: New Item, status: wait, statustext: Pending" >> /var/tmp/dialog.log
+```
+
+Delete an item:
+
+```sh
+echo "listitem: title: My Item, delete:" >> /var/tmp/dialog.log
+echo "listitem: index: 0, delete:" >> /var/tmp/dialog.log
+```
+
+**Available `listitem` properties:**
+
+| Property | Description |
+|---|---|
+| `title: <text>` | Match item by title |
+| `index: <int>` | Match item by index (0-based) |
+| `subtitle: <text>` | Set the item subtitle |
+| `icon: <path\|url\|SF Symbol>` | Set the item icon |
+| `iconalpha: <float>` | Set item icon opacity |
+| `status: <status>` | Set the status icon. One of `wait`, `success`, `fail`, `error`, `pending`, `progress`, or an SF Symbol name (optionally with a colour suffix, e.g. `lock.shield.fill-green`) |
+| `statustext: <text>` | Set the status label text |
+| `progress: <float>` | Set an inline progress value (displays a progress-style status) |
+| `action: <url>` | URL to open when the item is clicked |
+| `add:` | Add a new item to the list |
+| `delete:` | Delete the matched item |
+
+---
+
+## Help Message
+
+| Command | Description |
+|---|---|
+| `helpmessage: <text>` | Update the help message content. Supports Markdown. |
+
+---
+
+## Window
+
+| Command | Description |
+|---|---|
+| `width: <num>` | Change the window width |
+| `height: <num>` | Change the window height |
+| `position: <position>` | Move the window. One of `top`, `bottom`, `left`, `right`, `centre`, or a combination (e.g. `topright`) |
+
+---
+
+## Window Visibility
+
+| Command | Description |
+|---|---|
+| `activate:` | Bring the dialog window to the foreground |
+| `show:` | Unhide the dialog window |
+| `hide:` | Hide the dialog window |
+| `minimize:` / `minimise:` | Minimise the dialog window to the Dock |
+| `maximize:` / `maximise:` | Restore a minimised dialog window |
+| `blurscreen: enable` | Enable the blur screen effect |
+| `blurscreen: disable` | Disable the blur screen effect |
+
+---
+
+## Dock Icon
+
+| Command | Description |
+|---|---|
+| `showdockicon: enable` / `showdockicon: true` / `showdockicon: 1` | Show the Dialog icon in the Dock |
+| `showdockicon: <any other value>` | Hide the Dialog icon from the Dock |
+| `dockicon: <file\|url>` | Set a custom image as the Dock icon |
+| `dockicon: none` / `dockicon: default` | Restore the default Dialog Dock icon |
+| `dockiconbadge: <text>` | Display a badge on the Dock icon |
+| `dockiconbadge: none` / `dockiconbadge: remove` | Remove the Dock icon badge |
+| `bounce:` | Bounce the Dock icon once (informational) |
+| `bounce: critical` | Bounce the Dock icon continuously until the window is brought to the foreground |
+
+---
+
+## Quit
+
+| Command | Description |
+|---|---|
+| `quit:` | Quit Dialog with exit code 5 |

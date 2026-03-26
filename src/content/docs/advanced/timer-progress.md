@@ -18,3 +18,33 @@ If used in conjuction with `--button1text` the default button will be displayed 
 `--hidetimerbar` will hide the progress bar and countdown display.
 
 Doing so forces default button to be visible to prevent un-dismissable dialogs with no indication of when the timer expires.
+
+---
+
+## Progress Bar
+
+Dialog can display an interactive progress bar that can be updated dynamically via the [command file](/advanced/command-file).
+
+`--progress [<int>]`
+
+Makes a progress bar visible with the specified number of steps. If no value is given, the default is 10 steps.
+
+To advance the progress bar, send a command to the dialog command file:
+
+```sh
+echo "progress: <int>" >> /var/tmp/dialog.log
+```
+
+`--progresstext <text>`
+
+Sets the initial text displayed underneath the progress bar. The text can be updated at any time:
+
+```sh
+echo "progresstext: Installing software..." >> /var/tmp/dialog.log
+```
+
+### Progress text alignment
+
+`--progresstextalignment [left | right]`
+
+Sets the horizontal alignment of the progress text displayed underneath the progress bar. Default is centred.

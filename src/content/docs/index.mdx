@@ -19,6 +19,7 @@ hero:
 ---
 
 import DownloadButton from '../../components/DownloadButton.astro';
+import ReleaseHeading from '../../components/ReleaseHeading.astro';
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components'
 
@@ -28,7 +29,7 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components'
 
 <div>
 
-## 🚀 Latest Release
+<ReleaseHeading />
 
 <DownloadButton repo="swiftDialog/swiftDialog" />
 
