@@ -167,12 +167,12 @@ When `--button2text` or `--button2action` is specified, an action bar appears at
 ```bash
 dialog --notification --style pseudo-alert --title "Update Available" \
     --message "macOS 26.4 is ready to install" \
-    --button1text "Install Now" --button1action "open 'x-apple.systempreferences:com.apple.Software-Update-Settings.extension'" \
-    --button2text "Later"
+    --button1text "Later" \
+    --button2text "Install Now" --button2action "open 'x-apple.systempreferences:com.apple.Software-Update-Settings.extension'"
 ```
 
-- Clicking the notification body or **Button 1** executes `--button1action` and exits with code 0.
-- Clicking **Button 2** executes `--button2action` and exits with code 2.
+- Clicking the notification body or **Button 1** executes `--button1action`.
+- Clicking **Button 2** executes `--button2action`.
 - If neither `--button2text` nor `--button2action` is specified, the action bar is hidden and clicking anywhere on the notification triggers `--button1action`.
 
 ### Auto-dismiss timer
