@@ -314,7 +314,7 @@ If you have a mixed installation you can include multiple bundle entries in the 
                 <key>BadgesEnabled</key>
                 <true/>
                 <key>BundleIdentifier</key>
-                <string>au.csiro.dialog.banner</string>
+                <string>au.csiro.dialog.notifier.banner</string>
                 <key>CriticalAlertEnabled</key>
                 <false/>
                 <key>NotificationsEnabled</key>
@@ -332,7 +332,7 @@ If you have a mixed installation you can include multiple bundle entries in the 
                 <key>BadgesEnabled</key>
                 <true/>
                 <key>BundleIdentifier</key>
-                <string>au.csiro.dialog.alert</string>
+                <string>au.csiro.dialog.notifier.alert</string>
                 <key>CriticalAlertEnabled</key>
                 <false/>
                 <key>NotificationsEnabled</key>
