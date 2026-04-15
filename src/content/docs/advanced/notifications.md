@@ -127,12 +127,16 @@ Pseudo notifications are custom notification-style windows rendered by swiftDial
 
 ### Why use pseudo notifications?
 
-- **Custom icon support** — The icon displayed on the notification is fully customisable using `--icon`, including SF Symbols, URLs, file paths, and app bundles. Unlike system notifications, the icon is rendered directly in the notification window.
+- **Custom icon support** — The icon displayed on the notification is fully customisable using `--icon`, including SF Symbols, URLs, file paths, and app bundles. Unlike system notifications, this does not require setting the Dialog.app bundle icon and restarting NotificationCenter.
 - **No MDM profile required** — Pseudo notifications do not go through the macOS notification center, so no mobileconfig or notification permissions are needed.
 - **Inline images** — Use `--image` to display an image within the notification body.
 - **Inline markdown** — The `--message` content supports inline markdown formatting.
-- **Background process** — Each pseudo notification launches as an independent background process via `dialogcli`, so your script continues immediately without waiting.
-- **Multiple simultaneous notifications** — Multiple pseudo notifications can be displayed at the same time.
+
+### What pseudo notifications are not?
+
+Pseudo notifications are not system notifications. They do not persist once dismissed and do not follow the standard rules for macOS system notifications. They also do not stack. Multiple pseudo notifications can be sent but they will appear on top of each other until they are dismissed. If this is important to you then use regular system notifications.
+
+
 
 ### Pseudo notification styles
 
@@ -144,6 +148,8 @@ Pseudo notifications are custom notification-style windows rendered by swiftDial
 
 ### Basic usage
 
+<img width="400" alt="image" src="/images/update-available.png" />
+
 ```bash
 # Banner-style pseudo notification (auto-dismisses)
 dialog --notification --style pseudo --title "Update Available" --message "Version 2.0 is ready to install"
@@ -154,15 +160,19 @@ dialog --notification --style pseudo-alert --title "Restart Required" --message 
 
 ### Custom icon and image
 
+<img width="400" alt="image" src="/images/deployment-install-complete.png" />
+
 ```bash
 dialog --notification --style pseudo --title "Deployment" --message "Software install complete" \
-    --icon "/Applications/Self Service.app" \
-    --image "/tmp/success-banner.png"
+    --icon /System/Applications/App\ Store.app  \
+    --image "/Applications/Keynote.app"
 ```
 
 ### Action buttons
 
 When `--button2text` or `--button2action` is specified, an action bar appears at the bottom of the notification with two buttons:
+
+<img width="400" alt="image" src="/images/update-available-buttons.png" />
 
 ```bash
 dialog --notification --style pseudo-alert --title "Update Available" \
@@ -185,6 +195,8 @@ dialog --notification --style pseudo-banner --title "Reminder" --message "Meetin
 ```
 
 ### Close button
+
+<img width="400" alt="image" src="/images/restart-hover-button.png" />
 
 When the user hovers over a pseudo notification, a close button (×) appears in the top-left corner. Clicking it dismisses the notification with the same behaviour as a timeout (slides out, exits with code 0, no button action executed).
 
@@ -302,7 +314,7 @@ If you have a mixed installation you can include multiple bundle entries in the 
                 <key>BadgesEnabled</key>
                 <true/>
                 <key>BundleIdentifier</key>
-                <string>au.csiro.dialog.banner</string>
+                <string>au.csiro.dialog.notifier.banner</string>
                 <key>CriticalAlertEnabled</key>
                 <false/>
                 <key>NotificationsEnabled</key>
@@ -320,7 +332,7 @@ If you have a mixed installation you can include multiple bundle entries in the 
                 <key>BadgesEnabled</key>
                 <true/>
                 <key>BundleIdentifier</key>
-                <string>au.csiro.dialog.alert</string>
+                <string>au.csiro.dialog.notifier.alert</string>
                 <key>CriticalAlertEnabled</key>
                 <false/>
                 <key>NotificationsEnabled</key>
@@ -356,6 +368,10 @@ When deploying with `--style alert`, set `AlertType` to `2` in the `au.csiro.dia
 ## Updating the default notification icon
 
 Notifications will use the default swiftDialog icon. If you would like to re-brand to use a different icon, e.g. a corporate identity, then you can use the following steps to update the app bundle icon to something more appropriate for your use.
+
+> #### Support from macOS 26.4 onwards
+>
+> In macOS 26.4 updating the app bundle icon and therefore the notification icon no longer works correctly. If branding is important then use the new pseudo notification feature, which presents a similar UI to system notifications but doesn't use the macOS system notification system, therefore may not be appropriate to all situations. 
 
 ### Prerequisites
 

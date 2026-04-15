@@ -3,4 +3,4 @@
 // Locally it will be undefined, so the Beta label won't appear.
 const isBeta = process.env.CF_PAGES_BRANCH === 'beta';
 ---
-<h2>🚀 Latest Release{isBeta ? ' Beta' : ''}</h2>
+<h2>🚀 {isBeta ? 'Latest Preview Release' : 'Latest Release'}</h2>
