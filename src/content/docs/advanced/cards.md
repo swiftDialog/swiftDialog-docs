@@ -3,6 +3,8 @@ title: swiftDialog Cards
 description: Multi-step dialog workflows in swiftDialog
 ---
 
+> **NOTE**: The Cards feature is currently in beta (v3.1) and may be subject to changes. 
+
 The **Cards** feature enables multi-step dialog workflows in swiftDialog, allowing you to create wizard-like user interfaces that guide users through multiple screens of input and information. Each card represents a separate screen with its own configuration, and users can navigate forward and backward through the cards.
 
 Cards are defined using JSON configuration files, making it easy to create complex, multi-step dialogs without writing code.
