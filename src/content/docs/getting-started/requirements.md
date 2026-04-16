@@ -8,9 +8,7 @@ description: macOS version requirements and compatibility for swiftDialog
 swiftDialog is a universal binary app written using SwiftUI.
 
 ### 3.0+
-- **Minimum macOS version**: macOS 15 (Sonoma)
-- **Architecture**: Universal Binary (Intel and Apple Silicon)
-- **Framework**: SwiftUI
+- **Minimum macOS version**: macOS 15 (Sequoia)
 
 ### 2.3+
 - **Minimum macOS version**: macOS 12 (Monterey)
