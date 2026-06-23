@@ -3,8 +3,6 @@ title: Gated cadence in an MDM deployment
 description: Using the gated-cadence step type to create an attribute-driven deployment screen that advances based on real system state, suitable for MDM deployments with tools like Fleet, Jamf, Intune, and more.
 ---
 
-# Gated cadence in an MDM deployment
-
 The gated-cadence step turns a deployment screen into an **attribute-driven** sequence: each message
 is shown until a **real condition** is met, then it advances. The conditions are read from real
 system state, so the screen never claims "done" before it is.

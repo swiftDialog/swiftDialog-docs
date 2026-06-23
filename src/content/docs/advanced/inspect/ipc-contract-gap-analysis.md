@@ -3,8 +3,6 @@ title: ICP Contract Gap Analysis
 description: A gap analysis of the IPC contract between swiftDialog and ignitecli, identifying observed gaps, risks, and proposed contract clauses to ensure robust communication between the two components.
 ---
 
-# swiftDialog ↔ ignitecli IPC Contract — Gap Analysis
-
 **Status:** Draft for review
 **Date:** 2026-06-17
 **Scope:** Runtime IPC between `swiftDialog` (Inspect Mode, presets 1–6) and `ignitecli`
