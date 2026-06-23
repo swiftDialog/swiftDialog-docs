@@ -84,8 +84,8 @@ export default defineConfig({
                   //  { label: 'Preset 9', slug: 'advanced/inspect/preset9' }
                   ]
                 },
-                { label: 'IPC Contract Gap Analysis', slug: 'advanced/inspect/ipc-contract-gap-analysis' },
-                { label: 'Gated Cadence in MDM Deployment', slug: 'advanced/inspect/cadence-mdm-deployment' }
+                //{ label: 'IPC Contract Gap Analysis', slug: 'advanced/inspect/ipc-contract-gap-analysis' },
+                //{ label: 'Gated Cadence in MDM Deployment', slug: 'advanced/inspect/cadence-mdm-deployment' }
               ]
             }
           ],
