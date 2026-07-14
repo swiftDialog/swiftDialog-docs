@@ -5,7 +5,7 @@ description: Sending system notifications with swiftDialog instead of showing di
 
 ## Notifications
 
-swiftDialog allows you to send system notifications using the `--notification` argument. This indicates that swiftDialog should send a system notification instead of showing a dialog window.
+swiftDialog allows you to send notifications using the `--notification` argument. This indicates that swiftDialog should send a notification instead of showing a dialog window.
 
 Notifications use the same `--title`, `--message` and `--icon` arguments to present text and media. Any other arguments not listed on this page are ignored.
 
@@ -17,8 +17,11 @@ From v3.1, swiftDialog routes notifications through dedicated helper application
 
 | `--style` value | Behaviour | Helper used |
 |---|---|---|
-| `banner` | Notification appears briefly then dismisses automatically | `Dialog Banner` |
-| `alert` | Notification persists until the user dismisses it | `Dialog Alert` |
+| `banner` | System notification that appears briefly then dismisses automatically | `Dialog Banner` |
+| `alert` | System notification that persists until the user dismisses it | `Dialog Alert` |
+| `pseudo` | Pseudo notification banner (same as `pseudo-banner`) | Main app |
+| `pseudo-banner` | Pseudo notification that auto-dismisses after a timeout | Main app |
+| `pseudo-alert` | Pseudo notification that stays until user interaction | Main app |
 
 The default when `--style` is omitted depends on the system notification settings configured for the app.
 
@@ -27,7 +30,7 @@ The default when `--style` is omitted depends on the system notification setting
 > Calling `--notification` **without** `--style` still works for backwards compatibility but routes through the main `Dialog.app` bundle. This path is deprecated and will emit a warning to stderr:
 > In a future release, sending a notification without `--style` will default to `--style banner`.
 
-To ensure the style types are correctly set, deploy a mobileconfig that pre-approves notifications for the relevant helper apps (`au.csiro.dialog.banner` and `au.csiro.dialog.alert`) with the desired notification style.
+To ensure the style types are correctly set for system notifications, deploy a mobileconfig that pre-approves notifications for the relevant helper apps (`au.csiro.dialog.banner` and `au.csiro.dialog.alert`) with the desired notification style.
 
 ### Use
 
@@ -108,12 +111,122 @@ dialog --notification --style banner --remove --identifier "update-available"
 
 Calling `--remove` without `--identifier` removes all pending notifications from that helper.
 
+Identifiers also work with pseudo notifications (see below).
+
 ## Enabling notification sounds
 
 Use `--enablenotificationsounds` to play the default notification sound when the notification is delivered:
 
 ```bash
 dialog --notification --style alert --title "Alert" --message "Action required" --enablenotificationsounds
+```
+
+## Pseudo Notifications
+
+Pseudo notifications are custom notification-style windows rendered by swiftDialog itself, rather than macOS system notifications. They slide in from the right edge of the screen and mimic the appearance of native notifications with a translucent material background.
+
+### Why use pseudo notifications?
+
+- **Custom icon support** — The icon displayed on the notification is fully customisable using `--icon`, including SF Symbols, URLs, file paths, and app bundles. Unlike system notifications, this does not require setting the Dialog.app bundle icon and restarting NotificationCenter.
+- **No MDM profile required** — Pseudo notifications do not go through the macOS notification center, so no mobileconfig or notification permissions are needed.
+- **Inline images** — Use `--image` to display an image within the notification body.
+- **Inline markdown** — The `--message` content supports inline markdown formatting.
+
+### What pseudo notifications are not?
+
+Pseudo notifications are not system notifications. They do not persist once dismissed and do not follow the standard rules for macOS system notifications. They also do not stack. Multiple pseudo notifications can be sent but they will appear on top of each other until they are dismissed. If this is important to you then use regular system notifications.
+
+
+
+### Pseudo notification styles
+
+| `--style` value | Behaviour |
+|---|---|
+| `pseudo` | Same as `pseudo-banner` |
+| `pseudo-banner` | Auto-dismisses after 6 seconds (or the value of `--timer`) |
+| `pseudo-alert` | Stays on screen until the user clicks or closes it |
+
+### Basic usage
+
+<img width="400" alt="image" src="/images/update-available.png" />
+
+```bash
+# Banner-style pseudo notification (auto-dismisses)
+dialog --notification --style pseudo --title "Update Available" --message "Version 2.0 is ready to install"
+
+# Alert-style pseudo notification (persistent)
+dialog --notification --style pseudo-alert --title "Restart Required" --message "Please save your work and restart"
+```
+
+### Custom icon and image
+
+<img width="400" alt="image" src="/images/deployment-install-complete.png" />
+
+```bash
+dialog --notification --style pseudo --title "Deployment" --message "Software install complete" \
+    --icon /System/Applications/App\ Store.app  \
+    --image "/Applications/Keynote.app"
+```
+
+### Action buttons
+
+When `--button2text` or `--button2action` is specified, an action bar appears at the bottom of the notification with two buttons:
+
+<img width="400" alt="image" src="/images/update-available-buttons.png" />
+
+```bash
+dialog --notification --style pseudo-alert --title "Update Available" \
+    --message "macOS 26.4 is ready to install" \
+    --button1text "Later" \
+    --button2text "Install Now" --button2action "open 'x-apple.systempreferences:com.apple.Software-Update-Settings.extension'"
+```
+
+- Clicking the notification body or **Button 1** executes `--button1action`.
+- Clicking **Button 2** executes `--button2action`.
+- If neither `--button2text` nor `--button2action` is specified, the action bar is hidden and clicking anywhere on the notification triggers `--button1action`.
+
+### Auto-dismiss timer
+
+For `pseudo-banner` style, the notification auto-dismisses after 6 seconds by default. Use `--timer` to set a custom duration in seconds:
+
+```bash
+# Auto-dismiss after 15 seconds
+dialog --notification --style pseudo-banner --title "Reminder" --message "Meeting in 5 minutes" --timer 15
+```
+
+### Close button
+
+<img width="400" alt="image" src="/images/restart-hover-button.png" />
+
+When the user hovers over a pseudo notification, a close button (×) appears in the top-left corner. Clicking it dismisses the notification with the same behaviour as a timeout (slides out, exits with code 0, no button action executed).
+
+### Live timestamp
+
+Pseudo notifications display a "now" timestamp next to the title. After 60 seconds this updates to "1m ago" and continues updating every 60 seconds for as long as the notification remains visible.
+
+### Identifiers and removal
+
+Pseudo notifications support `--identifier` for targeted removal:
+
+```bash
+# Send a pseudo notification with an identifier
+dialog --notification --style pseudo-alert --title "Updating" --message "Please wait..." --identifier "update-progress"
+
+# Remove it when done
+dialog --notification --style pseudo --remove --identifier "update-progress"
+
+# Remove ALL visible pseudo notifications
+dialog --notification --style pseudo --remove
+```
+
+When sending a new pseudo notification with the same identifier as an existing one, the old notification is automatically dismissed before the new one appears.
+
+### Notification sounds
+
+Use `--enablenotificationsounds` to play the system alert sound when the pseudo notification appears:
+
+```bash
+dialog --notification --style pseudo --title "Alert" --message "Something happened" --enablenotificationsounds
 ```
 
 ## Approving and Setting Notification type via MDM
@@ -201,7 +314,7 @@ If you have a mixed installation you can include multiple bundle entries in the 
                 <key>BadgesEnabled</key>
                 <true/>
                 <key>BundleIdentifier</key>
-                <string>au.csiro.dialog.banner</string>
+                <string>au.csiro.dialog.notifier.banner</string>
                 <key>CriticalAlertEnabled</key>
                 <false/>
                 <key>NotificationsEnabled</key>
@@ -219,7 +332,7 @@ If you have a mixed installation you can include multiple bundle entries in the 
                 <key>BadgesEnabled</key>
                 <true/>
                 <key>BundleIdentifier</key>
-                <string>au.csiro.dialog.alert</string>
+                <string>au.csiro.dialog.notifier.alert</string>
                 <key>CriticalAlertEnabled</key>
                 <false/>
                 <key>NotificationsEnabled</key>
@@ -255,6 +368,10 @@ When deploying with `--style alert`, set `AlertType` to `2` in the `au.csiro.dia
 ## Updating the default notification icon
 
 Notifications will use the default swiftDialog icon. If you would like to re-brand to use a different icon, e.g. a corporate identity, then you can use the following steps to update the app bundle icon to something more appropriate for your use.
+
+> #### Support from macOS 26.4 onwards
+>
+> In macOS 26.4 updating the app bundle icon and therefore the notification icon no longer works correctly. If branding is important then use the new pseudo notification feature, which presents a similar UI to system notifications but doesn't use the macOS system notification system, therefore may not be appropriate to all situations. 
 
 ### Prerequisites
 

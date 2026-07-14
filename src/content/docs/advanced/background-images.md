@@ -38,8 +38,6 @@ Angle conventions: `0` = bottom-to-top, `90` = left-to-right (default), `180` = 
 
 If only one colour is supplied to `gradient=`, the result is identical to `colour=`.
 
-```
-
 
 ### `--bgalpha`
 
@@ -48,7 +46,6 @@ If only one colour is supplied to `gradient=`, the result is identical to `colou
 ```
 
 Sets the alpha or transparency of the background layer. Can be any number between `0` (fully transparent) and `1` (fully opaque). Default value is `0.5`
-
 
 
 ### --bgposition
@@ -72,3 +69,16 @@ Tells dialog how to display the image within the window frame
 `fit` resizes the image to fit the window but will not truncate which may result in letterboxing of non transparent areas (if using a PNG image source)
 
 Default is `none` which will display the image at the actual image resolution
+
+## Screen Background - `--screenbackground`
+
+```
+--screenbackground <file | url>
+```
+
+Displays the specified image **full screen, behind the dialog window** — as opposed to `--background`, which sits _inside_ the dialog window. All other dialog functions remain available, but the user is prevented from interacting with any other app until swiftDialog exits (similar to `--blurscreen`, but showing an image instead of a blur).
+
+```sh
+dialog --screenbackground /path/to/wallpaper.jpg
+dialog --screenbackground https://example.com/background.png
+```

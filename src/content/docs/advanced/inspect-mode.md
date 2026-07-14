@@ -92,6 +92,7 @@ export DIALOG_INSPECT_CONFIG="/path/to/config.json"
 | `textOverlayColor` | String | - | Text overlay color for backgrounds |
 | `gradientColors` | Array | - | Array of hex colors for gradient |
 | `iconBasePath` | String | - | Base path for relative icon paths |
+| `appearance` | String | "auto" | Force the inspect window appearance: `"dark"`, `"light"`, or `"auto"` (follow the OS). Overrides the OS setting in both directions. |
 
 ### Items Configuration
 
@@ -107,6 +108,7 @@ Each item in the `items` array requires:
 | `plistKey` | String | No | Plist key to validate |
 | `expectedValue` | String | No | Expected plist value |
 | `evaluation` | String | No | Evaluation type: "equals", "boolean", "exists", "contains", "range" |
+| `description` | String | No | Optional description shown below the item title (rendered by presets 1, 2, 3, 5 and 6) |
 <!-- | `subtitle` | String | No | Subtitle text (preset6) | -->
 <!-- | `category` | String | No | Category grouping (preset5) |
 | `categoryIcon` | String | No | Category icon (preset5) | -->
@@ -126,11 +128,12 @@ Monitor download directories to detect in-progress installations:
     "/Library/Application Support/JAMF/Downloads", 
     "/Library/Application Support/AirWatch/Data/Munki/Managed Installs/Cache"
   ],
-  "scanInterval": 5
+  "scanInterval": 5,
+  "cacheExtensions": ["download", "pkg", "dmg", "aria2"]
 }
 ```
 
-The system will detect `.pkg`, `.dmg`, and `.download` files matching item IDs.
+By default, files ending in `.pkg`, `.dmg`, and `.download` within `cachePaths` mark a matching item as *downloading*. Set `cacheExtensions` to change that list — for example, add `aria2` so aria2c's `<name>.aria2` partial files are detected (issue #617). The leading dot is optional.
 
 ### Plist Compliance Validation
 
@@ -169,6 +172,52 @@ Define custom compliance levels and colors:
 }
 ```
 
+
+### Compliance Dashboards
+
+For plist-driven compliance reporting, add a top-level `plistSources` array. swiftDialog aggregates the referenced plists into categories with pass/total counts and an overall score, then renders them through the `compliance-summary` and `findings-list` content blocks (and any bento cells), refreshing on an interval.
+
+```json
+{
+  "plistSources": [
+    {
+      "path": "/Library/Preferences/com.company.compliance.plist",
+      "type": "compliance",
+      "healthyLabel": "Compliant",
+      "attentionLabel": "Action Required"
+    }
+  ],
+  "guidance": [
+    { "type": "compliance-summary" },
+    { "type": "findings-list" }
+  ]
+}
+```
+
+**`plistSources[]` properties:**
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| `path` | String | - | Path to the plist file |
+| `type` | String | - | Source type: `compliance`, `health`, `licenses`, `preferences`, or `custom` |
+| `healthyLabel` | String | "Healthy" | Label for a passing check<br> (appears in summary cards, findings rows and bento subtitles) |
+| `attentionLabel` | String | "Needs Attention" | Label for a failing check |
+| `successValues` | Array | - | Values that indicate success |
+| `expectedValue` | String | - | Expected value for compliance |
+| `findingKey` | String | "finding" | Subkey to read the finding detail from |
+| `timestampKey` | String | auto | Key holding the last-check time (auto-tries `lastComplianceCheck`, `LastUpdateCheck`, `lastCheck`, `timestamp`) |
+| `includePattern` | String | - | Regex of keys to include in auto-discovery |
+| `excludeKeys` | Array | - | Keys to exclude from auto-discovery |
+| `keyMappings` | Array | - | How to interpret specific plist keys |
+| `maxCheckDetails` | Integer | 15 | Max check items shown per category |
+| `icon` | String | - | SF Symbol for the category |
+
+**Content blocks that render the aggregated data:**
+
+- `compliance-summary` — a banner with the overall status plus per-category stat cards.
+- `findings-list` — a category-grouped, disclosable list of individual checks.
+
+Bento cells also auto-bind to the same data: a cell's subtitle and icon colour<br> update from live findings, with no extra schema fields required.
 
 ## Complete Examples
 

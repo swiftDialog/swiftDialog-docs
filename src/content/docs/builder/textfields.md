@@ -11,6 +11,8 @@ Click the `[+]` button to add an new entry
 
 Click the trash icon to remove an entry
 
+Drag the handle (☰) on the left of a row to re-order entries
+
 
 <img width="500" alt="image" src="/builder/builder_textfields_popualated.png" />
 

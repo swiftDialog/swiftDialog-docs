@@ -3,37 +3,50 @@ export interface Props {
   repo: string;
 }
 const { repo } = Astro.props;
+const isBeta = process.env.CF_PAGES_BRANCH === 'beta';
 ---
 
 <span id="release-title" style="font-weight: bold"></span>
 <br>
-<a id="download-button" data-repo={repo} href={`https://github.com/${repo}/releases/latest`} class="button" style="margin-left: 0.5em;">
+<a id="download-button" data-repo={repo} data-is-beta={isBeta ? "true" : "false"} href={`https://github.com/${repo}/releases/latest`} class="button" style="margin-left: 0.5em;">
   Download Latest
 </a>
 <br>
 <a id="download-dmg" data-repo={repo} href={`https://github.com/${repo}/releases/latest`} class="button" style="margin-left: 0.5em;">
   Download DMG
 </a>
+<br>
+<a id="release-notes-link" href={`https://github.com/${repo}/releases/latest`}>Release Notes →</a>
 
 <script type="module">
-  // Pass the repo from Astro to JS via a data attribute
-  const repo = document.getElementById("download-button").dataset.repo;
+  const button = document.getElementById("download-button");
+  const repo = button.dataset.repo;
   const repoName = repo.split("/")[1];
-  const notesContainer = document.getElementById("release-notes");
+  const isBeta = button.dataset.isBeta === "true" || window.location.hostname.includes("beta");
 
   async function updateDownloadButton() {
     try {
-      const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
-      const data = await res.json();
+      let data;
+      let releaseNotesUrl;
+
+      if (isBeta) {
+        const res = await fetch(`https://api.github.com/repos/${repo}/releases`);
+        const releases = await res.json();
+        const preRelease = releases.find(r => r.prerelease);
+        data = preRelease ?? releases[0];
+        releaseNotesUrl = preRelease?.html_url ?? `https://github.com/${repo}/releases/latest`;
+      } else {
+        const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+        data = await res.json();
+        releaseNotesUrl = `https://github.com/${repo}/releases/latest`;
+      }
 
       const version = data.tag_name || "latest";
-      const name = data.name || `${repo}`;
       const pkgAsset = data.assets?.find(a => a.name?.endsWith(".pkg"));
       const dmgAsset = data.assets?.find(a => a.name?.endsWith(".dmg"));
       const pkgDownloadUrl = pkgAsset?.browser_download_url || `https://github.com/${repo}/releases/latest`;
       const dmgDownloadUrl = dmgAsset?.browser_download_url || `https://github.com/${repo}/releases/latest`;
 
-      const button = document.getElementById("download-button");
       button.href = pkgDownloadUrl;
       button.textContent = `Download from GitHub (PKG)`;
 
@@ -45,7 +58,12 @@ const { repo } = Astro.props;
       if (versionSpan) {
         versionSpan.textContent = `${repoName} ${version} - `;
       }
-      
+
+      const notesLink = document.getElementById("release-notes-link");
+      if (notesLink) {
+        notesLink.href = releaseNotesUrl;
+      }
+
     } catch (err) {
       console.error("Failed to fetch latest release:", err);
     }

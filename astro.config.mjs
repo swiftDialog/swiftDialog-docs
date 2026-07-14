@@ -65,7 +65,7 @@ export default defineConfig({
             { label: 'Layout', slug: 'advanced/layout' },
             { label: 'Presentation Mode', slug: 'advanced/presentation' },
             { label: 'Notifications', slug: 'advanced/notifications' },
-            { label: 'Cards', slug: 'advanced/cards' },
+            { label: 'Workflows', slug: 'advanced/workflows' },
             { label: 'Inspect Mode',
               collapsed: true,
               items: [
@@ -83,7 +83,9 @@ export default defineConfig({
                   //  { label: 'Preset 8', slug: 'advanced/inspect/preset8' },
                   //  { label: 'Preset 9', slug: 'advanced/inspect/preset9' }
                   ]
-                }
+                },
+                //{ label: 'IPC Contract Gap Analysis', slug: 'advanced/inspect/ipc-contract-gap-analysis' },
+                //{ label: 'Gated Cadence in MDM Deployment', slug: 'advanced/inspect/cadence-mdm-deployment' }
               ]
             }
           ],

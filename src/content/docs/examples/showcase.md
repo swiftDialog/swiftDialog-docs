@@ -5,9 +5,7 @@ description: Community projects, scripts, and examples using swiftDialog
 
 ## The following is a showcase of the different ways swiftDialog can be used.
 
-[swiftDialog Scripts GitHub page](https://github.com/bartreardon/swiftDialog-scripts)
-
-  ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/bartreardon/swiftDialog-scripts/main)
+[swiftDialog Demo Scripts](https://github.com/swiftdialog/demo)
 
 ## Workshops and Videos
 
@@ -63,6 +61,12 @@ App Auto-Patch combines local application discovery, an Installomator integratio
 App Auto-Patch was developed based on a similar concept as the Patchomator project, with a significant portion of its code borrowed from there.
 
 ## Additional projects that are based on or otherwise use swiftDialog
+
+### [Scott Kendall](https://github.com/ScottEKendall/)
+
+ - [Jamf-Pro-Scripts](https://github.com/ScottEKendall/JAMF-Pro-Scripts)
+
+   ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/ScottEKendall/JAMF-Pro-Scripts/main)
 
 ### [Richard Purves](https://github.com/franton/)
 

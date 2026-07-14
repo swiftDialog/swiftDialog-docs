@@ -11,6 +11,8 @@ Click the `[+]` icon to add a new listitem entry
 
 Click the trash icon to remove a specified listitem entry
 
+Drag the handle (☰) on the left of a row to re-order entries
+
 <img width="500" alt="image" src="/builder/builder_listitems_populated.png" />
 
 ## Properties

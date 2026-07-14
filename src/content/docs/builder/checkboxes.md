@@ -11,6 +11,8 @@ Click the `[+]` button to add a new entry to the checkbox item list
 
 Click the trash icon to remove a checkbox entry
 
+Drag the handle (☰) on the left of a row to re-order entries
+
 
 <img width="500" alt="image" src="/builder/builder_checkbox_populated.png" />
 

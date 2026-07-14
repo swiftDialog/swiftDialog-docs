@@ -38,4 +38,16 @@ Enable "Quit on Info" so the dialog will exit when the info button is clicked
 
 Set "Info Button Action" to a URL to open when the button is clicked.
 
+#### Symbol
+
+Button 1, Button 2 and the Info Button can each display an SF Symbol alongside their label. The symbol editor exposes the symbol properties as individual controls:
+
+ - **SF Symbol name**
+ - **Position** — leading, trailing, top or bottom
+ - **Render mode** — hierarchical, monochrome, multicolour or palette
+ - **Colour** — a single colour, or 2–3 **palette** colours when palette render mode is selected
+ - **Custom size**
+
+A live preview of the composed symbol is shown, and the button updates in the dialog preview as you edit.
+
 [Back](/builder/builder/)
