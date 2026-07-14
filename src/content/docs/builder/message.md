@@ -29,6 +29,10 @@ When enabled the vertical position is set to centred instead of top aligned
 
 Sets the message colour
 
+#### Markdown source
+
+As well as typing the message inline, you can load it from a Markdown file or URL using the **From file…** button or the **URL / Load** field. The builder loads the content into the live preview, while the exported JSON / command references the file or URL (so it is fetched at runtime). Use **Edit inline** to switch back to editing the text directly.
+
 ℹ️ _NOTE: Font adjustments are not available_
 
 [Back](/builder/builder/)

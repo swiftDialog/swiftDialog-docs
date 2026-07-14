@@ -3,7 +3,7 @@ title: swiftDialog Workflow
 description: Multi-step dialog workflows in swiftDialog
 ---
 
-> **NOTE**: The Workflow feature is currently in beta (v3.1) and may be subject to changes. 
+> **NOTE**: The Workflow feature was introduced in swiftDialog 3.1.
 
 # swiftDialog Workflow Feature Documentation
 
@@ -85,6 +85,18 @@ In workflow mode, the button behavior changes automatically:
   - Hidden on the first card
   - Shows "Previous" on workflow cards 2 through n
   - No validation when going backward
+
+### Customising Button Text
+
+By default the navigation buttons read **Next**, **Previous** and **Finish**. Override them:
+
+- `--nextbuttontext "<text>"` — text for the Next button (default `Next`)
+- `--previousbuttontext "<text>"` — text for the Previous button (default `Previous`)
+- `button1text` (top-level or per-card) — text for the final **Finish** button
+
+```bash
+dialog --jsonfile config.json --nextbuttontext "Continue" --previousbuttontext "Back"
+```
 
 ### Navigation Flow
 

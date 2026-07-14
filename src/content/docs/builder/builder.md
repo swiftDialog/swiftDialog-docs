@@ -8,9 +8,9 @@ description: Edit the properties and appearance of a dialog window and output th
 
 To activate run `dialog --builder`. When called, an additional window is shown allowing you to update content and dialog properties and see the results in real time.
 
-You can then generate JSON that can be used to re-create the dialog as you designed it
+You can then export the result as **JSON** or as a ready-to-run `dialog` **command line** to re-create the dialog as you designed it.
 
-** NOTE - This feature does not have 100% coverage of all of swiftDialog's features and some settings are not available or will not appear in the generated JSON. Development is ongoing **
+** NOTE - This feature does not have 100% coverage of all of swiftDialog's features and some settings are not available or will not appear in the generated output. Development is ongoing **
 
 <img width="500" alt="image" src="/builder/builder_main.png" />
 
@@ -40,3 +40,7 @@ You can then generate JSON that can be used to re-create the dialog as you desig
 </div>
 
 </div>
+
+### Output
+
+The **Output** view shows the current design as either **JSON** or a **Command Line** invocation — switch between them with the tab control. From there you can **Copy to clipboard** or **Save File**. The **Export Command** button in the footer copies the command line from anywhere in the builder.

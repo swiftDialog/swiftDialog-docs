@@ -30,6 +30,10 @@ Enable window buttons (macOS traffic light Close, Minimise, Maximise)
 
 Enable the background blur layer
 
+#### Screen Background Image
+
+Sets a full-screen image displayed behind the dialog window (`--screenbackground`). Toggle it on and choose an image with the **Select** button, or enter a path / URL. Unlike **Background Image** below (a watermark _inside_ the window), this fills the screen behind the dialog.
+
 #### Moveable
 
 Set whether the window can be moved around or is fixes in place

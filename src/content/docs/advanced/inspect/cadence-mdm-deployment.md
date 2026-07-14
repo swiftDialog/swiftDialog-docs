@@ -88,6 +88,30 @@ The `compliance` entry is `source:"ipc"`: an MDM script runs the check (osquery 
 Generate the mobileconfig + GitOps artifacts with the `contour` / `fleet-gitops` tooling, which
 validates the profile against Apple's schema.
 
+## Per-tenant branding & claims from managed preferences
+
+For multi-tenant rollouts, the cadence **claims** and the **brand / tint colour** can be read from a managed preference instead of being hard-coded, so each tenant's MDM profile supplies its own values without changing the shipped config. Both use a `ManagedValueRef`:
+
+| Key | Type | Description |
+|---|---|---|
+| `domain` | String | Managed-preference domain, e.g. `nl.root3.support` |
+| `key` | String | Key within that domain (the light value for colours) |
+| `darkKey` | String | Optional dark-mode variant key (colours only) |
+
+- `cadenceRef` — reads the cadence claims array (the `CadenceEntry` dicts) from a managed preference, instead of an inline `cadence` array.
+- `brandColorRef` — reads the brand / tint colour (light, plus optional dark) from a managed preference.
+
+```json
+{
+  "cadenceRef":    { "domain": "nl.root3.support", "key": "claims" },
+  "brandColorRef": { "domain": "nl.root3.support", "key": "brandColor", "darkKey": "brandColorDark" }
+}
+```
+
+Because the values resolve from `/Library/Managed Preferences/<domain>.plist`, they follow the same "advances the instant the profile lands" behaviour as the `managedpref` attributes above.
+
+<!-- REVIEW: cadenceRef / brandColorRef are documented as top-level keys (alongside the inline `cadence` array). Confirm this matches how they're consumed for all presets. -->
+
 ## Notes
 - `managedpref` reads the file directly, so it advances the instant the profile lands (no
   CFPreferences cache lag). `evaluation:"exists"` = "profile is present"; `equals`/`boolean` = "a

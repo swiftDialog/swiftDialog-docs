@@ -58,6 +58,7 @@ See [Icon](/basic-use/icon) for details.
 | `--bgposition <position>` | `-bp` | Background image position (e.g. `center`, `topleft`) |
 | `--bgfill [fill\|fit]` | `-bf` | Background image fill mode |
 | `--bgscale [fill\|fit]` | `-bs` | Background image scale mode |
+| `--screenbackground <file\|url>` | | Display an image full-screen behind the dialog window |
 
 See [Banner Images](/advanced/banner-images) and [Background Images](/advanced/background-images) for details.
 
@@ -86,6 +87,18 @@ See [Banner Images](/advanced/banner-images) and [Background Images](/advanced/b
 | `--quitoninfo` | | Quit dialog when info button is selected |
 
 See [Buttons](/basic-use/buttons) for details.
+
+---
+
+## Workflow
+
+| Argument | Short | Description |
+|---|---|---|
+| `--nextbuttontext <text>` | | Label for the workflow Next button (default: `Next`) |
+| `--previousbuttontext <text>` | | Label for the workflow Previous button (default: `Previous`) |
+| `--onadvance <command>` | | Shell command to run when advancing between workflow pages (input on stdin; non-zero exit blocks advancement) |
+
+See [Workflow](/advanced/workflows) for details.
 
 ---
 
@@ -123,6 +136,7 @@ See [Images](/basic-use/images), [Video](/basic-use/video), and [Web Content](/b
 |---|---|---|
 | `--infotext <text>` | | Replace the info button with static text |
 | `--infobox <text>` | | Display text (Markdown supported) below the icon |
+| `--infoboxwidth <num>` | | Set the info box width independently of the icon size |
 
 See [Info Box](/advanced/info-box) for details.
 

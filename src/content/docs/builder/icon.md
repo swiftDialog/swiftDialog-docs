@@ -17,7 +17,9 @@ Drag and drop an image or application onto the icon representation in the builde
 
 <img width="500" alt="image" src="/builder/builder_icon_drop.png" />
 
-You can also use the "Select" button to open up a file select dialog or type in the name of an SF symbol in the format `sf=name` into the icon value text box (where `name` is the name of a valid SF symbol)
+You can also use the "Select" button to open up a file select dialog, or type in the name of an SF symbol in the format `sf=name` into the icon value text box (where `name` is the name of a valid SF symbol).
+
+Alternatively, click the icon preview to open the SF Symbol popup and set an SF symbol name and colour — the same picker used for [list items](/builder/listitems/) and [checkboxes](/builder/checkboxes/). The overlay icon uses the same picker.
 
 #### Visible
 
