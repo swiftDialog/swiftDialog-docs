@@ -100,17 +100,8 @@ dialog --jsonfile config.json --nextbuttontext "Continue" --previousbuttontext "
 
 ### Navigation Flow
 
-```
-Card 1                Card 2                Card 3
-┌───────────┐        ┌───────────┐        ┌───────────┐
-│           │  Next  │           │  Next  │           │
-│           │───────>│           │───────>│           │
-│           │        │           │        │           │
-│   [Next]  │        │[Prev][Next]        │[Prev][Finish]
-└───────────┘        └───────────┘        └───────────┘
-                     <─────────            <─────────
-                      Previous             Previous
-```
+<img width="650" alt="image" src="/images/navigation-flow.png" />
+
 
 ## Branching Navigation
 

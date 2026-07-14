@@ -5,7 +5,7 @@ description: Complete demonstration script for selecting and installing applicat
 
 A comprehensive demo suite can be found at https://github.com/swiftDialog/demo 
 
-# swiftDialog Comprehensive Demo Suite
+## swiftDialog Comprehensive Demo Suite
 
 A collection of zsh scripts that demonstrate every major feature of [swiftDialog](https://github.com/swiftDialog/swiftDialog) through an interactive, self-guided tour.
 
@@ -66,28 +66,26 @@ After exploring the demo suite and understanding swiftDialog's capabilities, use
 
 ## Demo Index
 
-| # | Script | Features Demonstrated |
-|---|--------|---------------------|
-| 01 | `01_basic_styles.zsh` | `--style` (alert, caution, warning, centered), style overrides |
-| 02 | `02_title_message.zsh` | `--title`, `--titlefont`, `--message`, `--messagefont`, `--messagealignment`, `--messageposition`, `--bannertitle`, title "none" |
-| 03 | `03_icons.zsh` | `--icon` (SF Symbols, apps, builtins, QR, palette, auto colour, weight), `--iconsize`, `--iconalpha`, `--centreicon`, `--overlayicon`, `--hideicon` |
-| 04 | `04_buttons.zsh` | `--button1text`, `--button1symbol`, `--button1disabled`, `--button2text`, `--button2symbol`, `--infobuttontext`, `--infobuttonsymbol`, `--infobuttonaction`, `--buttonstyle` (center, stack), `--buttonsize`, `--buttontextsize`, `--hidedefaultkeyboardaction` |
-| 05 | `05_images_banners.zsh` | `--image`, `--imagecaption`, `--bannerimage`, `--bannertitle`, `--bannertext`, `--background`, `--bgalpha`, `--bgposition`, `--bgfill` |
-| 06 | `06_progress_timer.zsh` | `--progress` (absolute, increment, reset, complete), `--progresstext`, `--progresstextalignment`, `--timer`, `--hidetimerbar`, command file progress updates |
-| 07 | `07_text_fields.zsh` | `--textfield` (required, secure, prompt, value, regex, regexerror, confirm, fileselect, filetype, path, name), `--textfieldlivevalidation` |
-| 08 | `08_dropdowns.zsh` | `--selecttitle`, `--selectvalues`, `--selectdefault`, modifiers (required, radio, searchable, multiselect, name), dividers |
-| 09 | `09_checkboxes.zsh` | `--checkbox` (name modifier), `--checkboxstyle` (checkbox, switch, sizes) |
-| 10 | `10_list_items.zsh` | `--listitem` (status, statustext, custom SF symbols), `--liststyle`, `--enablelistselect`, command file (list:, listitem:, add, delete, index) |
-| 11 | `11_window_options.zsh` | `--width`, `--height`, `--big`, `--small`, `--position`, `--positionoffset`, `--moveable`, `--ontop`, `--resizable`, `--windowbuttons`, `--appearance`, `--showdockicon`, `--dockiconbadge` |
-| 12 | `12_command_file.zsh` | Full command file tour: title:, titlefont:, message: (+append), alignment:, icon:, overlayicon:, iconalpha:, button1text:, button1:, infotext:, infobox:, icon: centre/left |
-| 13 | `13_notifications.zsh` | `--notification`, `--subtitle`, `--identifier`, `--remove` |
-| 14 | `14_mini_presentation.zsh` | `--mini` (with progress), `--presentation` (with listitem, infobox, progress) |
-| 15 | `15_web_video.zsh` | `--webcontent`, `--video` (youtube= shortcut), `--videocaption`, `--autoplay` |
-| 16 | `16_json_input.zsh` | `--jsonstring`, `--jsonfile`, JSON arrays for checkboxes, selectitems, textfields, images |
-| 17 | `17_fullscreen_blur.zsh` | `--fullscreen`, `--blurscreen`, `--hideotherapps` |
-| 18 | `18_misc_features.zsh` | `--helpmessage`, `--infotext`, `--infobox`, `--vieworder`, `--quitkey`, `--sound`, `--showsoundcontrols`, `--displaylog`, `--loghistory`, `--debug`, `--eula`, `--alwaysreturninput`, auth key/checksum explanation |
-| 19 | `19_inspect_mode.zsh` | `--inspect-mode`, `--inspect-config`, `--published-sessions-dir`, `stepType: "cadence"`, `cadenceStyle: "carousel"`, cadence IPC (`cadence:satisfy`, `cadence:advance`, `cadence:goto`), preset 3 redesign, footer logo, forced `appearance`, `cacheExtensions` with `aria2` |
-| 20 | `20_branched_workflows.zsh` | top-level `workflow` array, `branch.map`, `branch.default`, `branch.ifTrue`, `branch.ifFalse`, `nextpage`, `finalpage`, history-aware Previous |
+- `01_basic_styles.zsh` — `--style` (alert, caution, warning, centered), style overrides
+- `02_title_message.zsh` — `--title`, `--titlefont`, `--message`, `--messagefont`, `--messagealignment`, `--messageposition`, `--bannertitle`, title "none"
+- `03_icons.zsh` — `--icon` (SF Symbols, apps, builtins, QR, palette, auto colour, weight), `--iconsize`, `--iconalpha`, `--centreicon`, `--overlayicon`, `--hideicon`
+- `04_buttons.zsh` — `--button1text`, `--button1symbol`, `--button1disabled`, `--button2text`, `--button2symbol`, `--infobuttontext`, `--infobuttonsymbol`, `--infobuttonaction`, `--buttonstyle` (center, stack), `--buttonsize`, `--buttontextsize`, `--hidedefaultkeyboardaction`
+- `05_images_banners.zsh` — `--image`, `--imagecaption`, `--bannerimage`, `--bannertitle`, `--bannertext`, `--background`, `--bgalpha`, `--bgposition`, `--bgfill`
+- `06_progress_timer.zsh` — `--progress` (absolute, increment, reset, complete), `--progresstext`, `--progresstextalignment`, `--timer`, `--hidetimerbar`, command file progress updates
+- `07_text_fields.zsh` — `--textfield` (required, secure, prompt, value, regex, regexerror, confirm, fileselect, filetype, path, name), `--textfieldlivevalidation`
+- `08_dropdowns.zsh` — `--selecttitle`, `--selectvalues`, `--selectdefault`, modifiers (required, radio, searchable, multiselect, name), dividers
+- `09_checkboxes.zsh` — `--checkbox` (name modifier), `--checkboxstyle` (checkbox, switch, sizes)
+- `10_list_items.zsh` — `--listitem` (status, statustext, custom SF symbols), `--liststyle`, `--enablelistselect`, command file (list:, listitem:, add, delete, index)
+- `11_window_options.zsh` — `--width`, `--height`, `--big`, `--small`, `--position`, `--positionoffset`, `--moveable`, `--ontop`, `--resizable`, `--windowbuttons`, `--appearance`, `--showdockicon`, `--dockiconbadge`
+- `12_command_file.zsh` — Full command file tour: title:, titlefont:, message: (+append), alignment:, icon:, overlayicon:, iconalpha:, button1text:, button1:, infotext:, infobox:, icon: centre/left
+- `13_notifications.zsh` — `--notification`, `--subtitle`, `--identifier`, `--remove`
+- `14_mini_presentation.zsh` — `--mini` (with progress), `--presentation` (with listitem, infobox, progress)
+- `15_web_video.zsh` — `--webcontent`, `--video` (youtube= shortcut), `--videocaption`, `--autoplay`
+- `16_json_input.zsh` — `--jsonstring`, `--jsonfile`, JSON arrays for checkboxes, selectitems, textfields, images
+- `17_fullscreen_blur.zsh` — `--fullscreen`, `--blurscreen`, `--hideotherapps`
+- `18_misc_features.zsh` — `--helpmessage`, `--infotext`, `--infobox`, `--vieworder`, `--quitkey`, `--sound`, `--showsoundcontrols`, `--displaylog`, `--loghistory`, `--debug`, `--eula`, `--alwaysreturninput`, auth key/checksum explanation
+- `19_inspect_mode.zsh` — `--inspect-mode`, `--inspect-config`, `--published-sessions-dir`, `stepType: "cadence"`, `cadenceStyle: "carousel"`, cadence IPC (`cadence:satisfy`, `cadence:advance`, `cadence:goto`), preset 3 redesign, footer logo, forced `appearance`, `cacheExtensions` with `aria2`
+- `20_branched_workflows.zsh` — top-level `workflow` array, `branch.map`, `branch.default`, `branch.ifTrue`, `branch.ifFalse`, `nextpage`, `finalpage`, history-aware Previous
 
 ## Running Individual Demos
 

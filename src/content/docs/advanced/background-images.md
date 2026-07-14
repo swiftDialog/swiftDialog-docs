@@ -38,8 +38,6 @@ Angle conventions: `0` = bottom-to-top, `90` = left-to-right (default), `180` = 
 
 If only one colour is supplied to `gradient=`, the result is identical to `colour=`.
 
-```
-
 
 ### `--bgalpha`
 
@@ -48,7 +46,6 @@ If only one colour is supplied to `gradient=`, the result is identical to `colou
 ```
 
 Sets the alpha or transparency of the background layer. Can be any number between `0` (fully transparent) and `1` (fully opaque). Default value is `0.5`
-
 
 
 ### --bgposition

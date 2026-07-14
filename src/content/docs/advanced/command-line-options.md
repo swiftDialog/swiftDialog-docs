@@ -96,7 +96,7 @@ See [Buttons](/basic-use/buttons) for details.
 |---|---|---|
 | `--nextbuttontext <text>` | | Label for the workflow Next button (default: `Next`) |
 | `--previousbuttontext <text>` | | Label for the workflow Previous button (default: `Previous`) |
-| `--onadvance <command>` | | Shell command to run when advancing between workflow pages (input on stdin; non-zero exit blocks advancement) |
+| `--onadvance <command>` | | Shell command to run when advancing between workflow pages<br> (input on stdin; non-zero exit blocks advancement) |
 
 See [Workflow](/advanced/workflows) for details.
 

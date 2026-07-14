@@ -200,7 +200,7 @@ For plist-driven compliance reporting, add a top-level `plistSources` array. swi
 |-----|------|---------|-------------|
 | `path` | String | - | Path to the plist file |
 | `type` | String | - | Source type: `compliance`, `health`, `licenses`, `preferences`, or `custom` |
-| `healthyLabel` | String | "Healthy" | Label for a passing check (appears in summary cards, findings rows and bento subtitles) |
+| `healthyLabel` | String | "Healthy" | Label for a passing check<br> (appears in summary cards, findings rows and bento subtitles) |
 | `attentionLabel` | String | "Needs Attention" | Label for a failing check |
 | `successValues` | Array | - | Values that indicate success |
 | `expectedValue` | String | - | Expected value for compliance |
@@ -217,7 +217,7 @@ For plist-driven compliance reporting, add a top-level `plistSources` array. swi
 - `compliance-summary` — a banner with the overall status plus per-category stat cards.
 - `findings-list` — a category-grouped, disclosable list of individual checks.
 
-Bento cells also auto-bind to the same data: a cell's subtitle and icon colour update from live findings, with no extra schema fields required.
+Bento cells also auto-bind to the same data: a cell's subtitle and icon colour<br> update from live findings, with no extra schema fields required.
 
 ## Complete Examples
 
