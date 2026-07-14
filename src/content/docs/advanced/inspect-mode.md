@@ -108,6 +108,7 @@ Each item in the `items` array requires:
 | `plistKey` | String | No | Plist key to validate |
 | `expectedValue` | String | No | Expected plist value |
 | `evaluation` | String | No | Evaluation type: "equals", "boolean", "exists", "contains", "range" |
+| `description` | String | No | Optional description shown below the item title (rendered by presets 1, 2, 3, 5 and 6) |
 <!-- | `subtitle` | String | No | Subtitle text (preset6) | -->
 <!-- | `category` | String | No | Category grouping (preset5) |
 | `categoryIcon` | String | No | Category icon (preset5) | -->
@@ -127,11 +128,12 @@ Monitor download directories to detect in-progress installations:
     "/Library/Application Support/JAMF/Downloads", 
     "/Library/Application Support/AirWatch/Data/Munki/Managed Installs/Cache"
   ],
-  "scanInterval": 5
+  "scanInterval": 5,
+  "cacheExtensions": ["download", "pkg", "dmg", "aria2"]
 }
 ```
 
-The system will detect `.pkg`, `.dmg`, and `.download` files matching item IDs.
+By default, files ending in `.pkg`, `.dmg`, and `.download` within `cachePaths` mark a matching item as *downloading*. Set `cacheExtensions` to change that list — for example, add `aria2` so aria2c's `<name>.aria2` partial files are detected (issue #617). The leading dot is optional.
 
 ### Plist Compliance Validation
 
