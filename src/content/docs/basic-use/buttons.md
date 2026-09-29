@@ -63,6 +63,8 @@ e.g. `--infobuttonaction "https://github.com/"`
 
 Sets the SF Symbol to use in addition to the button label
 
+### CSV Syntax
+
 ```bash
 --button1symbol <sf symbol name>[,position,rendering mode,size,color]
 --button2symbol <sf symbol name>[,position,rendering mode,size,color]
@@ -85,6 +87,42 @@ Example:
 `--button1symbol heart.fill,color=red`
 
 <img width="400" alt="image" src="/images/button_symbol.png" />
+
+### JSON Object Syntax
+
+From 3.1.1, button symbols can also be specified as JSON objects for more direct control:
+
+```bash
+--button1symbol '{"name":"checkmark.circle","colour":"green","position":"trailing"}'
+--button2symbol '{"name":"xmark.circle","colour":"red","position":"leading"}'
+--infobuttonsymbol '{"name":"info.circle","colour":"blue"}'
+```
+
+**Properties:**
+- `name` - SF Symbol name (required)
+- `position` - Symbol position: `leading`, `trailing`, `top`, `bottom` (default: `leading`)
+- `colour` / `color` - Symbol colour (hex or named)
+- `size` - Symbol size in points
+- `rendering` - Rendering mode: `hierarchical`, `monochrome`, `multicolour`, `palette`
+- `palette` - Array of 2-3 colours for multicolor symbols (dash-joined in CSV, array in JSON)
+
+**Examples:**
+
+```bash
+# Basic symbol with colour
+dialog --button1symbol '{"name":"checkmark.circle","colour":"green"}'
+
+# Symbol with position and size
+dialog --button2symbol '{"name":"xmark.circle","colour":"red","position":"leading","size":20}'
+
+# Multicolor symbol with palette
+dialog --button1symbol '{"name":"person.3.sequence.fill","rendering":"palette","palette":["red","green","blue"]}'
+
+# Symbol with all options
+dialog --button1symbol '{"name":"heart.fill","colour":"pink","position":"trailing","size":24,"rendering":"hierarchical"}'
+```
+
+**Note:** When using `rendering: palette`, the palette should be an array in JSON: `["red","green","blue"]`. In CSV form, use dash-joined: `palette=red-green-blue`.
 
 ## Button Position
 

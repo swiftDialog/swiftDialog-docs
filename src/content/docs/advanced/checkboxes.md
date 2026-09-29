@@ -28,7 +28,6 @@ The options are `mini`, `small`, `regular` or `large`
 `--checkboxstyle switch,large`
 
 ![image](https://user-images.githubusercontent.com/3598965/235894351-71200445-5871-4e27-b792-2a983a34514c.png)
-
 ## Advanced use
 
 When using [JSON configuration](/advanced/json-configuration) to set Dialog options, optional checkbox parameters become available.
@@ -46,13 +45,69 @@ The json takes the form:
 	}
 }
 ```
+
 `"checked" : [true|false]` - will initialise the checkbox in the checked state if set to `true`. The default is unchecked.
 
 `"disabled" : [true|false]` - will disable the checkbox if set to `true` regardless of checked state
 
 `"icon" : "<file|url>"` - is available as json paramater when `checkboxstyle` is set to `switch`, otherwise it will be ignored
 
-<img src="https://user-images.githubusercontent.com/3598965/234565903-dad6db14-60c3-46aa-9a11-041aeeca8ffc.png" width=400>
+<img src="https://user-images.githubusercontent.com/3598965/234565903-dad6db14-16aa041aeeca8ffc.png" width=400>
+
+### Per-Argument JSON Configuration
+
+From 3.1.1, checkboxes can also be specified as JSON objects via `--checkbox` (instead of using the whole-config JSON). This provides more direct control and is especially useful for complex configurations.
+
+**Syntax:**
+```bash
+dialog --checkbox '{"label":"Enable telemetry","checked":true,"enableButton1":true}'
+```
+
+**Properties:**
+- `label` - The checkbox label text
+- `checked` - Initial state (true/false, default: false)
+- `disabled` - Whether the checkbox is disabled (true/false, default: false)
+- `enableButton1` - Enable Button 1 when this checkbox is checked (true/false)
+- `icon` - Icon path or JSON icon object (only used with `switch` style)
+
+**Examples:**
+
+```bash
+# Basic checkbox
+dialog --checkbox '{"label":"I agree to terms"}'
+
+# Checked by default
+dialog --checkbox '{"label":"Enable notifications","checked":true}'
+
+# Checkbox that enables Button 1
+dialog --checkbox '{"label":"I understand","enableButton1":true}' --button1disabled
+
+# Checkbox with icon (switch style)
+dialog --checkbox '{"label":"Enable feature","checked":true,"icon":"/System/Library/CoreServices/Software Update.app"}' --checkboxstyle switch
+
+# Checkbox with JSON icon object
+dialog --checkbox '{"label":"Enable","icon":{"sf":"checkmark.circle","colour":"green"}}' --checkboxstyle switch
+```
+
+**Note:** When using `enableButton1`, you should also set `--button1disabled` to prevent the user from clicking the button before checking the box.
+
+### Whole-Config JSON
+
+The whole-config JSON form is still supported:
+
+```json
+{
+  "checkbox" : [
+    {"label" : "Option 1", "checked" : true, "disabled" : true },
+    {"label" : "Option 2", "checked" : true, "disabled" : false },
+    {"label" : "Option 3", "checked" : false }
+  ],
+  "checkboxstyle" : {
+    "style" : "switch",
+    "size" : "large"
+  }
+}
+```
 
 ### example
 
