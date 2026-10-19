@@ -183,11 +183,54 @@ Use `--textfieldlivevalidation` to show a green/red overlay on the field as the 
 
 ### Date Picker
 
-`isdate` replaces the text field with a macOS date picker. The selected date is returned as a short date string (e.g. `3/24/2026`).
+Use the `date` or `time` modifier to replace the text field with a macOS date/time picker. The selected value is returned as a formatted string.
 
 ```sh
---textfield "Start Date,isdate"
+--textfield "Start Date,date"
+--textfield "Start Time,time"
+--textfield "Start Date and Time,date,time"
 ```
+
+**Note:** The `isdate` modifier has been deprecated in favour of `date` and `time`.
+
+#### Date Bounds
+
+Use `mindate=` and `maxdate=` to restrict the selectable date range:
+
+```sh
+--textfield "Pick a day,date,mindate=20260901,maxdate=20260930"
+--textfield "No earlier than today,date,mindate=20260928"
+--textfield "Before end of year,date,maxdate=20261231"
+```
+
+**Format:** Dates must be in `YYYYMMDD` format (region-proof). Separators are accepted and stripped (e.g., `2026-09-30` → `20260930`). Invalid dates are ignored and the bound is not applied.
+
+#### Date Format
+
+Use `format=` to specify the return format using strftime syntax:
+
+```sh
+--textfield "Select date,date,format=+%Y-%m-%d"
+--textfield "Get epoch,date,value=20260901,format=+%s"
+```
+
+Common format strings:
+- `+%Y-%m-%d` - ISO 8601 format (e.g., `2026-09-29`)
+- `+%s` - Unix timestamp (seconds since epoch)
+- `+%x` - Locale's date representation
+- `+%D` - US format (e.g., `09/29/26`)
+
+#### Seeding the Date Picker
+
+Use `value=` to set the initial date. The picker accepts multiple formats:
+
+```sh
+--textfield "Start date,date,value=2026-09-30"
+--textfield "Start date,date,value=September 30, 2026"
+--textfield "Start date,date,value=1759132800"
+```
+
+Supported formats: ISO 8601, locale-specific, 12/24-hour, epoch timestamps, and natural language.
 
 ### File Select
 
@@ -242,18 +285,101 @@ Modifiers can be combined freely (where compatible):
 
 ### JSON Format
 
+Text fields can be specified as JSON in two ways:
+
+#### Whole-Config JSON
+
+When using a JSON configuration file or `--jsonstring`/`--jsonfile`, specify text fields as an array:
+
 ```json
 {
   "textfield" : [
     {"title" : "<label>", "required" : true, "secure" : true, "prompt" : "<prompt_text>"},
     {"title" : "<label>", "editor" : true},
     {"title" : "<label>", "fileselect" : true, "filetype" : "png jpg"},
-    {"title" : "<label>", "isdate" : true},
+    {"title" : "<label>", "date" : true, "mindate" : "20260901", "maxdate" : "20260930", "format" : "+%Y-%m-%d"},
+    {"title" : "<label>", "time" : true, "value" : "14:30"},
     {"title" : "<label>", "regex" : "\\d{5}", "regexerror" : "Five digits required"},
     {"title" : "<label>", "secure" : true, "confirm" : true}
   ]
 }
 ```
+
+#### Per-Argument JSON Configuration
+
+From 3.1.1, text fields can also be specified as JSON objects via `--textfield` (instead of using comma-separated modifiers). This provides more direct control and is especially useful for complex configurations.
+
+**Syntax:**
+```bash
+dialog --textfield '{"title":"Name","required":true,"prompt":"Enter your full name"}'
+```
+
+**Properties:**
+- `title` - The field label text
+- `name` - Alternative output key name
+- `required` - Field must be filled (true/false)
+- `secure` - Hide input as it is typed (password field)
+- `passwordfill` - Enable macOS password autofill (requires `secure`)
+- `prompt` - Placeholder text shown inside the field
+- `value` - Pre-populate the field with a default value
+- `regex` - Require field content to match the regular expression
+- `regexerror` - Custom error message shown when regex is not satisfied
+- `editor` - Multi-line text editor instead of single-line field
+- `date` - Replace field with date picker (true)
+- `time` - Replace field with time picker (true)
+- `mindate` - Minimum selectable date (YYYYMMDD format)
+- `maxdate` - Maximum selectable date (YYYYMMDD format)
+- `format` - Return format using strftime syntax (e.g., `+%Y-%m-%d`, `+%s`)
+- `fileselect` - Add a Select button that opens a file picker
+- `filetype` - Restrict file picker to specific types (space-separated extensions or keywords)
+- `path` - Initial directory for file picker
+- `confirm` - Add confirmation field that must match primary field
+
+**Examples:**
+
+```bash
+# Basic required field with prompt
+dialog --textfield '{"title":"Name","required":true,"prompt":"Enter your full name"}'
+
+# Secure field with password fill
+dialog --textfield '{"title":"Password","secure":true,"passwordfill":true,"prompt":"Enter password"}'
+
+# Date picker with bounds
+dialog --textfield '{"title":"Select Date","date":true,"mindate":"20260901","maxdate":"20260930","format":"+%Y-%m-%d"}'
+
+# Time picker with default value
+dialog --textfield '{"title":"Select Time","time":true,"value":"14:30"}'
+
+# File picker with restrictions
+dialog --textfield '{"title":"Select Config","fileselect":true,"filetype":"json plist","path":"/Library/Preferences"}'
+
+# Multi-line editor
+dialog --textfield '{"title":"Notes","editor":true}'
+
+# Regex validation
+dialog --textfield '{"title":"Product Code","prompt":"Enter 5 digit code","regex":"\\d{5}","regexerror":"Must be a five digit number"}'
+
+# Confirmation field
+dialog --textfield '{"title":"Password","secure":true,"required":true,"confirm":true}'
+```
+
+**Date picker fields:**
+- Use `"date": true` or `"time": true` (or both) to create a picker
+- `"mindate"` and `"maxdate"` accept dates in `YYYYMMDD` format (separators are stripped)
+- `"format"` sets the return format using strftime syntax
+- `"value"` seeds the initial date/time in multiple formats (ISO, locale, epoch, natural language)
+
+**All modifiers supported:** Every modifier available in CSV form is also available as a JSON key.
+
+**Multiple text fields:**
+
+```bash
+dialog --textfield '{"title":"First Name","required":true}' \
+       --textfield '{"title":"Last Name","required":true}' \
+       --textfield '{"title":"Email","regex":".+@.+\\..+","prompt":"user@example.com"}'
+```
+
+**Note:** When using per-argument JSON, each `--textfield` is independent. The whole-config JSON form is still supported for batch initialization.
 
 ## Keyboard Behaviour
 

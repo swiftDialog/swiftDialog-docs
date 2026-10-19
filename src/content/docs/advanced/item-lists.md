@@ -52,6 +52,49 @@ When using `progress` as a status, a circular progress counter will be displayed
 
 <img width="599" alt="image" src="https://user-images.githubusercontent.com/3598965/182604151-3eabe9b5-3f77-4949-9b88-c522676e3314.png">
 
+#### Per-Argument JSON Configuration
+
+From 3.1.1, list items can also be specified as JSON objects via `--listitem` (instead of using the whole-config JSON). This provides more direct control and is especially useful for complex configurations with nested icon objects.
+
+**Syntax:**
+```bash
+dialog --listitem '{"title":"Download","status":"wait","statustext":"Working…"}'
+```
+
+**Properties:**
+- `title` - The list item label text
+- `status` - Status indicator: `wait`, `success`, `fail`, `error`, `pending`, `progress`, or `progress:<value>` (0-100)
+- `statustext` - Status text displayed next to the status indicator
+- `icon` - Icon path, URL, or **nested JSON icon object**
+
+**Nested Icon Objects:**
+
+The `icon` field accepts JSON icon objects for advanced icon configuration:
+
+```bash
+# Basic list item with SF Symbol
+dialog --listitem '{"title":"Processing","status":"wait","icon":{"sf":"gear","colour":"blue"}}'
+
+# List item with animated icon
+dialog --listitem '{"title":"Downloading","status":"progress:50","icon":{"sf":"arrow.triangle.turn","colour":"green","animation":"variable"}}'
+
+# List item with gradient icon
+dialog --listitem '{"title":"Installing","status":"wait","icon":{"sf":"arrow.down.circle","colour":"pink","colour2":"purple"}}'
+
+# List item with application icon
+dialog --listitem '{"title":"App Installation","status":"success","icon":{"path":"/Applications/MyApp.app"}}'
+```
+
+**Multiple items:**
+
+```bash
+dialog --listitem '{"title":"Step 1","status":"success","statustext":"Complete"}' \
+       --listitem '{"title":"Step 2","status":"wait","icon":{"sf":"gear","colour":"blue","animation":"variable"}}' \
+       --listitem '{"title":"Step 3","status":"pending"}'
+```
+
+**Note:** When using per-argument JSON, each `--listitem` is independent. The whole-config JSON form is still supported for batch initialization.
+
 
 ### 3) As a command sent to the command file
 

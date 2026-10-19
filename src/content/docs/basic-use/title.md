@@ -21,6 +21,8 @@ The title area is a fixed width bold area at the top of the Dialog window. Text 
 
 Use the `--titlefont` command line option to set title font properties.
 
+### CSV Syntax
+
 Font properties are expressed in the form of `property=value` and multiple properties are separated by a comma
 
 Properties available for modification are:
@@ -36,6 +38,8 @@ Properties available for modification are:
    * Positions the title text with left or right alignment
  * `offset=<float>`
    * Shifts the title text horizontally by the specified number of points. Positive values move right, negative values move left. When using `alignment=right`, the offset direction is automatically flipped so a positive value still moves the text toward the right edge.
+ * `shadow`
+   * Adds a drop shadow to the text (boolean, no value needed)
 
  > **CAUTION :** Be careful when mixing font names and weights. When specifying a font or font family by name, certain weights may not be available. If this occurs, the font weight specified will be ignored.
 
@@ -60,6 +64,39 @@ Example  - Alignment Left/Right:
 `--titlefont alignment=left` - `--titlefont alignment=right`
 
 <img width="400" alt="image" src="/images/titlefont_left.png" /> <img width="400" alt="image" src="/images/titlefont_right.png" />
+
+### JSON Object Syntax
+
+From 3.1.1, `--titlefont` and `--messagefont` can also be specified as JSON objects for more direct control:
+
+```bash
+--titlefont '{"name":"Chalkboard","colour":"#FFD012","size":40,"weight":"bold","shadow":true}'
+--messagefont '{"size":24,"colour":"red","weight":"medium"}'
+```
+
+**Properties:**
+- `name` - Font name or family
+- `size` - Font size in points
+- `colour` / `color` - Text colour (hex or named)
+- `weight` - Font weight: `thin`, `light`, `regular`, `medium`, `heavy`, `bold`
+- `alignment` - Text alignment: `left`, `right` (title only)
+- `offset` - Horizontal offset in points (title only)
+- `shadow` - Add drop shadow (boolean)
+
+**Examples:**
+
+```bash
+# Title font with all properties
+dialog --titlefont '{"name":"Chalkboard","colour":"#FFD012","size":40,"weight":"bold","shadow":true}'
+
+# Message font with size and colour
+dialog --messagefont '{"size":24,"colour":"#FF0000","weight":"medium"}'
+
+# Title font with alignment and offset
+dialog --titlefont '{"size":36,"colour":"blue","alignment":"right","offset":20}'
+```
+
+**Note:** The `shadow` key is now supported in JSON form (previously only available in CSV form).
 
 ### Using colour in the title
 

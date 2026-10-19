@@ -64,9 +64,46 @@ example output:
 
 Output of select items is only shown if Dialog's exit code is 0
 
+### Per-Argument JSON Configuration
+
+Select lists can also be defined using JSON objects via `--selectitem` (or `--selecttitle` with a JSON value). This provides more direct control over each item's properties.
+
+**Syntax:**
+```bash
+dialog --selectitem '{"title":"Region","values":["AU","US"],"default":"AU","required":true}'
+```
+
+**Properties:**
+- `title` - The label for the select list
+- `values` - Array of option values
+- `default` - The default selected value
+- `required` - Whether the field is required (ignored for radio buttons)
+- `style` - Display style: `list`, `radio`, `searchable`, or `multiselect`
+- `name` - Alternative output key name
+
+**Examples:**
+
+```bash
+# Basic JSON item
+dialog --selectitem '{"title":"Size","values":["S","M","L"],"default":"M"}'
+
+# Searchable with required field
+dialog --selectitem '{"title":"Region","values":["AU","US","UK"],"required":true,"style":"searchable"}'
+
+# Radio button group
+dialog --selectitem '{"title":"Priority","values":["Low","Medium","High"],"style":"radio"}'
+
+# Mix JSON with positional arguments
+dialog --selectitem '{"title":"Color","values":["red","green","blue"]}' --selectdefault "red"
+```
+
+**JSON items are independent** of positional `--selectvalues/--selecttitle/--selectdefault` arguments. When using JSON, the values are filtered from the positional label list to avoid duplication.
+
 ## JSON Schema
 
-The configuration can be specified using JSON for more direct control.
+Select lists can be specified using JSON for more direct control.
+
+### Whole-Config JSON (JSON Configuration File)
 
 ```json
 {
@@ -82,6 +119,17 @@ The configuration can be specified using JSON for more direct control.
   ]
 }
 ```
+
+### Per-Argument JSON
+
+Individual select items can also be defined using `--selectitem` or `--selecttitle` with a JSON object:
+
+```bash
+dialog --selectitem '{"title":"Region","values":["AU","US"],"default":"AU"}'
+dialog --selecttitle '{"title":"Size","values":["S","M","L"],"required":true}'
+```
+
+**Note:** `--selecttitle` treats JSON objects identically to `--selectitem`.
 
 ### Examples:
 

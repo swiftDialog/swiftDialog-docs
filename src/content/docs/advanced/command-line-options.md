@@ -22,8 +22,8 @@ Use `--help <option>` for detailed information about a specific argument.
 | `--message <text>` | `-m` | Set the dialog message. Supports [Markdown](/basic-use/markdown). |
 | `--messagealignment [left\|centre\|right]` | | Horizontal alignment of the message |
 | `--messageposition [top\|centre\|bottom]` | | Vertical position of the message content block |
-| `--titlefont <params>` | | Modify title font. Accepts comma-separated `key=value` pairs: `colour`, `size`, `weight`, `name`, `alignment`, `offset`, `shadow` |
-| `--messagefont <params>` | | Modify message font (color, size) |
+| `--titlefont <params\|json>` | | Modify title font. Accepts comma-separated `key=value` pairs or JSON object: `colour`, `size`, `weight`, `name`, `alignment`, `offset`, `shadow` |
+| `--messagefont <params\|json>` | | Modify message font. Accepts comma-separated `key=value` pairs or JSON object |
 
 See [Title](/basic-use/title) and [Message](/basic-use/message) for details.
 
@@ -33,11 +33,11 @@ See [Title](/basic-use/title) and [Message](/basic-use/message) for details.
 
 | Argument | Short | Description |
 |---|---|---|
-| `--icon <file\|url>` | `-i` | Set the dialog icon. Accepts file path, URL, SF Symbol (`SF=name`), or `info\|caution\|warning` |
+| `--icon <file\|url\|json>` | `-i` | Set the dialog icon. Accepts file path, URL, SF Symbol (`SF=name`), built-ins, or JSON object |
 | `--iconsize <num>` | | Icon size in points (default: 150) |
 | `--iconalpha <num>` | | Icon opacity from 0.0 (transparent) to 1.0 (opaque) |
 | `--iconalttext <text>` | | Accessibility label for the icon |
-| `--overlayicon <file\|url>` | `-y` | Overlay image displayed at bottom-right of icon |
+| `--overlayicon <file\|url\|json>` | `-y` | Overlay image displayed at bottom-right of icon. Accepts same formats as `--icon` |
 | `--hideicon` | `-h` | Hide the icon to increase message area |
 | `--centreicon` / `--centericon` | | Reposition icon to centre between title and message |
 
@@ -71,16 +71,16 @@ See [Banner Images](/advanced/banner-images) and [Background Images](/advanced/b
 | `--button1text <text>` | | Label for Button 1 (bound to Return ↵, default: `OK`) |
 | `--button1action <url>` | | URL to open when Button 1 is clicked |
 | `--button1shellaction <cmd>` | | Shell command to run when Button 1 is clicked |
-| `--button1symbol <sf symbol>` | | SF Symbol to display on Button 1 |
+| `--button1symbol <sf symbol\|json>` | | SF Symbol or JSON object for Button 1 |
 | `--button1disabled` | | Launch with Button 1 disabled |
 | `--button2` | `-2` | Show Button 2 |
 | `--button2text <text>` | | Label for Button 2 (bound to Esc ⎋, default: `Cancel`) |
-| `--button2symbol <sf symbol>` | | SF Symbol to display on Button 2 |
+| `--button2symbol <sf symbol\|json>` | | SF Symbol or JSON object for Button 2 |
 | `--button2disabled` | | Launch with Button 2 disabled |
 | `--infobutton` | `-3` | Show the info button |
 | `--infobuttontext <text>` | | Label for the info button |
 | `--infobuttonaction <url>` | | URL to open when the info button is clicked |
-| `--infobuttonsymbol <sf symbol>` | | SF Symbol to display on the info button |
+| `--infobuttonsymbol <sf symbol\|json>` | | SF Symbol or JSON object for info button |
 | `--buttonstyle [center\|stack]` | | Button layout style |
 | `--buttonsize [mini\|small\|regular\|large]` | | Button size |
 | `--buttontextsize <num>` | | Button label font size |
@@ -146,16 +146,35 @@ See [Info Box](/advanced/info-box) for details.
 
 | Argument | Short | Description |
 |---|---|---|
-| `--textfield <text>[,options]` | | Add a text input field. Supports `required`, `secure`, `prompt`, `regex`, `fileselect` and more. |
+| `--textfield <text\|json>[,options]` | | Add a text input field. Supports `required`, `secure`, `prompt`, `regex`, `fileselect`, `date`, `time`, `mindate`, `maxdate` and more. Can also be specified as JSON object |
 | `--textfieldlivevalidation` | | Show live regex validation feedback on text fields |
-| `--checkbox <text>` | | Add a checkbox with the given label |
+| `--checkbox <text\|json>` | | Add a checkbox with the given label. Can also be specified as JSON object |
 | `--checkboxstyle [checkbox\|switch][,size]` | | Change checkbox appearance |
 | `--selecttitle <text>[,options]` | | Add a dropdown select list with the given name |
 | `--selectvalues <csv>` | | Comma-separated values for the select list |
 | `--selectdefault <text>` | | Default selected value for the select list |
 | `--selectstyle` | | Style for the select list |
+| `--selectitem <json>` | | Define a select list item using JSON object syntax |
 
 See [Text Fields](/advanced/textfields), [Checkboxes](/advanced/checkboxes), and [Select Lists](/advanced/select-lists) for details.
+
+### Per-Argument JSON Configuration
+
+Many arguments that accept comma-separated values can also be specified as JSON objects. This provides more direct control and is especially useful for complex configurations.
+
+**Detection:** If a value parses as a JSON object, the JSON builder is used; otherwise, CSV parsing is applied.
+
+**Supported arguments:**
+- `--textfield` - Full field configuration with all modifiers
+- `--checkbox` - Checkbox with icon and button enablement
+- `--listitem` - List item with nested icon objects
+- `--selecttitle` - Treated identically to `--selectitem`
+- `--selectitem` - JSON-defined select list items
+- `--titlefont` / `--messagefont` - Font configuration with colour, size, weight, shadow
+- `--icon` / `--overlayicon` - Icon objects with symbols, colours, palettes, animations
+- `--button1symbol` / `--button2symbol` / `--infobuttonsymbol` - Button symbols with positioning
+
+See individual documentation pages for detailed JSON schemas and examples.
 
 ---
 
@@ -163,7 +182,7 @@ See [Text Fields](/advanced/textfields), [Checkboxes](/advanced/checkboxes), and
 
 | Argument | Short | Description |
 |---|---|---|
-| `--listitem <text>` | | Add a list item. Supports status icons and click actions. |
+| `--listitem <text\|json>` | | Add a list item. Supports status icons and click actions. Can also be specified as JSON object with nested icon support |
 | `--liststyle [expanded\|compact]` | | Vertical spacing between list rows |
 | `--enablelistselect` | | Allow list items to be selected; selection is returned on exit |
 

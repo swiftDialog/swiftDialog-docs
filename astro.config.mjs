@@ -127,7 +127,8 @@ export default defineConfig({
               items: [
                 { label: '3.0.0', slug: 'reference/releasenotes/sd3-0-0' },
                 { label: '3.0.1', slug: 'reference/releasenotes/sd3-0-1' },
-                { label: '3.1.0', slug: 'reference/releasenotes/sd3-1-0' }
+                { label: '3.1.0', slug: 'reference/releasenotes/sd3-1-0' },
+                { label: '3.1.1', slug: 'reference/releasenotes/sd3-1-1' }
               ]
             },
             { label: 'Updates', slug: 'reference/updates' },

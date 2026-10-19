@@ -91,6 +91,8 @@ e.g. `--icon text=👍`
 
 swiftDialog can also display any SF Symbol iconography https://developer.apple.com/sf-symbols/
 
+### SF Symbol Syntax (CSV Form)
+
 When Specifying SF Symbols for icon or overlay icon, additional parameters for colour and weight are available:
 
   `"SF=sf.symbol.name,colour=<text><hex>,weight=<text>"`
@@ -106,7 +108,7 @@ When used with a multicolor SF Symbol, the symbols default colour scheme will be
 
 e.g. `dialog -s -i SF=airplane.circle.fill,colour=auto`
 
-![image](https://user-images.githubusercontent.com/3598965/126090330-8dc612a9-419c-40f9-99e2-caf41d07903e.png)
+![image](https://user-images.githubusercontent.com/3598965/126090330-8dc612a9-40f9-99e2-caf41d07903e.png)
 
 Colour gradients can be set by adding the additional `colour2` or `color2` argument e.g. `SF=applelogo,colour=pink,colour2=purple`
 
@@ -114,17 +116,17 @@ Colour gradients can be set by adding the additional `colour2` or `color2` argum
 
 Multicolor SF Symbols can colourised using the `palette` argument, e.g. `SF=person.3.sequence.fill,palette=red,green,blue`
 
-![image](https://user-images.githubusercontent.com/3598965/171398294-0a74dcad-b5b2-4dd0-b320-c65d5d5e8d22.png)
+![image](https://user-images.githubusercontent.com/3598965/171398294-0a74dcad-b5b2-4dd0-b5b2-4dd0-b320-c65d5d5e8d22.png)
 
 SF Symbol Weight can be set with the `weight` argument
 
-  `weight=<text>` accepts any of the following values:
-   * thin (default)
-   * light
-   * regular
-   * medium
-   * heavy
-   * bold
+   `weight=<text>` accepts any of the following values:
+    * thin (default)
+    * light
+    * regular
+    * medium
+    * heavy
+    * bold
 
 ### Animated SF Symbols
 
@@ -142,6 +144,61 @@ Limited support at this time using the following animation types:
  - "variable.cumulative"
  - "pulse"
  - "pulse.bylayer"
+
+### JSON Icon Objects
+
+Icons can also be specified as JSON objects for more direct control. This is especially useful for complex icon configurations with multiple properties.
+
+**Syntax:**
+```bash
+dialog --icon '{"sf":"gear","colour":"blue","weight":"bold"}'
+```
+
+**Supported keys:**
+- `sf` / `name` / `symbol` - SF Symbol name
+- `path` / `icon` / `value` - File path to image or application
+- `weight` - Symbol weight (thin, light, regular, medium, heavy, bold)
+- `colour` / `color` - Primary colour (hex or named)
+- `colour2` / `color2` - Secondary colour for gradients
+- `palette` - Array of colours for multicolor symbols
+- `animation` - Animation type for animated symbols (macOS 14+)
+- `bgcolour` / `bgcolor` - Background colour for overlay icons
+- `auto` - Special value for automatic colour scheme
+- `light` / `dark` - Light/dark mode variants (nested icon object)
+
+**Examples:**
+
+```bash
+# Basic symbol with colour and weight
+dialog --icon '{"sf":"gear","colour":"blue","weight":"bold"}'
+
+# Gradient
+dialog --icon '{"sf":"applelogo","colour":"pink","colour2":"purple"}'
+
+# Multicolor palette
+dialog --icon '{"sf":"person.3.sequence.fill","palette":["red","green","blue"]}'
+
+# Application icon
+dialog --icon '{"path":"/Applications/Chess.app"}'
+
+# Light/dark variants
+dialog --icon '{"light":{"sf":"sun.max"},"dark":{"sf":"moon"}}'
+
+# Animated symbol (macOS 14+)
+dialog --icon '{"sf":"rainbow","colour":"auto","animation":"variable"}'
+
+# Overlay icon with background
+dialog --overlayicon '{"sf":"exclamationmark","colour":"yellow","bgcolour":"none"}'
+```
+
+**Works in:** `--icon`, `--overlayicon`, `--listitem` icon field, `--checkbox` icon field
+
+**Note:** When used in `--listitem` or `--checkbox`, the icon field accepts nested JSON objects:
+
+```bash
+dialog --listitem '{"title":"Download","status":"wait","icon":{"sf":"gear","colour":"blue","animation":"variable"}}'
+dialog --checkbox '{"label":"Enable","icon":{"sf":"checkmark.circle","colour":"green"}}'
+```
 
 
 

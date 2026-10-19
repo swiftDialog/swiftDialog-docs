@@ -57,6 +57,50 @@ export DIALOG_INSPECT_CONFIG="/path/to/config.json"
 
 ## JSON Configuration Reference
 
+### General Dialog Options
+
+Inspect mode supports a new `options` object in the JSON configuration to control general dialog behaviour. This allows you to set window properties directly in the inspect config without needing to pass CLI arguments.
+
+```json
+{
+  "options": {
+    "moveable": true,
+    "ontop": true,
+    "resizable": true,
+    "windowbuttons": "min,max,close"
+  }
+}
+```
+
+**Available options:**
+- `moveable` (boolean) - Allow the window to be dragged
+- `ontop` (boolean) - Keep the window above all other windows
+- `resizable` (boolean) - Allow the window to be resized (implies `moveable`)
+- `windowbuttons` (string) - Enable window buttons: `close`, `min`, `max` (comma-separated)
+
+**Priority:** Command-line flags take precedence over JSON options.
+
+**Unsupported options:** Any options outside the allowlist are ignored with a log message.
+
+**Example:**
+```json
+{
+  "title": "Application Installation",
+  "options": {
+    "moveable": true,
+    "ontop": true
+  },
+  "items": [
+    {
+      "id": "app1",
+      "displayName": "Microsoft Word",
+      "guiIndex": 0,
+      "paths": ["/Applications/Microsoft Word.app"]
+    }
+  ]
+}
+```
+
 ### Root Level Keys
 
 | Key | Type | Required | Default | Description |
