@@ -30,7 +30,7 @@ The default when `--style` is omitted depends on the system notification setting
 > Calling `--notification` **without** `--style` still works for backwards compatibility but routes through the main `Dialog.app` bundle. This path is deprecated and will emit a warning to stderr:
 > In a future release, sending a notification without `--style` will default to `--style banner`.
 
-To ensure the style types are correctly set for system notifications, deploy a mobileconfig that pre-approves notifications for the relevant helper apps (`au.csiro.dialog.banner` and `au.csiro.dialog.alert`) with the desired notification style.
+To ensure the style types are correctly set for system notifications, deploy a mobileconfig that pre-approves notifications for the relevant helper apps (`au.csiro.dialog.notifier.banner` and `au.csiro.dialog.notifier.alert`) with the desired notification style.
 
 ### Use
 
@@ -243,8 +243,8 @@ When deploying swiftDialog via MDM it is preferred to deploy a mobileconfig that
 |---|---|---|
 | v2.2.1 and earlier | `au.bartreardon.dialog` | Legacy |
 | v2.3 – v3.0 | `au.csiro.dialog` | Main app bundle |
-| v3.1+ (banner style) | `au.csiro.dialog.banner` | `Dialog Banner` helper |
-| v3.1+ (alert style) | `au.csiro.dialog.alert` | `Dialog Alert` helper |
+| v3.1+ (banner style) | `au.csiro.dialog.notifier.banner` | `Dialog Banner` helper |
+| v3.1+ (alert style) | `au.csiro.dialog.notifier.alert` | `Dialog Alert` helper |
 
 > To confirm the exact bundle identifiers on an installed build, run:
 > ```bash
@@ -353,7 +353,7 @@ Note that the `AlertType` key controls the notification style independently of `
 - `1` = Banner (dismisses automatically)
 - `2` = Alert (persists until dismissed)
 
-When deploying with `--style alert`, set `AlertType` to `2` in the `au.csiro.dialog.alert` entry, and vice versa for banners.
+When deploying with `--style alert`, set `AlertType` to `2` in the `au.csiro.dialog.notifier.alert` entry, and vice versa for banners.
 
  > #### A note about notification Errors
  >
