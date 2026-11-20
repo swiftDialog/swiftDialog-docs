@@ -1,9 +1,9 @@
 ---
-title: Anzeigen von Webinhalten.
+title: Anzeigen von Webinhalten
 description: Erfahren Sie, wie Sie Webseiten und Web-Inhalte innerhalb von swiftDialog anzeigen können.
 ---
 
-## Anzeigen von Webinhalten.
+## Anzeigen von Webinhalten
 
 Das neue `--webcontent <url>` Argument ermöglicht es, eine Webseite innerhalb eines Dialogfensters anzuzeigen.
 

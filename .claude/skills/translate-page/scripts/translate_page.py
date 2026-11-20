@@ -157,6 +157,7 @@ class Translator:
         for attempt in (1, 2):
             out = self._call(text)
             if sorted(PH_RE.findall(out)) == want and "\n" not in out.strip():
+                out = match_final_period(text, out)
                 self.cache[text] = out
                 if (self.calls % 10) == 0:
                     log("  ... %d segments translated (line %d)" % (self.calls, line))
@@ -302,6 +303,49 @@ def do_body(lines, tr, offset):
     return out
 
 
+def match_final_period(src, out):
+    """Drop a full stop the model added to text that had none (headings, titles, list items)."""
+    if out.endswith(".") and not out.endswith("...") and not src.rstrip().endswith((".", ":", "!", "?", ")")):
+        return out[:-1]
+    return out
+
+
+def slugify(text):
+    """Heading ID the way Starlight (github-slugger) makes it."""
+    text = re.sub(r"<[^>]+>|`", "", text).strip().lower()
+    text = re.sub(r"[^\w\- ]", "", text, flags=re.UNICODE)
+    return text.replace(" ", "-")
+
+
+def heading_ids(lines):
+    ids, seen, fence = [], {}, None
+    for line in lines:
+        fm = FENCE_RE.match(line)
+        if fence:
+            if fm and fm.group(1)[0] == fence[0]:
+                fence = None
+            continue
+        if fm:
+            fence = fm.group(1)
+            continue
+        hm = HEADING_RE.match(line)
+        if hm:
+            base = slugify(re.sub(r"\]\([^)]*\)|[\[\]*_]", "", hm.group(2)))
+            n = seen.get(base, 0)
+            seen[base] = n + 1
+            ids.append(base if n == 0 else "%s-%d" % (base, n))
+    return ids
+
+
+def fix_anchors(src_lines, out_lines, text):
+    """Point same-page #links at the translated heading IDs (headings are matched by position)."""
+    old, new = heading_ids(src_lines), heading_ids(out_lines)
+    if len(old) != len(new):
+        return text, ["heading count changed (%d -> %d); #anchors not updated" % (len(old), len(new))]
+    mapping = {o: n for o, n in zip(old, new) if o != n}
+    return re.sub(r"\]\(#([^)\s]+)\)", lambda m: "](#%s)" % mapping.get(m.group(1), m.group(1)), text), []
+
+
 def localize_links(text, code, docs_root):
     """Prefix root-relative links to doc pages with /<code>/. Assets in public/ are left alone."""
     def is_doc(path):
@@ -392,6 +436,7 @@ def main():
         sys.exit("model endpoint error (%s): %s" % (API_URL, e))
 
     output = localize_links("\n".join(result), code, docs_root)
+    output, anchor_notes = fix_anchors(lines, result, output)
 
     s_in, s_out = structure(text), structure(output)
     mismatches = {k: [s_in[k], s_out[k]] for k in s_in if s_in[k] != s_out[k]}
@@ -405,6 +450,7 @@ def main():
         "model_calls": tr.calls,
         "untranslated_segments": [{"line": l, "problem": p, "text": t[:200]} for l, p, t in tr.issues],
         "structure_mismatches": mismatches,
+        "notes": anchor_notes,
     }
     print(json.dumps(report, indent=2, ensure_ascii=False))
     sys.exit(2 if tr.issues or mismatches else 0)

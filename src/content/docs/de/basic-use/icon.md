@@ -1,17 +1,17 @@
 ---
-title: Anpassen des Symbols.
+title: Anpassen des Symbols
 description: Erfahren Sie, wie Sie Symbole, Bilder und Überlagerungen in swiftDialog einrichten und anpassen können.
 ---
 
 ##### Inhaltsverzeichnis
- - [Grundlegende Verwendung](#basic-use)
- - [Etwas fortgeschrittenere Anwendung](#slightly-more-advanced-use)
- - [Integrierte Symbole](#built-in-icons)
- - [Verwendung von SF Symbols](#using-sf-symbols)
- - [Symbolüberlagerungen](#icon-overlays)
- - [Symbolgröße](#icon-size-new-in-v180)
- - [Das Symbol ausblenden](#hiding-the-icon)
- - [Einrichten von hellen oder dunklen Symbolen, je nachdem, ob sich die UI im Dunkelmodus oder Hellmodus befindet](#setting-dark-or-light-icons-depending-if-the-ui-is-in-dark-mode-or-light-mode)
+ - [Grundlegende Verwendung](#grundlegende-nutzung)
+ - [Etwas fortgeschrittenere Anwendung](#etwas-fortgeschrittene-anwendung)
+ - [Integrierte Symbole](#integrierte-symbole)
+ - [Verwendung von SF Symbols](#die-verwendung-von-sf-symbols)
+ - [Symbolüberlagerungen](#symbolüberlagerungen)
+ - [Symbolgröße](#symbolgröße)
+ - [Das Symbol ausblenden](#das-symbol-ausblenden)
+ - [Einrichten von hellen oder dunklen Symbolen, je nachdem, ob sich die UI im Dunkelmodus oder Hellmodus befindet](#anpassung-der-symbole-an-das-farbschema-der-benutzeroberfläche-entweder-dunkle-symbole-bei-aktiviertem-dark-mode-oder-helle-symbole-bei-aktiviertem-light-mode)
 
 ***
 
@@ -23,7 +23,7 @@ Verwenden Sie die Kommandozeilenoption `-i` oder `--icon`, um anzugeben, welches
 `--icon <file | url | text= >`
 
 
-## Grundlegende Nutzung.
+## Grundlegende Nutzung
 
 swiftDialog akzeptiert Bilder in den Formaten `png` und `jpg` und zeigt das angegebene Bild im Bereich für die Symbolanzeige.
 
@@ -33,7 +33,7 @@ Die Bilder werden so skaliert, dass sie in den dafür vorgesehenen Anzeigebereic
 
 <img src="https://user-images.githubusercontent.com/3598965/111853793-912e3880-8970-11eb-852f-3d5f7e5d2119.png" width=450>
 
-## Etwas fortgeschrittene Anwendung.
+## Etwas fortgeschrittene Anwendung
 swiftDialog akzeptiert einen Pfad zu einer Anwendung und verwendet das Anwendungs-Symbol als Bild.
 
 e.g. `--icon /Applications/Safari.app`
@@ -46,7 +46,7 @@ e.g. `--icon "https://user-images.githubusercontent.com/3598965/111854068-84f6ab
 
 <img src="https://user-images.githubusercontent.com/3598965/111854089-a5bf0080-8971-11eb-95fe-a720206bb10a.png" width=450>
 
-## Transparenz der Symbole einstellen.
+## Transparenz der Symbole einstellen
 
 Verwenden Sie `--iconalpha`, um einen Transparenzwert festzulegen.
 
@@ -58,7 +58,7 @@ Verwenden Sie `:dark=` und geben Sie ein alternatives Symbol oder einen alternat
 
 e.g. `--icon /path/to/light.png:dark=/path/to/dark.png`
 
-## Integrierte Symbole.
+## Integrierte Symbole
 
 swiftDialog verfügt über mehrere integrierte Symbole, die mit der Option `--icon` verwendet werden können.
 
@@ -87,7 +87,7 @@ e.g. `--icon text=👍`
 <img width="570" alt="image" src="https://github.com/swiftDialog/swiftDialog/assets/3598965/931fa9f5-0f96-4b32-bf6e-cffa28c26e31">
 
 
-## Die Verwendung von SF Symbols.
+## Die Verwendung von SF Symbols
 
 swiftDialog kann auch beliebige Symbole aus der SF Symbol-Bibliothek anzeigen. https://developer.apple.com/sf-symbols/
 
@@ -125,7 +125,7 @@ Die Schriftstärke des SF-Symbols kann mit dem Argument `weight` festgelegt werd
     * schwer
     * fettgedruckt
 
-### Animierte SF-Symbole.
+### Animierte SF-Symbole
 
 Die Unterstützung für animierte SF-Symbole ist ab macOS 14 oder neuer verfügbar.
 
@@ -142,7 +142,7 @@ Derzeit wird nur eingeschränkte Unterstützung für die folgenden Animationstyp
  - "Puls"
  - "pulse.bylayer"
 
-### JSON-Symbolobjekte.
+### JSON-Symbolobjekte
 
 Symbole können auch als JSON-Objekte definiert werden, um eine präzisere Steuerung zu ermöglichen. Dies ist besonders nützlich für komplexe Symbolkonfigurationen mit mehreren Eigenschaften.
 
@@ -199,7 +199,7 @@ dialog --checkbox '{"label":"Enable","icon":{"sf":"checkmark.circle","colour":"g
 
 
 
-## Symbolüberlagerungen.
+## Symbolüberlagerungen
 
 Verwenden Sie die Kommandozeilenoption `-y` oder `--overlayicon `, um anzugeben, welches Symbol oder Bild Sie als Überlagerung für das Hauptsymbol wünschen.
 
@@ -224,7 +224,7 @@ Beispiel 2:
 
 ![Chrome-Symbol mit Warnhinweis-Overlay](https://user-images.githubusercontent.com/3598965/111888622-2e9d7100-8a32-11eb-9693-e53bb2f42692.png)
 
-### Hintergrund überlagern bei Verwendung von SF-Symbolen.
+### Hintergrund überlagern bei Verwendung von SF-Symbolen
 
 Bei der Verwendung von SF Symbols wird ein leicht transparentes, eckiges Element hinzugefügt, um das Symbol hervorzuheben und es von dem Hauptsymbol abzugrenzen. Dies ist notwendig, da viele Symbole Elemente enthalten, die sich nicht gut als Überlagerung eignen.
 
@@ -234,7 +234,7 @@ Das Erscheinungsbild des Hintergrunds kann mit einem `bgcolor=`-Modifikator ange
 
 ![image](https://user-images.githubusercontent.com/3598965/173157715-46fda24b-2cfb-417b-835a-ed452888546d.png)
 
-## Symbolgröße.
+## Symbolgröße
 
 `--iconsize <float>` Die Symbolgröße wird auf die angegebene Breite angepasst. Die Standardbreite ist `170`.
 
@@ -251,7 +251,7 @@ Beispiel 2:
 
 ![image](https://user-images.githubusercontent.com/3598965/137573587-0e11823b-dc12-4756-ab4c-8442c4d5f050.png)
 
-## Symbolposition.
+## Symbolposition
 
 `--centreicon` oder `--centericon`
 
@@ -263,7 +263,7 @@ Kann auch während der Ausführung von swiftDialog über eine Konfigurationsdate
 
 `echo "icon: centre" >> /var/tmp/dialog.log`
 
-## Das Symbol ausblenden.
+## Das Symbol ausblenden
 
 Das Symbol kann vollständig entfernt werden, indem einer der folgenden Befehle verwendet wird:
 
@@ -273,7 +273,7 @@ oder
 
 `--icon none`
 
-## Anpassung der Symbole an das Farbschema der Benutzeroberfläche, entweder dunkle Symbole bei aktiviertem Dark Mode oder helle Symbole bei aktiviertem Light Mode.
+## Anpassung der Symbole an das Farbschema der Benutzeroberfläche, entweder dunkle Symbole bei aktiviertem Dark Mode oder helle Symbole bei aktiviertem Light Mode
 
 Mit Ausnahme einiger SF-Symbole bietet swiftDialog keine integrierte Funktionalität zum Umschalten zwischen Icons für den Dunkel- und Hellmodus.
 

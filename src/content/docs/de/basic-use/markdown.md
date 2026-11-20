@@ -1,9 +1,9 @@
 ---
-title: Markdown-Unterstützung.
+title: Markdown-Unterstützung
 description: Erfahren Sie, wie Sie die Markdown-Formatierung in Nachrichten von swiftDialog verwenden können.
 ---
 
-## Unterstützung für Markdown.
+## Unterstützung für Markdown
 
 Sie können Markdown in Ihrem Nachrichtentext verwenden, um die Darstellung anzupassen.
 
@@ -11,13 +11,13 @@ Die unterstützte Markdown-Formatierung entspricht dem Stil von GitHub. Tabellen
 
 <img width="500" alt="Screenshot 2023-08-10 at 9 06 14 am" src="https://github.com/bartreardon/swiftDialog/assets/3598965/5fd6bb4a-a5b6-46c3-9fc9-7beace658420">
 
-### Zeilenumbrüche.
+### Zeilenumbrüche
 
 In Markdown führt die [Definition⟧ ](https://daringfireball.net/projects/markdown/syntax#p) dafür, wie Absätze und Zeilenumbrüche behandelt werden, dazu, dass ein einzelnes Zeichen `\n` nicht ausreicht, um eine neue Zeile zu erstellen. Eine Zeile sollte mit **zwei Leerzeichen** enden, gefolgt von einem Zeilenumbruch `\n`, oder Sie können einen neuen Absatz durch ein doppeltes Zeilenumbruchzeichen `\n\n` erzwingen.
 
 Sie können das `<br>`-Tag auch verwenden, um einen Zeilenumbruch zu kennzeichnen, der dann als `  \n` (`[space][space]\n`) interpretiert wird.
 
-### Farbverlängerungen.
+### Farbverlängerungen
 
 swiftDialog 3+ enthält Erweiterungen zur Unterstützung von Farbcodierungen innerhalb des Textes. Die Syntax dafür ist:
 

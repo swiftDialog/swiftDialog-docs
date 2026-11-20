@@ -1,5 +1,5 @@
 ---
-title: Schaltflächen und deren Funktionalität.
+title: Schaltflächen und deren Funktionalität
 description: Lernen Sie, wie Sie die Beschriftung, die Funktionen und das Verhalten von Schaltflächen in swiftDialog konfigurieren können.
 ---
 
@@ -9,7 +9,7 @@ Die Schaltflächen werden im unteren Bereich des Dialogfensters angezeigt.
 
 ![Dialog-Schaltflächenbereich](https://user-images.githubusercontent.com/3598965/111854511-b4a6b280-8973-11eb-943d-e9843a6dc0fa.png)
 
-## Schaltfläche 1 – Die Standardschaltfläche.
+## Schaltfläche 1 – Die Standardschaltfläche
 Standardmäßig wird ein einzelner Button mit der Beschriftung "**OK**" angezeigt. Der Standard-Button ist immer vorhanden, ist mit der Taste **_Enter_** verknüpft und beendet die Dialog-Anwendung mit dem Exit-Code `0`.
 
 Die Beschriftung der Standard-Schaltfläche kann mit einer beliebigen Menge an Text geändert werden, wobei die `--button1text`-Option verwendet wird.
@@ -24,7 +24,7 @@ In diesem Stadium beschränken sich die Aktionen auf das Öffnen einer URL im St
 
 e.g. `--button1action "https://github.com/"`
 
-## Schaltfläche 2 – Die Abbruchschaltfläche.
+## Schaltfläche 2 – Die Abbruchschaltfläche
 Der zweite Button ist standardmäßig ausgeblendet. Er kann durch die Optionen `-2` oder `--button2` aktiviert werden, wodurch der Button mit der Standardbezeichnung "**Abbrechen**" angezeigt wird. Der zweite Button ist der Taste **_Esc_** zugeordnet und beendet die Dialog-Anwendung mit dem Exit-Code `2`.
 
 Die Beschriftung des zweiten Buttons kann mit einer beliebigen Textmenge geändert werden, wobei die Option `--button2text` verwendet wird. Wenn Sie diese Option verwenden, müssen Sie die Option `--button2` nicht aktivieren. Die Anzeige des Buttons erfolgt automatisch, wenn Sie die Textbeschriftung ändern.
@@ -39,7 +39,7 @@ Beispiel:
 
 Der zweite Button hat keine weiteren Funktionen implementiert.
 
-## Der Button für weitere Informationen.
+## Der Button für weitere Informationen
 Der Button "Mehr Informationen" ist standardmäßig ausgeblendet. Er kann über die Optionen `-3` oder `--infobutton` aktiviert werden, wodurch der Button mit der Standardbeschriftung "**Mehr Informationen**" angezeigt wird. Durch Klicken auf den Button wird swiftDialog mit einem Exit-Code von `3` beendet.
 
 Wenn das Argument `--infobuttonaction` vorhanden ist, führt ein Klick auf den Button "Weitere Informationen" nur die Aktion `--infobuttonaction` aus, und das Dialogfenster "swiftDialog" schließt nicht automatisch. Wenn das Argument `--quitoninfo` hinzugefügt wird, wird das Standardverhalten beim Schließen wiederhergestellt.
@@ -58,11 +58,11 @@ In diesem Stadium beschränken sich die Aktionen auf das Öffnen einer URL im St
 
 e.g. `--infobuttonaction "https://github.com/"`
 
-## Symbole für Schaltflächen.
+## Symbole für Schaltflächen
 
 Legt das SF-Symbol fest, das zusätzlich zur Beschriftung des Buttons verwendet werden soll.
 
-### CSV-Syntax.
+### CSV-Syntax
 
 ```bash
 --button1symbol <sf symbol name>[,position,rendering mode,size,color]
@@ -87,7 +87,7 @@ Beispiel:
 
 <img width="400" alt="image" src="/images/button_symbol.png" />
 
-### JSON-Objekt-Syntax.
+### JSON-Objekt-Syntax
 
 Ab Version 3.1.1 können Buttonsymbole auch als JSON-Objekte definiert werden, um eine direktere Steuerung zu ermöglichen.
 
@@ -123,7 +123,7 @@ dialog --button1symbol '{"name":"heart.fill","colour":"pink","position":"trailin
 
 **Hinweis:** Wenn Sie `rendering: palette` verwenden, muss die Farbpalette ein Array im JSON-Format sein: `["red","green","blue"]`. In CSV-Form verwenden Sie Bindestriche zur Trennung: `palette=red-green-blue`.
 
-## Knopfposition.
+## Knopfposition
 
 Standardmäßig befinden sich Schaltfläche 1 und Schaltfläche 2 auf der rechten Seite, während die Info-Schaltfläche sich auf der linken Seite befindet.
 
@@ -133,7 +133,7 @@ Die Verwendung von `--buttonstyle center` platziert die Schaltflächen 1 (und 2,
 
 `--infobuttontext` und `--infotext` sind nicht kompatibel, wenn die Option `--buttonstyle center` verwendet wird.
 
-## "Stack"-Layout für Schaltflächen.
+## "Stack"-Layout für Schaltflächen
 
 `--buttonstyle stack`
 
@@ -153,7 +153,7 @@ In einem Textfeld für eine einzelne Zeile, `[return]` kann keine neue Zeile ein
 
 In einem mehrzeiligen Textfeld (d. h. `--textfield` mit `editor` aktiviert), kann die Taste `[return]` einen Zeilenumbruch einfügen, und diese Aktion hat Vorrang vor jeder anderen Standardzuweisung (d. h. die Aktion, die normalerweise durch Drücken von Button1 ausgelöst wird, nämlich das Schließen des Fensters). Die Taste `[return]` funktioniert ebenfalls wie erwartet und fügt einen neuen Zeilenumbruch ein.
 
-### Das Ändern des Standardverhaltens von `[return]`, `[enter]` oder `[esc]`.
+### Das Ändern des Standardverhaltens von `[return]`, `[enter]` oder `[esc]`
 
 Wenn Sie das Standardverhalten von `[return]`, `[enter]` oder `[esc]` nicht wünschen, dass das Dialogfenster geschlossen wird, können Sie die Option `--hidedefaultkeyboardaction` verwenden, um dieses Verhalten zu ändern. Diese Option ändert die Standardtasten `[return]` oder `[escape]` so, dass auch die Kombination `cmd`+`shift` erforderlich ist, um die Funktion auszulösen. Dies hilft, unbeabsichtigtes Schließen von Dialogfenstern zu verhindern.
 

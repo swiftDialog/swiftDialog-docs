@@ -1,9 +1,9 @@
 ---
-title: Anpassen des Titels.
+title: Anpassen des Titels
 description: Erfahren Sie, wie Sie den Titeltext und die Schriftart-Eigenschaften in swiftDialog festlegen und anpassen können.
 ---
 
-## Einstellungen: Titeltext.
+## Einstellungen: Titeltext
 
 Verwenden Sie die Befehlszeilenoption `-t` oder `--title`, um anzugeben, was Sie im Titelbereich des Dialogfensters anzeigen möchten.
 
@@ -17,11 +17,11 @@ Der Titelbereich ist ein fest definierter, fetter Bereich am oberen Rand des Dia
 
 ![image](https://user-images.githubusercontent.com/3598965/125153474-47739300-e197-11eb-8b46-85b3cb13194a.png)
 
-## Anpassen der Schriftart-Eigenschaften für Titel.
+## Anpassen der Schriftart-Eigenschaften für Titel
 
 Verwenden Sie die `--titlefont` Kommandozeilenoption, um die Schriftart-Eigenschaften für den Titel festzulegen.
 
-### CSV-Syntax.
+### CSV-Syntax
 
 Die Eigenschaften einer Schriftart werden in Form von `property=value` ausgedrückt, und mehrere Eigenschaften werden durch ein Komma voneinander getrennt.
 
@@ -29,7 +29,7 @@ Folgende Eigenschaften können angepasst werden:
  * `colour=<hex_value>` (alternativ `color=<hex_value>`)
    * angegeben im Hexadezimalsystem, z.B. #00A4C7.
  * `size=<float>`
-   * Akzeptiert jeden Gleitkommawert, z. B. 30, 65, 72,3.
+   * Akzeptiert jeden Gleitkommawert, z. B. 30, 65, 72.3.
  * `weight=<text>`
    * Akzeptiert eine der folgenden Schriftstärken: dünn, leicht, normal, mittel, fett oder fett (Standard).
  * `name=<fontname>`
@@ -65,7 +65,7 @@ Beispiel – Ausrichtung: links/rechts.
 
 <img width="400" alt="image" src="/images/titlefont_left.png" /> <img width="400" alt="image" src="/images/titlefont_right.png" />
 
-### JSON-Objekt-Syntax.
+### JSON-Objekt-Syntax
 
 Ab Version 3.1.1 können `--titlefont` und `--messagefont` auch als JSON-Objekte angegeben werden, um eine direktere Steuerung zu ermöglichen:
 
@@ -98,7 +98,7 @@ dialog --titlefont '{"size":36,"colour":"blue","alignment":"right","offset":20}'
 
 **Hinweis:** Der Schlüssel `shadow` wird jetzt im JSON-Format unterstützt (vorher war er nur im CSV-Format verfügbar).
 
-### Die Verwendung von Farben im Titel.
+### Die Verwendung von Farben im Titel
 
 Die Verwendung von `colour=<value>` legt die Grundfarbe des Textes fest, jedoch können Sie die Farbe einzelner Wörter oder Buchstaben mithilfe des Formats `:colour[text]` ändern.
 
@@ -108,7 +108,7 @@ Beispiel:
 
 <img width="400" alt="image" src="/images/title_colour.png" />
 
-## Untertitel.
+## Untertitel
 
 Verwenden Sie `--subtitle <text>`, um eine zusätzliche Textzeile unterhalb des Titels anzuzeigen, wobei die gleiche Schriftart in einer kleineren Größe verwendet wird.
 
@@ -118,7 +118,7 @@ dialog --title "System Update" --subtitle "Please save your work before continui
 
 Der Untertitel übernimmt den gleichen Schriftnamen, die gleiche Schriftstärke und die gleiche Farbe wie der Titel, wird aber in einer anderen Größe dargestellt. `titlefont size − 10pt`
 
-#### Verbergen des Titelbereichs.
+#### Verbergen des Titelbereichs
 
 Verwenden Sie das Schlüsselwort `none`, um den Titelbereich auszublenden. Dadurch wird die Titelleiste sowie die horizontale Trennlinie entfernt.
 

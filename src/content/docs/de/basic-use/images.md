@@ -1,9 +1,9 @@
 ---
-title: Anzeigen von Bildern.
+title: Anzeigen von Bildern
 description: Erfahren Sie, wie Sie Bilder, Bildunterschriften und Bilderslider in swiftDialog anzeigen können.
 ---
 
-## Anzeigen von Bildern.
+## Anzeigen von Bildern
 
 Bilder können angezeigt werden und ersetzen standardmäßig den Nachrichtenbereich.
 
@@ -24,7 +24,7 @@ Beispiel:
 
 <img width="932" alt="image" src="https://user-images.githubusercontent.com/3598965/129476046-5b0cdef0-346b-4af6-a0eb-e8e72c72715d.png">
 
-### Bilder im Base64-Format.
+### Bilder im Base64-Format
 
 Wo immer ein Bild verwendet werden kann, können sie jetzt im Base64-Format mit dem Präfix `base64=` angegeben werden, z. B. `--icon base64=<base64_text>`.
 

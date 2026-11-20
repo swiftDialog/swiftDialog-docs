@@ -1,9 +1,9 @@
 ---
-title: Anzeigen von Videos.
+title: Anzeigen von Videos
 description: Erfahren Sie, wie Sie Videos und Videoinhalte in swiftDialog anzeigen können, einschließlich der Unterstützung für YouTube und Vimeo.
 ---
 
-## Anzeigen von Videos.
+## Anzeigen von Videos
 
 Videos können anstelle einer Nachricht angezeigt werden. Wenn angegeben, wird die Standardgröße des Dialogfensters auf 900x600 geändert, um ein Video im 16:9-Format darzustellen. Benutzerdefinierte Größen können mithilfe der Modifikatoren `--width` und `--height` festgelegt werden.
 
@@ -42,7 +42,7 @@ Vimeo-Beispiel:
 _Hinweis: Bei IDs privater Vimeo-Videos müssen Sie möglicherweise auch die zusätzlichen Informationen in der Embed-URL erfassen. Diese werden als zusätzliche `h=YYYYYYYY` dargestellt – der vollständige Embed-Befehl für swiftDialog lautet daher `dialog --video "vimeoid=XXXXXXXXXX?h=YYYYYYYY"`. _
 
 
-## Aktualisierung eines laufenden Dialogs mit neuen Inhalten aus dem Web oder Videos.
+## Aktualisierung eines laufenden Dialogs mit neuen Inhalten aus dem Web oder Videos
 
 Senden Sie die folgenden Befehle, um einen Dialog mit neuen Web- oder Videoinhalten zu aktualisieren.
 
