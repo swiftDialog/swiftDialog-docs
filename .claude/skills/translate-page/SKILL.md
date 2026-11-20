@@ -1,10 +1,14 @@
 ---
 name: translate-page
-description: Translate one swiftDialog docs page into another language. A local TranslateGemma model writes the draft, then you review and fix it. Use when asked to translate a docs page, or to add or update a page under src/content/docs/<lang>/.
-argument-hint: <page path or slug> <lang code>
+description: Translate one swiftDialog docs page into another language, or check which translations are out of date with their English originals. A local TranslateGemma model writes drafts, then you review and fix them. Use when asked to translate a docs page, add or update a page under src/content/docs/<lang>/, or check or sync translations after English pages changed.
+argument-hint: <page path or slug> <lang code> | check [lang] [page]
 ---
 
 # Translate a docs page
+
+This skill has two modes:
+- **Translate** (the default, steps 1–7): draft and review one page.
+- **Check** (`check`, see the end of this file): find translations whose English page changed since they were last synced, and bring them up to date.
 
 Translate **one page at a time**. The local model (`translategemma:12b` on the Mac Studio) writes a first draft. Your job is to make that draft correct, natural and consistent, and to keep the page building. Read [TRANSLATING.md](../../../TRANSLATING.md) for the project conventions.
 
@@ -55,8 +59,46 @@ Edit the draft in place. Keep the structure the same as the English page: same s
 ## 6. Verify
 
 - `pnpm build` must succeed. MDX errors name the file and line.
+- The script sets `translationSynced` in the frontmatter to the time of the draft. Leave it in place; the check mode relies on it.
 - Spot-check that no English prose is left (`grep` for a few distinctive English phrases from the source). English inside inline code or code blocks is expected; leave it.
 
 ## 7. Report back
 
 Say which page and language you did, what you fixed in the draft, and anything a native speaker should check: terms you weren't sure of, or sentences where the meaning was ambiguous.
+
+---
+
+# Check mode: are translations up to date?
+
+Use this when asked to check translations, after English pages were edited, or before a release.
+
+## 1. Find stale translations
+
+```sh
+python3 .claude/skills/translate-page/scripts/check_translations.py [--lang de] [page ...]
+```
+
+A translation needs checking when its English page changed **more than 2 hours** after the translation was last updated. The 2 hours allow for editing both in the same session. Change it with `--threshold` (e.g. `--threshold 1d`). A translation's "last updated" time is the later of its last git commit (or file time, if it has uncommitted edits) and its `translationSynced` frontmatter date.
+
+The report lists each stale page with the English commits since. Exit 0 means everything is up to date, exit 2 means something needs checking. `orphan` means the English page was deleted or renamed; tell the user, and don't delete anything yourself.
+
+## 2. See what changed in English
+
+```sh
+python3 .claude/skills/translate-page/scripts/check_translations.py --lang <lang> --diff <page>
+```
+
+This prints the English diff since the translation was last synced. Uncommitted English edits are included.
+
+## 3. Update each stale translation
+
+Work one page at a time:
+- **Small changes** (a sentence, a value, a new option row): edit the matching place in the translation directly. Follow every rule of the review step above, especially the glossary and "never edit code".
+- **Large changes** (new sections, restructured page): draft the whole page again into a scratch file with `translate_page.py <page> <lang> --out <scratch path>`, then copy the new or changed sections into the existing translation. Don't overwrite the translation wholesale: it may contain human corrections.
+- **No translation change needed** (typo fix, whitespace, a change only inside code that the translation already carries, or a code change you copied over): still mark the page as checked.
+
+In every case, finish by setting `translationSynced` in the translation's frontmatter to the current UTC time (`date -u +%Y-%m-%dT%H:%M:%S+00:00`). That clears the page from the check.
+
+## 4. Verify and report
+
+Run `pnpm build`, then run the check again; the pages you handled should no longer be listed. Report which pages you updated, which needed no change, and anything a native speaker should look at.

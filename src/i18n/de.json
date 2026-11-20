@@ -13,6 +13,7 @@
   "pages": {
     "getting-started/introduction": "Einführung",
     "getting-started/requirements": "Anforderungen",
+    "getting-started/installation": "Installation",
     "basic-use/title": "Titel",
     "basic-use/message": "Nachricht",
     "basic-use/images": "Bilder",

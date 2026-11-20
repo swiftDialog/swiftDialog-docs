@@ -19,6 +19,7 @@ Writes the draft and prints a JSON report on stdout. Progress goes to stderr.
 Exit code 0 = clean, 2 = draft written but needs attention (see report), 1 = failed.
 """
 import argparse
+import datetime as dt
 import json
 import os
 import re
@@ -346,6 +347,16 @@ def fix_anchors(src_lines, out_lines, text):
     return re.sub(r"\]\(#([^)\s]+)\)", lambda m: "](#%s)" % mapping.get(m.group(1), m.group(1)), text), []
 
 
+def set_synced(text):
+    """Set translationSynced (read by check_translations.py) to now, in the frontmatter."""
+    stamp = "translationSynced: " + dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
+    if not text.startswith("---\n"):
+        return "---\n" + stamp + "\n---\n\n" + text
+    end = text.index("\n---", 4)
+    fm = re.sub(r"\ntranslationSynced:.*", "", text[:end])
+    return fm + "\n" + stamp + text[end:]
+
+
 def localize_links(text, code, docs_root):
     """Prefix root-relative links to doc pages with /<code>/. Assets in public/ are left alone."""
     def is_doc(path):
@@ -437,6 +448,7 @@ def main():
 
     output = localize_links("\n".join(result), code, docs_root)
     output, anchor_notes = fix_anchors(lines, result, output)
+    output = set_synced(output)
 
     s_in, s_out = structure(text), structure(output)
     mismatches = {k: [s_in[k], s_out[k]] for k in s_in if s_in[k] != s_out[k]}

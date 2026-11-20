@@ -74,3 +74,20 @@ MACSTUDIO_API_KEY=... python3 .claude/skills/translate-page/scripts/translate_pa
 ```
 
 It translates only the prose, keeps code and components unchanged, adds the language prefix to internal links, and prints a report of anything it couldn't translate. Always review its output before committing.
+
+## Keeping translations up to date
+
+When an English page changes, its translations fall behind. To list translations whose English page changed more than 2 hours after they were last updated, with the English commits since:
+
+```sh
+python3 .claude/skills/translate-page/scripts/check_translations.py          # all languages
+python3 .claude/skills/translate-page/scripts/check_translations.py --lang de --diff basic-use/title   # show what changed
+```
+
+After updating a translation, or after deciding an English change needs no translation change, set `translationSynced` in its frontmatter to the current time. That marks it as checked:
+
+```yaml
+translationSynced: 2026-11-20T18:30:00+00:00
+```
+
+The `translate-page` skill does all of this in its check mode (`/translate-page check de`).
