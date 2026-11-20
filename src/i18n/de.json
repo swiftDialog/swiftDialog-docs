@@ -36,6 +36,8 @@
     "advanced/presentation": "Präsentationsmodus",
     "advanced/notifications": "Mitteilungen",
     "advanced/inspect-mode": "Übersicht",
+    "advanced/layout": "Layout",
+    "advanced/workflows": "Workflows",
     "operation/exit-codes": "Exit-Codes",
     "operation/capturing-output": "Ausgabe erfassen",
     "operation/login-window": "Anmeldefenster",
