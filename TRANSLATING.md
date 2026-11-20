@@ -1,0 +1,76 @@
+# Translating the swiftDialog docs
+
+The docs use [Starlight's built-in i18n](https://starlight.astro.build/guides/i18n/).
+English is served from the site root (`/`). Each other language is served from `/<lang>/`, e.g. `/de/`.
+
+## How it works
+
+- **Pages fall back automatically.** If a page has no translation, the English version is shown at the localized URL with a "not yet translated" notice. You can translate one page at a time.
+- **Starlight's own UI is already translated** (search, table of contents, pagination, and so on) for most common languages.
+- The **language picker** in the header lists every configured locale.
+
+## Translating a page
+
+Copy the English file to the same path under the language folder and translate it:
+
+```
+src/content/docs/basic-use/title.md      →  /basic-use/title/
+src/content/docs/de/basic-use/title.md   →  /de/basic-use/title/
+```
+
+Keep the same filename and folder structure, or the page won't be linked to its English original.
+
+Guidelines:
+- Translate the prose, frontmatter `title` / `description`, and comments inside code examples.
+- **Do not translate** CLI options (`--title`, `--button1text`), JSON keys, command-file commands, file paths or exit codes. They have to match what swiftDialog accepts.
+- Prefix links to other docs pages with the language: `/de/basic-use/title/`, not `/basic-use/title/`. Starlight does not rewrite links inside page content, so an unprefixed link sends readers back to English. Every `/de/...` URL exists (untranslated pages fall back to English), so the prefix is always safe. Leave links to files in `public/` (e.g. `/images/...`) as they are.
+
+## Glossary
+
+[src/i18n/glossary.md](src/i18n/glossary.md) defines the key terms of these docs (dialog, icon, button, command file…): what each one means here, which everyday meanings to avoid, and the preferred translation in each language. Read it before translating, and add a line for your language when you settle on a term.
+
+## Adding a new language
+
+`astro.config.mjs` doesn't need editing. Each language is a set of files:
+
+1. `src/i18n/fr.json`: registers the language and holds its sidebar labels.
+   ```json
+   {
+     "label": "Français",
+     "lang": "fr",
+     "groups": {},
+     "pages": {}
+   }
+   ```
+   The file name is the URL prefix (`fr.json` → `/fr/`). `label` is the name shown in the language picker.
+2. `src/content/i18n/fr.json`: custom UI strings. Start with `{}` (see below).
+3. `src/content/docs/fr/`: translated pages, added over time.
+
+## Custom UI strings
+
+Text in our own components (e.g. the download button on the home page) is read from `src/content/i18n/<lang>.json`. `en.json` holds every key. Copy the keys you want to translate into the other language's file. Missing keys fall back to English.
+
+New keys must also be declared in the `i18n` collection schema in `src/content.config.ts`. Use them in a component with `Astro.locals.t('key')`.
+
+## Sidebar labels
+
+The sidebar structure and English labels are defined once, in `astro.config.mjs`. Translated labels go in `src/i18n/<lang>.json`:
+
+```json
+"groups": { "Basic Use": "Grundlagen" },
+"pages":  { "basic-use/title": "Titel" }
+```
+
+- `groups` are keyed by the group's English label. `pages` are keyed by the page slug.
+- Leave out any label that should stay in English (product and feature names, or words that are the same in both languages). Missing labels show in English.
+- If you rename a group or a slug in `astro.config.mjs`, update the keys too. The build warns about keys that match no sidebar entry (`[i18n] src/i18n/de.json: "pages.…" matches no sidebar entry`).
+
+## Drafting with the local model
+
+The `translate-page` Claude Code skill (`.claude/skills/translate-page/`) drafts a page with the local TranslateGemma model and then reviews it. The script can also be run on its own:
+
+```sh
+MACSTUDIO_API_KEY=... python3 .claude/skills/translate-page/scripts/translate_page.py basic-use/title de
+```
+
+It translates only the prose, keeps code and components unchanged, adds the language prefix to internal links, and prints a report of anything it couldn't translate. Always review its output before committing.

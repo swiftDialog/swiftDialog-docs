@@ -1,0 +1,235 @@
+---
+title: swiftDialog Dokumentation
+description: Ein moderner macOS-Dialog-Helper für Administratoren
+template: splash
+hero:
+  title: swiftDialog
+  tagline: |
+    Ein moderner macOS-Dialog-Helper für Administratoren, der schöne, anpassbare Dialoge von der Kommandozeile aus anzeigt
+  image:
+    file: ~/assets/dialog_logo.png
+  actions:
+    - text: Loslegen
+      link: /de/getting-started/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: Auf GitHub ansehen
+      link: https://github.com/swiftDialog/swiftDialog
+      icon: external
+      variant: primary
+---
+
+import DownloadButton from '~/components/DownloadButton.astro';
+import ReleaseHeading from '~/components/ReleaseHeading.astro';
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components'
+
+<div style="max-width: 1400px; margin: 0 auto; padding: 2rem;">
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; align-items: flex-start;">
+
+<div>
+
+<ReleaseHeading />
+
+<DownloadButton repo="swiftDialog/swiftDialog" />
+
+</div>
+
+<div>
+
+## Schnellzugriff
+
+- **[Installationsrichtlinien](/de/getting-started/installation/)** - Starten Sie innerhalb weniger Minuten
+- **[Referenz der Befehle](/de/advanced/command-line-options/)** - Vollständige CLI-Optionen
+- **[Galerie mit Beispielen](/de/examples/showcase/)** - Sehen Sie, was andere erstellt haben
+- **[JSON-Konfiguration](/de/advanced/json-configuration/)** - Erweiterte Konfiguration
+- **[Community-Support](https://www.macadmins.org/slack)** - Treten Sie dem Kanal #swiftdialog bei
+
+</div>
+
+</div>
+
+---
+
+## Dokumentation
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### Erste Schritte
+
+- [Einführung](/de/getting-started/introduction/)
+- [Installation](/de/getting-started/installation/)
+- [Systemanforderungen](/de/getting-started/requirements/)
+- [Ihr erster Dialog](/de/getting-started/introduction/#quick-start-example)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### Grundlegende Konfiguration
+
+- [Dialogtitel](/de/basic-use/title/)
+- [Nachrichtinhalt](/de/basic-use/message/)
+- [Symbole und Symbole](/de/basic-use/icon/)
+- [Tasten](/de/basic-use/buttons/)
+- [Markdown](/de/basic-use/markdown/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### Inhalt anzeigen
+
+- [Bilder](/de/basic-use/images/)
+- [Videos](/de/basic-use/video/)
+- [Webseiten](/de/basic-use/web-content/)
+- [Bannerbilder](/de/advanced/banner-images/)
+- [Hintergründe](/de/advanced/background-images/)
+
+</div>
+
+</div>
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### Benutzer-Eingabe
+
+- [Textfelder](/de/advanced/textfields/)
+- [Ausschaltknöpfe](/de/advanced/checkboxes/)
+- [Dropdowns](/de/advanced/select-lists/)
+- [Elementlisten](/de/advanced/item-lists/)
+- [Auswahltasten](/de/advanced/select-lists/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### Erweiterte Funktionen
+
+- [JSON-Konfiguration](/de/advanced/json-configuration/)
+- [Live-Updates](/de/advanced/command-file/)
+- [Timer](/de/advanced/timer-progress/)
+- [Benachrichtigungen](/de/advanced/notifications/)
+- [Vollbild](/de/advanced/full-screen/)
+- [Präsentation](/de/advanced/presentation/)
+- [Fenstergröße](/de/advanced/window-size/)
+- [Layout-Steuerung](/de/advanced/layout/)
+- [Inspektionsmodus](/de/advanced/inspect-mode/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### Bereitstellung
+
+- [Anmeldefenster](/de/operation/login-window/)
+- [Authentifizierung](/de/operation/authorization/)
+- [Exit-Codes](/de/operation/exit-codes/)
+- [Ausgabe erfassen](/de/operation/capturing-output/)
+- [Einstellungen](/de/operation/preferences/)
+- [Variablen](/de/operation/builtin-variables/)
+
+</div>
+
+</div>
+
+---
+
+## Beispiele & Integration
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### Beispielskripte
+
+- [Vollständige Demo-Anwendung](/de/examples/demo-scripts/) - Voll ausgestaltete Anwendung
+- [Jamf Pro-Skripte](/de/examples/jamf-scripts/) - MDM-Integration
+- [Aktualisierungsbenachrichtigungen](/de/examples/nudge-update/) - Aktualisierungsbenachrichtigungen
+- [JamfHelper-Ersatz](/de/examples/jamfhelper/) - Migrationsrichtlinie
+- [Shell-Befehle](/de/examples/shell-commands/) - Erweiterte Ausführung
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### Ressourcen & Tools
+
+- [Dialog-Builder](/de/builder/builder/) - Werkzeug zur visuellen Konfiguration
+- [Community-Showcase](/de/examples/showcase/) - Echte Implementierungen
+- [Häufige Probleme](/de/operation/gotchas/) - Anleitung zur Fehlerbehebung
+- [Hilfesystem](/de/operation/help-message/) - Integrierte Dokumentation
+- [Was ist neu](/de/reference/whats-new/) - Neuere Funktionen
+
+</div>
+
+</div>
+
+---
+
+## Schnellstart
+
+```bash
+# Einfache Benachrichtigung
+dialog --title "Willkommen" \
+       --message "Hallo von swiftDialog!" \
+       --icon "SF=star.fill"
+
+# Benutzereingabe-Form
+dialog --title "Benutzerinformationen" \
+       --message "Bitte geben Sie Ihre Daten ein:" \
+       --textfield "Name,prompt=Geben Sie Ihren Namen ein" \
+       --textfield "E-Mail,prompt=Geben Sie Ihre E-Mail ein" \
+       --button1text "Senden"
+
+# Fortschrittsanzeige
+dialog --title "Software installieren" \
+       --message "Bitte warten Sie, während wir die Dinge einrichten..." \
+       --progress 10 \
+       --progresstext "Installation wird gestartet..."
+```
+
+---
+
+## Community & Support
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="text-align: center; align-self: flex-start;">
+
+### GitHub
+
+[Fehler melden](https://github.com/swiftDialog/swiftDialog/issues)
+[Funktionen vorschlagen](https://github.com/swiftDialog/swiftDialog/issues/new)
+[Mitwirken](https://github.com/swiftDialog/swiftDialog)
+
+</div>
+
+<div style="text-align: center; align-self: flex-start;">
+
+### Community
+
+[MacAdmins Slack](https://www.macadmins.org/slack)
+Treten Sie dem Kanal #swiftdialog bei
+Aktive Community-Unterstützung
+
+</div>
+
+<div style="text-align: center;">
+
+### Dokumentation
+
+[GitHub Wiki](https://github.com/swiftDialog/swiftDialog/wiki)
+[API-Referenz](/de/advanced/command-line-options/)
+[Video-Tutorials](https://www.youtube.com/results?search_query=swiftdialog)
+
+</div>
+
+</div>
+
+</div>

@@ -1,0 +1,414 @@
+#!/usr/bin/env python3
+"""Draft-translate one Starlight docs page with a local TranslateGemma model.
+
+Only prose goes to the model. Code blocks, imports, JSX/HTML lines, inline code,
+URLs and link targets are kept unchanged, so the page structure can't be broken
+or cut short. Internal doc links get the /<lang>/ prefix so readers stay in their
+language.
+
+Usage:
+  translate_page.py <source.md[x] | slug> <lang> [--out PATH] [--force] [--lang-name NAME] [--dry-run]
+
+Environment:
+  MACSTUDIO_API_KEY   bearer token for the endpoint (required). If it is not in the
+                      environment, it is read from your zsh/bash startup files.
+  TRANSLATE_API_URL   default http://macstudio-bm:3000/api/chat/completions
+  TRANSLATE_MODEL     default translategemma:12b
+
+Writes the draft and prints a JSON report on stdout. Progress goes to stderr.
+Exit code 0 = clean, 2 = draft written but needs attention (see report), 1 = failed.
+"""
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+API_URL = os.environ.get("TRANSLATE_API_URL", "http://macstudio-bm:3000/api/chat/completions")
+MODEL = os.environ.get("TRANSLATE_MODEL", "translategemma:12b")
+
+LANG_NAMES = {
+    "de": "German", "fr": "French", "es": "Spanish", "it": "Italian", "nl": "Dutch",
+    "pt": "Portuguese", "pt-br": "Brazilian Portuguese", "sv": "Swedish", "da": "Danish",
+    "nb": "Norwegian Bokmål", "fi": "Finnish", "pl": "Polish", "cs": "Czech",
+    "ja": "Japanese", "ko": "Korean", "zh-cn": "Simplified Chinese",
+    "zh-tw": "Traditional Chinese", "ru": "Russian", "uk": "Ukrainian", "tr": "Turkish",
+}
+
+# TranslateGemma's recommended prompt, plus a line about placeholders when the text has any.
+PROMPT = (
+    "You are a professional English (en) to {name} ({code}) translator. Your goal is to "
+    "accurately convey the meaning and nuances of the original English text while adhering "
+    "to {name} grammar, vocabulary, and cultural sensitivities.\n"
+    "Produce only the {name} translation, without any additional explanations or commentary. "
+    "{placeholders}"
+    "Please translate the following English text into {name}:\n\n\n{text}"
+)
+
+
+def placeholder_note(text):
+    # Mentioning placeholders when there are none makes the model invent one (seen with 12B).
+    found = sorted(set(PH_RE.findall(text)), key=int)
+    if not found:
+        return ""
+    return "Keep the markers %s exactly as they are. " % " ".join("⟦%s⟧" % n for n in found)
+
+# Spans the model must never see: inline code, link targets, inline tags, JSX expressions, URLs.
+MASK_RE = re.compile(
+    r"`[^`\n]+`"
+    r"|\]\([^)\s]*(?:\s+\"[^\"]*\")?\)"
+    r"|<[^>\n]+>"
+    r"|\{[^}\n]*\}"
+    r"|https?://[^\s)>\]]+"
+)
+PH_RE = re.compile("⟦(\\d+)⟧")
+LETTER_RE = re.compile(r"[A-Za-z]{2,}")
+
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})")
+PROTECTED_LINE_RE = re.compile(
+    r"^\s*(?:import\s|export\s"            # MDX imports/exports
+    r"|</?[A-Za-z][^>]*>\s*$"              # tag-only line
+    r"|(?:---|\*\*\*|___)\s*$"             # horizontal rule
+    r"|:::)"                               # aside markers
+)
+HEADING_RE = re.compile(r"^(#{1,6}\s+)(.*)$")
+ITEM_RE = re.compile(r"^(\s*(?:[-*+]|\d+[.)])\s+(?:\[[ xX]\]\s+)?|\s*>\s?)(.*)$")
+TABLE_SEP_RE = re.compile(r"^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)*\|?\s*$")
+
+FM_TRANSLATE_KEYS = ("title", "description", "tagline", "text", "label", "alt")
+FM_KEY_RE = re.compile(r"^(\s*(?:-\s+)?)([A-Za-z_]+):(\s*)(.*)$")
+
+
+def log(msg):
+    print(msg, file=sys.stderr, flush=True)
+
+
+def get_api_key():
+    """Return MACSTUDIO_API_KEY from the environment or, failing that, from the user's shell.
+
+    Agents often run commands in a shell that hasn't loaded ~/.zshrc. In that case
+    we ask an interactive login shell for the value. Markers separate it from any
+    output the startup files print.
+    """
+    key = os.environ.get("MACSTUDIO_API_KEY", "")
+    if key:
+        return key
+    shell = os.environ.get("SHELL", "/bin/zsh")
+    if os.path.basename(shell) not in ("zsh", "bash"):
+        shell = "/bin/zsh"
+    try:
+        r = subprocess.run(
+            [shell, "-ilc", 'printf "\\n@@KEY@@%s@@END@@\\n" "$MACSTUDIO_API_KEY"'],
+            stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=30,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return ""
+    m = re.search(r"@@KEY@@(.*?)@@END@@", r.stdout)
+    if m and m.group(1):
+        log("Read MACSTUDIO_API_KEY from %s startup files" % os.path.basename(shell))
+        return m.group(1)
+    return ""
+
+
+class Translator:
+    def __init__(self, code, name, api_key):
+        self.code, self.name, self.api_key = code, name, api_key
+        self.cache = {}
+        self.calls = 0
+        self.issues = []  # (line, problem, source text)
+        self.dry_run = False
+
+    def _call(self, text):
+        if self.dry_run:
+            self.calls += 1
+            return text
+        body = json.dumps({
+            "model": MODEL,
+            "messages": [{"role": "user", "content": PROMPT.format(name=self.name, code=self.code, text=text,
+                                                                     placeholders=placeholder_note(text))}],
+            "temperature": 0,
+        }).encode()
+        req = urllib.request.Request(API_URL, data=body, headers={
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + self.api_key,
+        })
+        with urllib.request.urlopen(req, timeout=300) as r:
+            data = json.load(r)
+        self.calls += 1
+        out = data["choices"][0]["message"]["content"].strip()
+        # Small models sometimes wrap output in quotes or a code fence.
+        if out.startswith("```") and not text.startswith("```"):
+            out = re.sub(r"^```\w*\n?|\n?```$", "", out).strip()
+        if len(out) > 1 and out[0] == out[-1] == '"' and not text.startswith('"'):
+            out = out[1:-1]
+        return out
+
+    def masked(self, text, line):
+        """Translate text that already contains placeholders. Returns the source text if they get lost."""
+        if not LETTER_RE.search(PH_RE.sub("", text)):
+            return text
+        if text in self.cache:
+            return self.cache[text]
+        want = sorted(PH_RE.findall(text))
+        for attempt in (1, 2):
+            out = self._call(text)
+            if sorted(PH_RE.findall(out)) == want and "\n" not in out.strip():
+                self.cache[text] = out
+                if (self.calls % 10) == 0:
+                    log("  ... %d segments translated (line %d)" % (self.calls, line))
+                return out
+        self.issues.append((line, "placeholders lost or extra lines; left in English", text))
+        return text
+
+    def plain(self, text, line):
+        m, saved = mask(text)
+        return unmask(self.masked(m, line), saved)
+
+
+def mask(s):
+    saved = []
+
+    def sub(m):
+        saved.append(m.group(0))
+        return "⟦%d⟧" % (len(saved) - 1)
+
+    return MASK_RE.sub(sub, s), saved
+
+
+def unmask(s, saved):
+    return PH_RE.sub(lambda m: saved[int(m.group(1))], s)
+
+
+def yaml_value(v, quote):
+    if quote:
+        return quote + v.replace(quote, "\\" + quote if quote == '"' else "''") + quote
+    if re.search(r"[:#]\s|^[\[\]{}&*!|>'\"%@`-]|:$", v):
+        return json.dumps(v, ensure_ascii=False)
+    return v
+
+
+def do_frontmatter(lines, tr):
+    out, i = [], 0
+    while i < len(lines):
+        line = lines[i]
+        m = FM_KEY_RE.match(line)
+        if not m or m.group(2) not in FM_TRANSLATE_KEYS:
+            out.append(line)
+            i += 1
+            continue
+        prefix, key, sp, val = m.groups()
+        lineno = i + 2
+        if val.strip() in ("|", ">", "|-", ">-", "|+", ">+"):
+            # Block scalar: translate the indented lines as one paragraph.
+            base = len(line) - len(line.lstrip())
+            j, block = i + 1, []
+            while j < len(lines) and (not lines[j].strip() or len(lines[j]) - len(lines[j].lstrip()) > base):
+                block.append(lines[j])
+                j += 1
+            indent = next((b[: len(b) - len(b.lstrip())] for b in block if b.strip()), " " * (base + 2))
+            text = " ".join(b.strip() for b in block if b.strip())
+            out.append(line)
+            out.append(indent + tr.plain(text, lineno))
+            i = j
+            continue
+        v, quote = val.strip(), ""
+        if len(v) > 1 and v[0] == v[-1] and v[0] in "'\"":
+            quote, v = v[0], v[1:-1]
+        if v:
+            out.append(prefix + key + ":" + (sp or " ") + yaml_value(tr.plain(v, lineno), quote))
+        else:
+            out.append(line)
+        i += 1
+    return out
+
+
+def do_table_row(line, tr, lineno):
+    if TABLE_SEP_RE.match(line):
+        return line
+    m, saved = mask(line)  # mask first so pipes inside `code` don't split cells
+    cells = m.split("|")
+    for k, cell in enumerate(cells):
+        core = cell.strip()
+        if core:
+            lead = cell[: len(cell) - len(cell.lstrip())]
+            trail = cell[len(cell.rstrip()):]
+            cells[k] = lead + tr.masked(core, lineno) + trail
+    return unmask("|".join(cells), saved)
+
+
+def do_body(lines, tr, offset):
+    out, para, para_start = [], [], 0
+    fence = None
+    in_jsx = False
+
+    def flush():
+        if para:
+            indent = para[0][: len(para[0]) - len(para[0].lstrip())]
+            out.append(indent + tr.plain(" ".join(p.strip() for p in para), para_start))
+            del para[:]
+
+    for idx, line in enumerate(lines):
+        lineno = idx + offset
+        fm = FENCE_RE.match(line)
+        if fence:
+            out.append(line)
+            if fm and fm.group(1)[0] == fence[0] and len(fm.group(1)) >= len(fence):
+                fence = None
+            continue
+        if fm:
+            flush()
+            fence = fm.group(1)
+            out.append(line)
+            continue
+        if in_jsx:
+            out.append(line)
+            in_jsx = ">" not in line
+            continue
+        if not line.strip():
+            flush()
+            out.append(line)
+            continue
+        if re.match(r"^\s*<[A-Za-z/]", line) and ">" not in line:
+            flush()
+            in_jsx = True
+            out.append(line)
+            continue
+        if PROTECTED_LINE_RE.match(line):
+            flush()
+            out.append(line)
+            continue
+        if line.lstrip().startswith("|"):
+            flush()
+            out.append(do_table_row(line, tr, lineno))
+            continue
+        hm = HEADING_RE.match(line)
+        if hm:
+            flush()
+            out.append(hm.group(1) + tr.plain(hm.group(2), lineno))
+            continue
+        im = ITEM_RE.match(line)
+        if im:
+            flush()
+            out.append(im.group(1) + tr.plain(im.group(2), lineno) if im.group(2).strip() else line)
+            continue
+        if not para:
+            para_start = lineno
+        para.append(line)
+    flush()
+    return out
+
+
+def localize_links(text, code, docs_root):
+    """Prefix root-relative links to doc pages with /<code>/. Assets in public/ are left alone."""
+    def is_doc(path):
+        p = path.split("#")[0].split("?")[0].strip("/")
+        if p == "":
+            return True
+        if p.split("/")[0] == code:
+            return False
+        for cand in (p + ".md", p + ".mdx", p + "/index.md", p + "/index.mdx"):
+            if (docs_root / cand).is_file():
+                return True
+        return False
+
+    def fix(m):
+        pre, path = m.group(1), m.group(2)
+        return pre + ("/" + code + path if is_doc(path) else path)
+
+    text = re.sub(r"(\]\()(/(?!/)[^)\s]*)", fix, text)
+    text = re.sub(r"(href=[\"'])(/(?!/)[^\"'\s]*)", fix, text)
+    text = re.sub(r"(^\s*link:\s*)(/(?!/)\S*)", fix, text, flags=re.M)
+    return text
+
+
+def structure(text):
+    return {
+        "code_fences": sum(1 for l in text.splitlines() if FENCE_RE.match(l)),
+        "open_tags": len(re.findall(r"<[A-Za-z][\w.]*[\s>]", text)),
+        "close_tags": len(re.findall(r"</[A-Za-z][\w.]*>", text)),
+        "inline_code": len(re.findall(r"`[^`\n]+`", text)),
+        "headings": sum(1 for l in text.splitlines() if HEADING_RE.match(l)),
+        "table_rows": sum(1 for l in text.splitlines() if l.lstrip().startswith("|")),
+    }
+
+
+def resolve_source(arg, repo):
+    p = Path(arg)
+    if p.is_file():
+        return p.resolve()
+    docs = repo / "src/content/docs"
+    slug = arg.strip("/")
+    for cand in (slug + ".md", slug + ".mdx", slug + "/index.md", slug + "/index.mdx"):
+        if (docs / cand).is_file():
+            return (docs / cand).resolve()
+    sys.exit("source not found: " + arg)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("source", help="English page path, or slug like basic-use/title")
+    ap.add_argument("lang", help="locale code as in astro.config.mjs, e.g. de")
+    ap.add_argument("--out", help="output path (default: src/content/docs/<lang>/<same path>)")
+    ap.add_argument("--force", action="store_true", help="overwrite an existing translation")
+    ap.add_argument("--lang-name", help="English name of the language, if not in the built-in list")
+    ap.add_argument("--dry-run", action="store_true", help="don't call the model; echo text back to test parsing")
+    a = ap.parse_args()
+
+    api_key = "" if a.dry_run else get_api_key()
+    if not api_key and not a.dry_run:
+        sys.exit("MACSTUDIO_API_KEY is not set in the environment or in your shell startup files")
+    code = a.lang.lower()
+    name = a.lang_name or LANG_NAMES.get(code)
+    if not name:
+        sys.exit("unknown language code %r; pass --lang-name" % code)
+
+    repo = Path(__file__).resolve().parents[4]
+    docs_root = repo / "src/content/docs"
+    src = resolve_source(a.source, repo)
+    rel = src.relative_to(docs_root)
+    if rel.parts[0] == code:
+        sys.exit("source is already a %s page; pass the English page" % code)
+    out_path = Path(a.out) if a.out else docs_root / code / rel
+    if out_path.exists() and not a.force:
+        sys.exit("%s exists; pass --force to overwrite, or --out for a separate draft" % out_path)
+
+    text = src.read_text(encoding="utf-8")
+    lines = text.split("\n")
+    tr = Translator(code, name, api_key)
+    tr.dry_run = a.dry_run
+    log("Translating %s -> %s (%s) with %s" % (rel, code, name, MODEL))
+
+    try:
+        if lines and lines[0].strip() == "---":
+            end = next(i for i in range(1, len(lines)) if lines[i].strip() == "---")
+            result = ["---"] + do_frontmatter(lines[1:end], tr) + ["---"] + do_body(lines[end + 1:], tr, end + 2)
+        else:
+            result = do_body(lines, tr, 1)
+    except (urllib.error.URLError, OSError) as e:
+        sys.exit("model endpoint error (%s): %s" % (API_URL, e))
+
+    output = localize_links("\n".join(result), code, docs_root)
+
+    s_in, s_out = structure(text), structure(output)
+    mismatches = {k: [s_in[k], s_out[k]] for k in s_in if s_in[k] != s_out[k]}
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(output, encoding="utf-8")
+
+    report = {
+        "source": str(src.relative_to(repo)),
+        "output": str(out_path.resolve().relative_to(repo)) if out_path.resolve().is_relative_to(repo) else str(out_path),
+        "language": "%s (%s)" % (name, code),
+        "model_calls": tr.calls,
+        "untranslated_segments": [{"line": l, "problem": p, "text": t[:200]} for l, p, t in tr.issues],
+        "structure_mismatches": mismatches,
+    }
+    print(json.dumps(report, indent=2, ensure_ascii=False))
+    sys.exit(2 if tr.issues or mismatches else 0)
+
+
+if __name__ == "__main__":
+    main()

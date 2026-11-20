@@ -1,6 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "types": ["@astrojs/starlight"]
+    "types": ["@astrojs/starlight"],
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   }
 }

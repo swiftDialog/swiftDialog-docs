@@ -4,19 +4,20 @@ export interface Props {
 }
 const { repo } = Astro.props;
 const isBeta = process.env.CF_PAGES_BRANCH === 'beta';
+const t = Astro.locals.t;
 ---
 
 <span id="release-title" style="font-weight: bold"></span>
 <br>
-<a id="download-button" data-repo={repo} data-is-beta={isBeta ? "true" : "false"} href={`https://github.com/${repo}/releases/latest`} class="button" style="margin-left: 0.5em;">
-  Download Latest
+<a id="download-button" data-repo={repo} data-is-beta={isBeta ? "true" : "false"} data-label-pkg={t('download.pkg')} data-label-dmg={t('download.dmgGithub')} href={`https://github.com/${repo}/releases/latest`} class="button" style="margin-left: 0.5em;">
+  {t('download.latest')}
 </a>
 <br>
 <a id="download-dmg" data-repo={repo} href={`https://github.com/${repo}/releases/latest`} class="button" style="margin-left: 0.5em;">
-  Download DMG
+  {t('download.dmg')}
 </a>
 <br>
-<a id="release-notes-link" href={`https://github.com/${repo}/releases/latest`}>Release Notes →</a>
+<a id="release-notes-link" href={`https://github.com/${repo}/releases/latest`}>{t('download.releaseNotes')}</a>
 
 <script type="module">
   const button = document.getElementById("download-button");
@@ -48,11 +49,11 @@ const isBeta = process.env.CF_PAGES_BRANCH === 'beta';
       const dmgDownloadUrl = dmgAsset?.browser_download_url || `https://github.com/${repo}/releases/latest`;
 
       button.href = pkgDownloadUrl;
-      button.textContent = `Download from GitHub (PKG)`;
+      button.textContent = button.dataset.labelPkg;
 
       const dmgbutton = document.getElementById("download-dmg");
       dmgbutton.href = dmgDownloadUrl;
-      dmgbutton.textContent = `Download from GitHub (DMG)`;
+      dmgbutton.textContent = button.dataset.labelDmg;
 
       const versionSpan = document.getElementById("release-title");
       if (versionSpan) {

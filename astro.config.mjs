@@ -1,5 +1,9 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { loadLanguages, buildLocales, localizeSidebar } from './src/i18n/index.mjs';
+
+// Languages other than English: one file per language in src/i18n/. See TRANSLATING.md.
+const languages = loadLanguages();
 
 export default defineConfig({
   output: 'static', // Required for Cloudflare Pages
@@ -8,6 +12,9 @@ export default defineConfig({
     starlight({
       title: 'swiftDialog',
       description: 'A modern macOS dialog utility for administrators',
+      // English is served from the site root ("/"); each src/i18n/<lang>.json adds "/<lang>/".
+      defaultLocale: 'root',
+      locales: buildLocales(languages),
       logo: {
         src: './src/assets/dialog_logo.png',
         replacesTitle: false,
@@ -22,7 +29,8 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/swiftDialog/swiftDialog/wiki/',
       },
-      sidebar: [
+      // Sidebar structure and English labels. Translated labels live in src/i18n/<lang>.json.
+      sidebar: localizeSidebar([
         {
           label: 'Getting Started',
           items: [
@@ -135,7 +143,7 @@ export default defineConfig({
             { label: 'Builder', slug: 'builder/builder' },
           ],
         },
-      ],
+      ], languages),
       customCss: [
         './src/styles/dialog-theme.css',
       ],

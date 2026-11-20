@@ -3,7 +3,7 @@ title: Customising the Message Area
 description: Learn how to set and customize the message text, font properties, and positioning in swiftDialog
 ---
 
-Use the `-m` or `--message` command line option to specify what you would like in the Dialog title area.
+Use the `-m` or `--message` command line option to specify what you would like in the Dialog message area.
 
 Example:
 
@@ -48,7 +48,7 @@ Lets you modify the message font, text size and colour.
 
 `color,colour=<text><hex>`
 
-> `<text>` can be any of the standard Apple colours black, blue, gray, green, orange, pink, purple, red, white, yellow. The default if option is invalid is system primary colour (usually black if in light mode or white if in dark mode)
+> `<text>` can be any of the standard Apple colours `black`, `blue`, `gray`, `green`, `orange`, `pink`, `purple`, `red`, `white`, `yellow`. The default if option is invalid is system primary colour (usually `black` if in light mode or `white` if in dark mode)
 
 > `<hex>` is specified in hex format, e.g. #00A4C7
 
