@@ -3,5 +3,7 @@
   "download.dmg": "Download DMG",
   "download.pkg": "Download from GitHub (PKG)",
   "download.dmgGithub": "Download from GitHub (DMG)",
-  "download.releaseNotes": "Release Notes →"
+  "download.releaseNotes": "Release Notes →",
+  "release.latest": "Latest Release",
+  "release.preview": "Latest Preview Release"
 }

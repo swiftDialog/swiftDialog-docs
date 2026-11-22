@@ -2,5 +2,6 @@
 // CF_PAGES_BRANCH is injected by Cloudflare Pages at build time.
 // Locally it will be undefined, so the Beta label won't appear.
 const isBeta = process.env.CF_PAGES_BRANCH === 'beta';
+const t = Astro.locals.t;
 ---
-<h2>🚀 {isBeta ? 'Latest Preview Release' : 'Latest Release'}</h2>
+<h2>🚀 {isBeta ? t('release.preview') : t('release.latest')}</h2>

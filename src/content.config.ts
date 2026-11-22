@@ -25,6 +25,8 @@ export const collections = {
         'download.pkg': z.string().optional(),
         'download.dmgGithub': z.string().optional(),
         'download.releaseNotes': z.string().optional(),
+        'release.latest': z.string().optional(),
+        'release.preview': z.string().optional(),
       }),
     }),
   }),
