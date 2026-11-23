@@ -1,16 +1,41 @@
 ---
 name: translate-page
 description: Translate one swiftDialog docs page into another language, or check which translations are out of date with their English originals. A local TranslateGemma model writes drafts, then you review and fix them. Use when asked to translate a docs page, add or update a page under src/content/docs/<lang>/, or check or sync translations after English pages changed.
-argument-hint: <page path or slug> <lang code> | check [lang] [page]
+argument-hint: <page path or slug> <lang code> | check [lang] [page] | endpoint [list|use NAME|add]
 ---
 
 # Translate a docs page
 
-This skill has two modes:
+This skill has three modes:
 - **Translate** (the default, steps 1–7): draft and review one page.
 - **Check** (`check`, see the end of this file): find translations whose English page changed since they were last synced, and bring them up to date.
+- **Endpoint** (`endpoint`, or when the user says the model has moved or asks to switch where it runs): see "The model endpoint" below.
 
-Translate **one page at a time**. The local model (`translategemma:12b` on the Mac Studio) writes a first draft. Your job is to make that draft correct, natural and consistent, and to keep the page building. Read [TRANSLATING.md](../../../TRANSLATING.md) for the project conventions.
+## The model endpoint
+
+Where the model runs is saved per user, outside the repo, by `endpoint.py`. Several endpoints can be saved; one is current.
+
+```sh
+E=.claude/skills/translate-page/scripts/endpoint.py
+python3 $E show      # current endpoint; exit 3 = none set up yet
+python3 $E list      # all saved, * = current
+python3 $E add NAME --url URL [--model M] [--key-env VAR] [--use] [--force]
+python3 $E use NAME
+python3 $E remove NAME
+python3 $E test [NAME]
+```
+
+**Before the first draft in a session, run `show`.** If it exits 3 (nothing set up), ask the user, in one question:
+- where the model runs: host and port, or the full URL. Open WebUI is `http://<host>:3000/api/chat/completions`, Ollama `http://<host>:11434/v1/chat/completions`, LM Studio `http://<host>:1234/v1/chat/completions`. If they give only a host and port, ask which server it is rather than guessing the path.
+- the model name (default `translategemma:12b`).
+- if the server needs an API key, the name of the environment variable that holds it (e.g. `MACSTUDIO_API_KEY`). Never ask for the key itself, and never pass a key on the command line.
+- a short name for the endpoint (e.g. the machine's name).
+
+Then `add ... --use` and `test`. If the test fails, show the error and ask whether to fix the URL or keep it anyway.
+
+**Switching.** When the user says the model moved, or a run fails because the endpoint is unreachable, run `list`. If another saved endpoint fits, offer to `use` it; otherwise ask for the new location and `add` it. For a single run on another endpoint, pass `--endpoint NAME` to `translate_page.py` instead of changing the current one. `TRANSLATE_API_URL` and `TRANSLATE_MODEL` override the saved values for one command.
+
+Translate **one page at a time**. A local model (TranslateGemma, on whichever machine the user has set up, see "The model endpoint" below) writes a first draft. Your job is to make that draft correct, natural and consistent, and to keep the page building. Read [TRANSLATING.md](../../../TRANSLATING.md) for the project conventions.
 
 ## 1. Inputs
 
@@ -31,12 +56,12 @@ If `src/content/docs/<lang>/<same path>` already exists, it may be a human trans
 python3 .claude/skills/translate-page/scripts/translate_page.py <page> <lang>
 ```
 
-- This needs `MACSTUDIO_API_KEY`. The endpoint and model can be overridden with `TRANSLATE_API_URL` and `TRANSLATE_MODEL`.
+- This uses the current endpoint (see "The model endpoint"). Exit 3 means none is set up: ask the user and add one, then rerun.
 - Only prose goes to the model. Code blocks, imports, JSX/HTML, inline code and URLs are copied unchanged. Root-relative links to doc pages get the `/<lang>/` prefix.
 - The script prints a JSON report. Exit 0 means clean. Exit 2 means the draft was written but has `untranslated_segments` (the model mangled placeholders, so the line stayed in English) or `structure_mismatches`. Exit 1 means nothing was written.
-- If the key isn't in the environment, the script reads it from the user's zsh/bash startup files. Never print or log the key.
-- The endpoint is on the local network. If you run commands in a sandbox, "No route to host" usually means the sandbox is blocking LAN access. Rerun with local network access allowed.
-- If the endpoint is still unreachable or the key is missing, stop and tell the user. Don't translate the page yourself unless they ask.
+- If the endpoint's key variable isn't in the environment, the script reads it from the user's zsh/bash startup files. Never print or log the key.
+- The script tries Python's HTTP client first, then falls back to `/usr/bin/curl`. If both fail with "No route to host" on a LAN address while `curl` works from the user's own terminal, the cause is usually the command sandbox or macOS Local Network privacy, not the server. Rerun with local network access allowed.
+- If the endpoint is still unreachable, offer to switch to another saved endpoint or add a new one (see "Switching"). If the key is missing, tell the user which variable to set. Don't translate the page yourself unless they ask.
 - For a page whose language isn't built in, pass `--lang-name "<English name>"`.
 
 ## 5. Review the draft (this is the important part)

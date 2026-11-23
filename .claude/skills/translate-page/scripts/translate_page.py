@@ -7,30 +7,25 @@ or cut short. Internal doc links get the /<lang>/ prefix so readers stay in thei
 language.
 
 Usage:
-  translate_page.py <source.md[x] | slug> <lang> [--out PATH] [--force] [--lang-name NAME] [--dry-run]
+  translate_page.py <source.md[x] | slug> <lang> [--out PATH] [--force] [--lang-name NAME]
+                    [--endpoint NAME] [--dry-run]
 
-Environment:
-  MACSTUDIO_API_KEY   bearer token for the endpoint (required). If it is not in the
-                      environment, it is read from your zsh/bash startup files.
-  TRANSLATE_API_URL   default http://macstudio-bm:3000/api/chat/completions
-  TRANSLATE_MODEL     default translategemma:12b
+The model endpoint comes from endpoint.py (the current saved endpoint, or --endpoint).
+TRANSLATE_API_URL and TRANSLATE_MODEL override the saved URL and model for one run.
 
 Writes the draft and prints a JSON report on stdout. Progress goes to stderr.
-Exit code 0 = clean, 2 = draft written but needs attention (see report), 1 = failed.
+Exit code 0 = clean, 2 = draft written but needs attention (see report), 1 = failed,
+3 = no endpoint set up yet (run endpoint.py add).
 """
 import argparse
 import datetime as dt
 import json
 import os
 import re
-import subprocess
 import sys
-import urllib.error
-import urllib.request
 from pathlib import Path
 
-API_URL = os.environ.get("TRANSLATE_API_URL", "http://macstudio-bm:3000/api/chat/completions")
-MODEL = os.environ.get("TRANSLATE_MODEL", "translategemma:12b")
+import endpoint
 
 LANG_NAMES = {
     "de": "German", "fr": "French", "es": "Spanish", "it": "Italian", "nl": "Dutch",
@@ -88,36 +83,9 @@ def log(msg):
     print(msg, file=sys.stderr, flush=True)
 
 
-def get_api_key():
-    """Return MACSTUDIO_API_KEY from the environment or, failing that, from the user's shell.
-
-    Agents often run commands in a shell that hasn't loaded ~/.zshrc. In that case
-    we ask an interactive login shell for the value. Markers separate it from any
-    output the startup files print.
-    """
-    key = os.environ.get("MACSTUDIO_API_KEY", "")
-    if key:
-        return key
-    shell = os.environ.get("SHELL", "/bin/zsh")
-    if os.path.basename(shell) not in ("zsh", "bash"):
-        shell = "/bin/zsh"
-    try:
-        r = subprocess.run(
-            [shell, "-ilc", 'printf "\\n@@KEY@@%s@@END@@\\n" "$MACSTUDIO_API_KEY"'],
-            stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=30,
-        )
-    except (OSError, subprocess.TimeoutExpired):
-        return ""
-    m = re.search(r"@@KEY@@(.*?)@@END@@", r.stdout)
-    if m and m.group(1):
-        log("Read MACSTUDIO_API_KEY from %s startup files" % os.path.basename(shell))
-        return m.group(1)
-    return ""
-
-
 class Translator:
-    def __init__(self, code, name, api_key):
-        self.code, self.name, self.api_key = code, name, api_key
+    def __init__(self, code, name, ep, api_key):
+        self.code, self.name, self.ep, self.api_key = code, name, ep, api_key
         self.cache = {}
         self.calls = 0
         self.issues = []  # (line, problem, source text)
@@ -127,36 +95,10 @@ class Translator:
         if self.dry_run:
             self.calls += 1
             return text
-        body = json.dumps({
-            "model": MODEL,
-            "messages": [{"role": "user", "content": PROMPT.format(name=self.name, code=self.code, text=text,
-                                                                     placeholders=placeholder_note(text))}],
-            "temperature": 0,
-        }).encode()
-        # macOS application firewall blocks python3's direct socket connections but
-        # allows curl (Apple-signed binary), so we shell out to curl for the HTTP transport.
-        try:
-            with urllib.request.urlopen(
-                urllib.request.Request(API_URL, data=body, headers={
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + self.api_key,
-                }),
-                timeout=300,
-            ) as r:
-                data = json.load(r)
-        except (urllib.error.URLError, OSError):
-            r = subprocess.run(
-                ["curl", "-s", "-m", "300", "-X", "POST", API_URL,
-                 "-H", "Content-Type: application/json",
-                 "-H", "Authorization: Bearer " + self.api_key,
-                 "-d", body.decode()],
-                capture_output=True, text=True, timeout=300,
-            )
-            if r.returncode != 0:
-                raise urllib.error.URLError(f"curl failed: {r.stderr[:200]}")
-            data = json.loads(r.stdout)
+        prompt = PROMPT.format(name=self.name, code=self.code, text=text, placeholders=placeholder_note(text))
+        out = endpoint.chat(self.ep, self.api_key, prompt)
         self.calls += 1
-        out = data["choices"][0]["message"]["content"].strip()
+        out = out.strip()
         # Small models sometimes wrap output in quotes or a code fence.
         if out.startswith("```") and not text.startswith("```"):
             out = re.sub(r"^```\w*\n?|\n?```$", "", out).strip()
@@ -426,12 +368,20 @@ def main():
     ap.add_argument("--out", help="output path (default: src/content/docs/<lang>/<same path>)")
     ap.add_argument("--force", action="store_true", help="overwrite an existing translation")
     ap.add_argument("--lang-name", help="English name of the language, if not in the built-in list")
+    ap.add_argument("--endpoint", help="saved endpoint to use instead of the current one (see endpoint.py list)")
     ap.add_argument("--dry-run", action="store_true", help="don't call the model; echo text back to test parsing")
     a = ap.parse_args()
 
-    api_key = "" if a.dry_run else get_api_key()
-    if not api_key and not a.dry_run:
-        sys.exit("MACSTUDIO_API_KEY is not set in the environment or in your shell startup files")
+    ep, api_key = {"name": "dry run", "model": "none"}, ""
+    if not a.dry_run:
+        try:
+            ep = endpoint.resolve(a.endpoint)
+        except endpoint.EndpointError as e:
+            print(e, file=sys.stderr)
+            sys.exit(endpoint.NOT_CONFIGURED)
+        api_key = endpoint.api_key(ep)
+        if ep["key_env"] and not api_key:
+            sys.exit("%s is not set in the environment or in your shell startup files" % ep["key_env"])
     code = a.lang.lower()
     name = a.lang_name or LANG_NAMES.get(code)
     if not name:
@@ -449,9 +399,9 @@ def main():
 
     text = src.read_text(encoding="utf-8")
     lines = text.split("\n")
-    tr = Translator(code, name, api_key)
+    tr = Translator(code, name, ep, api_key)
     tr.dry_run = a.dry_run
-    log("Translating %s -> %s (%s) with %s" % (rel, code, name, MODEL))
+    log("Translating %s -> %s (%s) with %s on %s" % (rel, code, name, ep["model"], ep["name"]))
 
     try:
         if lines and lines[0].strip() == "---":
@@ -459,8 +409,8 @@ def main():
             result = ["---"] + do_frontmatter(lines[1:end], tr) + ["---"] + do_body(lines[end + 1:], tr, end + 2)
         else:
             result = do_body(lines, tr, 1)
-    except (urllib.error.URLError, OSError) as e:
-        sys.exit("model endpoint error (%s): %s" % (API_URL, e))
+    except endpoint.EndpointError as e:
+        sys.exit("model endpoint error (%s): %s" % (ep["name"], e))
 
     output = localize_links("\n".join(result), code, docs_root)
     output, anchor_notes = fix_anchors(lines, result, output)

@@ -67,10 +67,23 @@ The sidebar structure and English labels are defined once, in `astro.config.mjs`
 
 ## Drafting with the local model
 
-The `translate-page` Claude Code skill (`.claude/skills/translate-page/`) drafts a page with the local TranslateGemma model and then reviews it. The script can also be run on its own:
+The `translate-page` Claude Code skill (`.claude/skills/translate-page/`) drafts a page with the local TranslateGemma model and then reviews it.
+
+The model can run on any machine with an OpenAI-compatible chat completions API (Open WebUI, Ollama, LM Studio). Tell the scripts where it is once. The endpoint is saved in `~/.config/swiftdialog-docs/translate.json`, outside the repo, and the API key stays in an environment variable you name:
 
 ```sh
-MACSTUDIO_API_KEY=... python3 .claude/skills/translate-page/scripts/translate_page.py basic-use/title de
+S=.claude/skills/translate-page/scripts
+python3 $S/endpoint.py add studio --url http://studio.local:3000/api/chat/completions --key-env STUDIO_API_KEY
+python3 $S/endpoint.py add laptop --url http://localhost:11434/v1/chat/completions   # Ollama, no key
+python3 $S/endpoint.py use laptop     # switch
+python3 $S/endpoint.py list           # * marks the current one
+python3 $S/endpoint.py test           # check that it answers
+```
+
+Then draft a page:
+
+```sh
+python3 .claude/skills/translate-page/scripts/translate_page.py basic-use/title de [--endpoint studio]
 ```
 
 It translates only the prose, keeps code and components unchanged, adds the language prefix to internal links, and prints a report of anything it couldn't translate. Always review its output before committing.
