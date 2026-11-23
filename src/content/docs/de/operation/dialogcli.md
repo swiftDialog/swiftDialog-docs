@@ -1,7 +1,7 @@
 ---
 title: Dialog-CLI-Launcher
 description: Wie die Kommandozeilen-Binärdatei von Dialog funktioniert und welche Optionen auf Benutzerebene verfügbar sind
-translationSynced: 2026-11-20T10:04:58+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Der Befehl `dialog`, der unter `/usr/local/bin/dialog` verfügbar ist, ist nicht Dialog.app selbst – es ist ein schlanker Befehlszeilenstarter (`dialogcli`), der die Dialog.app-Binärdatei umschließt. Das Verständnis seiner Funktionsweise ist hilfreich, wenn man swiftDialog für die Bereitstellung oder Skripterstellung einsetzt.
@@ -39,13 +39,13 @@ Diese Optionen werden direkt vom Dialog-Programm selbst verwaltet und sind haupt
 
 ### `--setappicon <file>`
 
-Legt das Anwendungssymbol von swiftDialog auf die angegebene Bilddatei fest und beendet sich sofort. Dies aktualisiert auch die Symbole aller integrierten Mitteilungs-Helfer-Apps.
+Legt das App-Icon von swiftDialog auf die angegebene Bilddatei fest und beendet sich sofort. Dies aktualisiert auch die Icons aller integrierten Mitteilungs-Helfer-Apps.
 
 ```sh
 dialog --setappicon /path/to/custom-icon.png
 ```
 
-Dies ist eine einmalige Operation – Dialog zeigt kein Fenster an. Sie dient dazu, Dialog nach der Installation an Ihre individuellen Bedürfnisse anzupassen, sodass das Symbol im Dock und die Mitteilungen zum Corporate Design Ihres Unternehmens passen.
+Dies ist eine einmalige Operation – Dialog zeigt kein Fenster an. Sie dient dazu, Dialog nach der Installation an Ihre individuellen Bedürfnisse anzupassen, sodass das Icon im Dock und die Mitteilungen zum Corporate Design Ihres Unternehmens passen.
 
 ### `--callingpid <int>`
 

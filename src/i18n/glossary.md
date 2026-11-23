@@ -52,7 +52,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 ### button
 - **Means:** a clickable on-screen control in the dialog (`--button1text`, `--button2text`, `--infobuttontext`).
 - **Not:** a keyboard key or a physical button.
-- de: Schaltfläche. Not "Taste" or "Knopf".
+- de: Schaltfläche. Not "Taste", "Knopf", "Knöpfe" or "Button".
 - fr: bouton. Not "touche" or "bouton physique".
 
 ### info button
@@ -101,6 +101,13 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - **Not:** a script file, or "the command line".
 - de: Befehlsdatei
 - fr: fichier de commandes
+
+### key
+- **Means:** the name of a field in JSON, a command-file command or a list of settings, e.g. "the `colour` key" or "supported keys". In "map keys" it is the value a choice is compared against.
+- **Not:** a key on the keyboard, or a key that unlocks something (encryption, licence).
+- **Rule:** the key names themselves are code and stay in English. Only the word "key" is translated.
+- de: Schlüssel. Not "Taste".
+- fr: clé. Not "touche".
 
 ### option
 - **Means:** a command-line argument such as `--title` (also called "argument" or "flag" in the docs).

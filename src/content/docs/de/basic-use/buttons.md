@@ -1,6 +1,7 @@
 ---
 title: Schaltflächen und deren Funktionalität
 description: Lernen Sie, wie Sie die Beschriftung, die Funktionen und das Verhalten von Schaltflächen in swiftDialog konfigurieren können.
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Das Dialogfenster kann bis zu drei Schaltflächen anzeigen.
@@ -10,7 +11,7 @@ Die Schaltflächen werden im unteren Bereich des Dialogfensters angezeigt.
 ![Dialog-Schaltflächenbereich](https://user-images.githubusercontent.com/3598965/111854511-b4a6b280-8973-11eb-943d-e9843a6dc0fa.png)
 
 ## Schaltfläche 1 – Die Standardschaltfläche
-Standardmäßig wird ein einzelner Button mit der Beschriftung "**OK**" angezeigt. Der Standard-Button ist immer vorhanden, ist mit der Taste **_Enter_** verknüpft und beendet die Dialog-Anwendung mit dem Exit-Code `0`.
+Standardmäßig wird eine einzelne Schaltfläche mit der Beschriftung "**OK**" angezeigt. Die Standard-Schaltfläche ist immer vorhanden, ist mit der Taste **_Enter_** verknüpft und beendet die Dialog-Anwendung mit dem Exit-Code `0`.
 
 Die Beschriftung der Standard-Schaltfläche kann mit einer beliebigen Menge an Text geändert werden, wobei die `--button1text`-Option verwendet wird.
 
@@ -25,9 +26,9 @@ In diesem Stadium beschränken sich die Aktionen auf das Öffnen einer URL im St
 e.g. `--button1action "https://github.com/"`
 
 ## Schaltfläche 2 – Die Abbruchschaltfläche
-Der zweite Button ist standardmäßig ausgeblendet. Er kann durch die Optionen `-2` oder `--button2` aktiviert werden, wodurch der Button mit der Standardbezeichnung "**Abbrechen**" angezeigt wird. Der zweite Button ist der Taste **_Esc_** zugeordnet und beendet die Dialog-Anwendung mit dem Exit-Code `2`.
+Die zweite Schaltfläche ist standardmäßig ausgeblendet. Sie kann durch die Optionen `-2` oder `--button2` aktiviert werden, wodurch die Schaltfläche mit der Standardbezeichnung "**Abbrechen**" angezeigt wird. Die zweite Schaltfläche ist der Taste **_Esc_** zugeordnet und beendet die Dialog-Anwendung mit dem Exit-Code `2`.
 
-Die Beschriftung des zweiten Buttons kann mit einer beliebigen Textmenge geändert werden, wobei die Option `--button2text` verwendet wird. Wenn Sie diese Option verwenden, müssen Sie die Option `--button2` nicht aktivieren. Die Anzeige des Buttons erfolgt automatisch, wenn Sie die Textbeschriftung ändern.
+Die Beschriftung der zweiten Schaltfläche kann mit einer beliebigen Textmenge geändert werden, wobei die Option `--button2text` verwendet wird. Wenn Sie diese Option verwenden, müssen Sie die Option `--button2` nicht aktivieren. Die Schaltfläche wird automatisch angezeigt, wenn Sie die Textbeschriftung ändern.
 
 Beispiel:
 
@@ -35,22 +36,22 @@ Beispiel:
 
 `-2 "I Don't Care"`
 
-![Button 2 Ich habe keine Präferenz. ](https://user-images.githubusercontent.com/3598965/111854834-7a3e1500-8975-11eb-8b00-e77756c9a917.png)
+![Schaltfläche 2: Ich habe keine Präferenz.](https://user-images.githubusercontent.com/3598965/111854834-7a3e1500-8975-11eb-8b00-e77756c9a917.png)
 
-Der zweite Button hat keine weiteren Funktionen implementiert.
+Die zweite Schaltfläche hat keine weiteren Funktionen.
 
-## Der Button für weitere Informationen
-Der Button "Mehr Informationen" ist standardmäßig ausgeblendet. Er kann über die Optionen `-3` oder `--infobutton` aktiviert werden, wodurch der Button mit der Standardbeschriftung "**Mehr Informationen**" angezeigt wird. Durch Klicken auf den Button wird swiftDialog mit einem Exit-Code von `3` beendet.
+## Die Info-Schaltfläche
+Die Schaltfläche "Mehr Informationen" ist standardmäßig ausgeblendet. Sie kann über die Optionen `-3` oder `--infobutton` aktiviert werden, wodurch die Schaltfläche mit der Standardbeschriftung "**Mehr Informationen**" angezeigt wird. Durch Klicken auf die Schaltfläche wird swiftDialog mit einem Exit-Code von `3` beendet.
 
-Wenn das Argument `--infobuttonaction` vorhanden ist, führt ein Klick auf den Button "Weitere Informationen" nur die Aktion `--infobuttonaction` aus, und das Dialogfenster "swiftDialog" schließt nicht automatisch. Wenn das Argument `--quitoninfo` hinzugefügt wird, wird das Standardverhalten beim Schließen wiederhergestellt.
+Wenn das Argument `--infobuttonaction` vorhanden ist, führt ein Klick auf die Schaltfläche "Mehr Informationen" nur die Aktion `--infobuttonaction` aus, und das Dialogfenster "swiftDialog" schließt nicht automatisch. Wenn das Argument `--quitoninfo` hinzugefügt wird, wird das Standardverhalten beim Schließen wiederhergestellt.
 
-Die Beschriftung des Info-Buttons kann mit einer beliebigen Textmenge geändert werden, wobei die Option `--infobuttontext` verwendet wird. Wenn Sie diese Option verwenden, müssen Sie die Option `--infobutton` nicht aktivieren. Die Anzeige des Buttons ist automatisch gegeben, wenn Sie die Textbeschriftung ändern.
+Die Beschriftung der Info-Schaltfläche kann mit einer beliebigen Textmenge geändert werden, wobei die Option `--infobuttontext` verwendet wird. Wenn Sie diese Option verwenden, müssen Sie die Option `--infobutton` nicht aktivieren. Die Schaltfläche wird automatisch angezeigt, wenn Sie die Textbeschriftung ändern.
 
 Beispiel:
 
 `--infobuttontext "Click here for more details"`
 
-![Text auf dem Info-Button: Klicken Sie für weitere Details.](https://user-images.githubusercontent.com/3598965/111854992-5cbd7b00-8976-11eb-9f3b-4e93c76db6f3.png)
+![Text auf der Info-Schaltfläche: Klicken Sie für weitere Details.](https://user-images.githubusercontent.com/3598965/111854992-5cbd7b00-8976-11eb-9f3b-4e93c76db6f3.png)
 
 Die Aktion kann auch mithilfe der `--infobuttonaction`-Option angepasst werden, sodass Sie neben dem einfachen Beenden der Dialog-App auch andere Aktionen ausführen können.
 
@@ -60,7 +61,7 @@ e.g. `--infobuttonaction "https://github.com/"`
 
 ## Symbole für Schaltflächen
 
-Legt das SF-Symbol fest, das zusätzlich zur Beschriftung des Buttons verwendet werden soll.
+Legt das SF-Symbol fest, das zusätzlich zur Beschriftung der Schaltfläche verwendet werden soll.
 
 ### CSV-Syntax
 
@@ -89,7 +90,7 @@ Beispiel:
 
 ### JSON-Objekt-Syntax
 
-Ab Version 3.1.1 können Buttonsymbole auch als JSON-Objekte definiert werden, um eine direktere Steuerung zu ermöglichen.
+Ab Version 3.1.1 können Schaltflächensymbole auch als JSON-Objekte definiert werden, um eine direktere Steuerung zu ermöglichen.
 
 ```bash
 --button1symbol '{"name":"checkmark.circle","colour":"green","position":"trailing"}'
@@ -123,7 +124,7 @@ dialog --button1symbol '{"name":"heart.fill","colour":"pink","position":"trailin
 
 **Hinweis:** Wenn Sie `rendering: palette` verwenden, muss die Farbpalette ein Array im JSON-Format sein: `["red","green","blue"]`. In CSV-Form verwenden Sie Bindestriche zur Trennung: `palette=red-green-blue`.
 
-## Knopfposition
+## Schaltflächenposition
 
 Standardmäßig befinden sich Schaltfläche 1 und Schaltfläche 2 auf der rechten Seite, während die Info-Schaltfläche sich auf der linken Seite befindet.
 
@@ -145,9 +146,9 @@ Zeigt Schaltfläche 1 und Schaltfläche 2 in einer gestapelten Anordnung an, die
 
 ## Verhalten der Tasten `[return]` und `[enter]`
 
-Da es keine Eingabefelder gibt, ist das fokussierte Eingabefeld im Dialogfenster `button1`, und sowohl `[enter]` als auch `[return]` aktivieren den Button, da dies das einzige interaktive Element im Fenster ist und somit standardmäßig den Fokus der Tastatur hat. Die Folge davon ist, dass das Dialogfenster geschlossen wird (vorausgesetzt, der Button ist aktiv und nicht deaktiviert).
+Da es keine Eingabefelder gibt, ist das fokussierte Eingabefeld im Dialogfenster `button1`, und sowohl `[enter]` als auch `[return]` aktivieren die Schaltfläche, da dies das einzige interaktive Element im Fenster ist und somit standardmäßig den Fokus der Tastatur hat. Die Folge davon ist, dass das Dialogfenster geschlossen wird (vorausgesetzt, die Schaltfläche ist aktiv und nicht deaktiviert).
 
-Die Taste `[return]` aktiviert immer den Button "Button1", es sei denn, ein Eingabefeld hat den Fokus. Die Taste `[enter]` aktiviert nur das Element, das gerade den Fokus hat (deshalb funktioniert sie, um einen Dialog in Fenstern ohne Eingabeelemente zu schließen).
+Die Taste `[return]` aktiviert immer die Schaltfläche `button1`, es sei denn, ein Eingabefeld hat den Fokus. Die Taste `[enter]` aktiviert nur das Element, das gerade den Fokus hat (deshalb funktioniert sie, um einen Dialog in Fenstern ohne Eingabeelemente zu schließen).
 
 In einem Textfeld für eine einzelne Zeile, `[return]` kann keine neue Zeile einfügen, sodass die Standardaktion greift und das Dialogfenster schließt (die Standardaktion wird aktiviert). Im Gegensatz dazu hat `[enter]` keine Wirkung, da es ebenfalls keine neue Zeile einfügen kann, aber da es keinen Einfluss auf die Standardaktion hat, passiert nichts.
 
@@ -163,9 +164,9 @@ Die folgenden Rückgabecodes werden nach jeder Aktion gesendet. Diese können ig
 
 | Schaltflächenname | Optional | Hotkey | Rückgabecode |
 | ----------- | -------- | ------ | ----------- |
-| Schaltfläche 1     | Nein       | Enter  | 0           |
-| Schaltfläche 2     | Ja      | Esc    | 2           |
-| Info-Schaltfläche  | Ja      |        | 3           |
+| `button1`   | Nein       | Enter  | 0           |
+| `button2`   | Ja      | Esc    | 2           |
+| `infobutton` | Ja      |        | 3           |
 
 ## Schaltflächen deaktivieren
 
@@ -175,6 +176,6 @@ Schaltfläche 1 und Schaltfläche 2 können beim Start deaktiviert werden, und z
 
 `--button2disabled`
 
-Schaltfläche 1 kann vollständig ausgeblendet werden, indem der Buttontext auf `none` gesetzt wird.
+Schaltfläche 1 kann vollständig ausgeblendet werden, indem ihr Text auf `none` gesetzt wird.
 
 _Bitte beachten Sie, dass dies auch die Verwendung der [Return]-Taste zum Schließen eines Dialogfensters deaktiviert. Stellen Sie daher sicher, dass es eine Möglichkeit gibt, das Dialogfenster zu schließen._

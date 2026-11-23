@@ -1,7 +1,7 @@
 ---
 title: Boutons et comportement des boutons
 description: Apprenez comment configurer le texte, les actions et le comportement des boutons dans swiftDialog
-translationSynced: 2026-11-23T02:56:49+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 La boîte de dialogue peut afficher jusqu'à trois boutons.
@@ -164,9 +164,9 @@ Les codes de retour suivants sont envoyés après chaque action. Ils peuvent êt
 
 | Nom du bouton | Facultatif | Raccourci clavier | Code de retour |
 | ----------- | -------- | ------ | ----------- |
-| button1     | Non       | Enter  | 0           |
-| button2     | Oui      | Esc    | 2           |
-| infobutton  | Oui      |        | 3           |
+| `button1`   | Non       | Enter  | 0           |
+| `button2`   | Oui      | Esc    | 2           |
+| `infobutton` | Oui      |        | 3           |
 
 ## Désactivation des boutons
 

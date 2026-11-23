@@ -1,7 +1,7 @@
 ---
 title: Befehlszeilenoptionen
 description: Vollständige Referenz für alle Befehlszeilenoptionen und -argumente von swiftDialog
-translationSynced: 2026-11-20T11:06:34+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Dialog kann über Befehlszeilenoptionen konfiguriert werden. Alle Optionen können auch über eine JSON-Konfigurationsdatei angegeben werden. ](/de/advanced/json-configuration)
@@ -30,19 +30,19 @@ Weitere Informationen finden Sie unter [Titel](/de/basic-use/title) und [Nachric
 
 ---
 
-## Symbol
+## Icon
 
 | Argument | Kurz | Beschreibung |
 |---|---|---|
-| `--icon <file\|url\|json>` | `-i` | Legen Sie das Dialog-Symbol fest. Akzeptiert Dateipfade, URLs, SF-Symbole (`SF=name`), vordefinierte Elemente oder ein JSON-Objekt |
-| `--iconsize <num>` | | Größe des Symbols in Punkten (Standardwert: 150). |
-| `--iconalpha <num>` | | Transparenz der Symbole von 0,0 (transparent) bis 1,0 (opak). |
-| `--iconalttext <text>` | | Beschriftung für die Barrierefreiheit des Symbols |
-| `--overlayicon <file\|url\|json>` | `-y` | Das Overlay-Bild wird unten rechts des Symbols angezeigt. Es werden die gleichen Formate unterstützt wie bei `--icon` |
-| `--hideicon` | `-h` | Verbergen Sie das Symbol, um den Nachrichtenbereich zu vergrößern |
-| `--centreicon` / `--centericon` | | Verschieben Sie das Symbol so, dass es sich in der Mitte zwischen Titel und Text befindet |
+| `--icon <file\|url\|json>` | `-i` | Legen Sie das Dialog-Icon fest. Akzeptiert Dateipfade, URLs, SF-Symbole (`SF=name`), vordefinierte Elemente oder ein JSON-Objekt |
+| `--iconsize <num>` | | Größe des Icons in Punkten (Standardwert: 150). |
+| `--iconalpha <num>` | | Transparenz der Icons von 0,0 (transparent) bis 1,0 (opak). |
+| `--iconalttext <text>` | | Beschriftung für die Barrierefreiheit des Icons |
+| `--overlayicon <file\|url\|json>` | `-y` | Das Overlay-Bild wird unten rechts des Icons angezeigt. Es werden die gleichen Formate unterstützt wie bei `--icon` |
+| `--hideicon` | `-h` | Verbergen Sie das Icon, um den Nachrichtenbereich zu vergrößern |
+| `--centreicon` / `--centericon` | | Verschieben Sie das Icon so, dass es sich in der Mitte zwischen Titel und Text befindet |
 
-Weitere Informationen finden Sie unter dem [Symbol](/de/basic-use/icon)].
+Weitere Informationen finden Sie unter dem [Icon](/de/basic-use/icon)].
 
 ---
 
@@ -65,7 +65,7 @@ Weitere Informationen finden Sie unter [Bannerbilder](/de/advanced/banner-images
 
 ---
 
-## Knöpfe
+## Schaltflächen
 
 | Argument | Kurz | Beschreibung |
 |---|---|---|
@@ -76,14 +76,14 @@ Weitere Informationen finden Sie unter [Bannerbilder](/de/advanced/banner-images
 | `--button1disabled` | | Startvorgang mit deaktivierter Schaltfläche 1 |
 | `--button2` | `-2` | Schaltfläche 2 |
 | `--button2text <text>` | | Beschriftung für Schaltfläche 2 (gebunden an die Escape-Taste ⎋, Standard: `Cancel`). |
-| `--button2symbol <sf symbol\|json>` | | Symbol oder JSON-Objekt für Schaltfläche 2 |
+| `--button2symbol <sf symbol\|json>` | | SF-Symbol oder JSON-Objekt für Schaltfläche 2 |
 | `--button2disabled` | | Startvorgang mit deaktivierter Schaltfläche 2 |
 | `--infobutton` | `-3` | Zeigen Sie den Info-Schaltfläche |
 | `--infobuttontext <text>` | | Beschriftung für den Info-Schaltfläche |
 | `--infobuttonaction <url>` | | URL, die geöffnet wird, wenn auf die Info-Schaltfläche geklickt wird |
 | `--infobuttonsymbol <sf symbol\|json>` | | SF-Symbol oder JSON-Objekt für den Info-Schaltfläche |
 | `--buttonstyle [center\|stack]` | | Anordnung und Gestaltung der Bedienelemente |
-| `--buttonsize [mini\|small\|regular\|large]` | | Knopfgröße |
+| `--buttonsize [mini\|small\|regular\|large]` | | Schaltflächengröße |
 | `--buttontextsize <num>` | | Schriftgröße der Beschriftung auf Schaltflächen |
 | `--quitoninfo` | | Dialog zur Beendigung, der angezeigt wird, wenn die Info-Schaltfläche ausgewählt wird |
 
@@ -122,7 +122,7 @@ Weitere Informationen finden Sie in der [Hilfenachricht](/de/operation/help-mess
 |---|---|---|
 | `--image <file\|url>` | `-g` | Zeigt ein Bild an. Mehrere Instanzen erzeugen eine Bildergalerie. |
 | `--imagecaption <text>` | | Beschriftung, die unterhalb des Bildes angezeigt wird |
-| `--video <file\|url>` | | Zeigt ein Video. Unterstützt Tastenkombinationen `youtube=<id>` und `vimeo=<id>`. |
+| `--video <file\|url>` | | Zeigt ein Video. Unterstützt die Kurzformen `youtube=<id>` und `vimeo=<id>`. |
 | `--videocaption <text>` | | Untertitel, die unterhalb des Videos angezeigt werden |
 | `--autoplay` | | Automatische Wiedergabe von Videos beim Start |
 | `--webcontent <url>` | | Zeigen Sie eine Webseite im Nachrichtenbereich an |
@@ -136,8 +136,8 @@ Weitere Informationen finden Sie unter [Bilder](/de/basic-use/images), [Video](/
 | Argument | Kurz | Beschreibung |
 |---|---|---|
 | `--infotext <text>` | | Ersetzen Sie die Info-Schaltfläche durch einen statischen Text |
-| `--infobox <text>` | | Zeigen Sie Text (mit Unterstützung von Markdown) unterhalb des Symbols an |
-| `--infoboxwidth <num>` | | Legen Sie die Breite des Informationsfensters unabhängig von der Größe des Symbols fest |
+| `--infobox <text>` | | Zeigen Sie Text (mit Unterstützung von Markdown) unterhalb des Icons an |
+| `--infoboxwidth <num>` | | Legen Sie die Breite des Informationsfensters unabhängig von der Größe des Icons fest |
 
 Weitere Informationen finden Sie im [Infobox](/de/advanced/info-box)].
 
@@ -167,7 +167,7 @@ Viele Argumente, die kommagetrennte Werte akzeptieren, können auch als JSON-Obj
 
 **Unterstützte Argumente:**
 - `--textfield` - Vollständige Feldeinstellung mit allen Modifikatoren
-- `--checkbox` - Kontrollkästchen mit Symbol und Schaltflächenaktivierung
+- `--checkbox` - Kontrollkästchen mit Icon und Schaltflächenaktivierung
 - `--listitem` - Listeneintrag mit verschachtelten Icon-Objekten
 - `--selecttitle` - Wird genauso behandelt wie `--selectitem`
 - `--selectitem` - Elemente der Auswahlliste, die in JSON definiert sind
@@ -231,7 +231,7 @@ Weitere Informationen finden Sie unter [Fenstergröße](/de/advanced/window-size
 | Argument | Kurz | Beschreibung |
 |---|---|---|
 | `--style <preset>` | | Eine vordefinierte Formatvorlage anwenden: `presentation`, `mini`, `centered`, `alert`, `caution`, `warning` |
-| `--mini` | | Kompaktes Fenster, das Titel, Symbol und eine zweizeilige Meldung anzeigt |
+| `--mini` | | Kompaktes Fenster, das Titel, Icon und eine zweizeilige Meldung anzeigt |
 | `--fullscreen` | `-f` | Vollbildmodus (ohne Schaltflächen; Tastaturfunktionen bleiben weiterhin aktiv). |
 | `--presentation` | | Präsentationsmodus mit Fortschrittsbalken und strukturierter Anordnung |
 | `--eula` | | Anzeigen im Modus zur Akzeptanz der Endbenutzer-Lizenzvereinbarung |
@@ -264,13 +264,13 @@ Weitere Informationen finden Sie in [Benachrichtigungen](/de/advanced/notificati
 
 ---
 
-## Symbolleiste-Symbol
+## Dock-Icon
 
 | Argument | Kurz | Beschreibung |
 |---|---|---|
-| `--showdockicon` | | Zeigen Sie das Dialog-Symbol im macOS-Dock an |
-| `--dockicon <file\|url>` | | Zeigen Sie ein benutzerdefiniertes Bild als Symbol in der Dock-Leiste an (impliziert `--showdockicon`). |
-| `--dockiconbadge <text>` | | Zeigen Sie ein Symbol auf dem sichtbaren Dock-Symbol an |
+| `--showdockicon` | | Zeigen Sie das Dialog-Icon im macOS-Dock an |
+| `--dockicon <file\|url>` | | Zeigen Sie ein benutzerdefiniertes Bild als Icon in der Dock-Leiste an (impliziert `--showdockicon`). |
+| `--dockiconbadge <text>` | | Zeigen Sie ein Icon auf dem sichtbaren Dock-Icon an |
 
 ---
 

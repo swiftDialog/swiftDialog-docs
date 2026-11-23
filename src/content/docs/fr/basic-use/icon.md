@@ -1,7 +1,7 @@
 ---
 title: Personnalisation de l'icône
 description: Apprenez comment configurer et personnaliser les icônes, les images et les superpositions dans swiftDialog
-translationSynced: 2026-11-23T02:44:34+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 ##### Table des matières
@@ -10,7 +10,7 @@ translationSynced: 2026-11-23T02:44:34+00:00
  - [Icônes intégrées](#icônes-intégrées)
  - [Utilisation des symboles SF](#utilisation-des-symboles-sf)
  - [Superpositions d'icônes](#superpositions-dicônes)
- - [Taille de l'icône](#taille-de-l-icône)
+ - [Taille de l'icône](#taille-de-licône)
  - [Masquer l'icône](#masquer-licône)
  - [Définir les icônes en mode sombre ou en mode clair en fonction de si l'interface utilisateur est en mode sombre ou en mode clair](#définir-les-icônes-en-mode-sombre-ou-en-mode-clair-en-fonction-de-si-linterface-utilisateur-est-en-mode-sombre-ou-en-mode-clair)
 
@@ -152,7 +152,7 @@ Les icônes peuvent également être spécifiées sous forme d'objets JSON pour 
 dialog --icon '{"sf":"gear","colour":"blue","weight":"bold"}'
 ```
 
-**Touches prises en charge :**
+**Clés prises en charge :**
 - `sf` / `name` / `symbol` - Nom du symbole SF
 - `path` / `icon` / `value` - Chemin d'accès au fichier image ou à l'application
 - `weight` - Épaisseur du symbole (thin, light, regular, medium, heavy, bold).

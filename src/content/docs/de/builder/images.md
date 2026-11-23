@@ -1,7 +1,7 @@
 ---
 title: Baukastenmodus – Bilder
 description: Bearbeiten Sie die Eigenschaften und das Erscheinungsbild eines Dialogfensters und geben Sie die Ergebnisse als JSON-Konfigurationsdatei aus
-translationSynced: 2026-11-23T00:05:27+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Legen Sie ein oder mehrere Bilder fest, die angezeigt werden sollen
@@ -25,7 +25,7 @@ Wählen Sie ein oder mehrere Bilder im Finder aus und ziehen Sie diese per Drag-
 
 Klicken Sie auf den `≡` Ziehgriff neben der Bildvorschau, um die Elemente in der Liste neu anzuordnen
 
-Klicken Sie auf das Papierkorb-Symbol, um einen Bildeintrag zu löschen
+Klicken Sie auf das Papierkorb-Icon, um einen Bildeintrag zu löschen
 
 ## Eigenschaften
 

@@ -1,7 +1,7 @@
 ---
 title: Textfelder
 description: Das Erstellen von Textfeldern mit verschiedenen Eigenschaften und Validierungsfunktionen
-translationSynced: 2026-11-20T11:25:52+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Die `--textfield` Option ermöglicht es, einen Bereich festzulegen, in den der Benutzer Text eingeben kann, bevor das Dialogfenster geschlossen wird
@@ -112,7 +112,7 @@ Modifikatoren werden als kommagetrennte Werte an das Label des Textfelds angefü
 
 ### Sicher
 
-`secure` Verbirgt die eingegebenen Zeichen während der Eingabe und zeigt ein Schloss-Symbol an. Der Inhalt wird weiterhin als Klartext auf der Standardausgabe ausgegeben.
+`secure` Verbirgt die eingegebenen Zeichen während der Eingabe und zeigt ein Schloss-Icon an. Der Inhalt wird weiterhin als Klartext auf der Standardausgabe ausgegeben.
 
 ```sh
 --textfield "Password,secure"

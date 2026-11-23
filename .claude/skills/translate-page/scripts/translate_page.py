@@ -8,17 +8,22 @@ language.
 
 Usage:
   translate_page.py <source.md[x] | slug> <lang> [--out PATH] [--force] [--lang-name NAME]
-                    [--endpoint NAME] [--dry-run]
+                    [--endpoint NAME] [--dry-run] [--no-cache]
 
 The model endpoint comes from endpoint.py (the current saved endpoint, or --endpoint).
 TRANSLATE_API_URL and TRANSLATE_MODEL override the saved URL and model for one run.
 
 Writes the draft and prints a JSON report on stdout. Progress goes to stderr.
+The report's glossary_warnings lists words the glossary says not to use; some are fine
+in context (e.g. "Taste" for a keyboard key), so they don't change the exit code.
+Clean model results are cached in tmp/translate-cache/ (skip with --no-cache).
+
 Exit code 0 = clean, 2 = draft written but needs attention (see report), 1 = failed,
 3 = no endpoint set up yet (run endpoint.py add).
 """
 import argparse
 import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -26,6 +31,7 @@ import sys
 from pathlib import Path
 
 import endpoint
+import glossary_lint
 
 LANG_NAMES = {
     "de": "German", "fr": "French", "es": "Spanish", "it": "Italian", "nl": "Dutch",
@@ -83,20 +89,46 @@ def log(msg):
     print(msg, file=sys.stderr, flush=True)
 
 
+# Temperature per attempt. A retry at 0 repeats the same greedy answer, so vary it.
+RETRY_TEMPERATURES = (0, 0.3)
+
+
 class Translator:
-    def __init__(self, code, name, ep, api_key):
+    def __init__(self, code, name, ep, api_key, cache_file=None):
         self.code, self.name, self.ep, self.api_key = code, name, ep, api_key
         self.cache = {}
         self.calls = 0
+        self.cache_hits = 0
         self.issues = []  # (line, problem, source text)
         self.dry_run = False
+        # Disk cache of clean results, so redrafting unchanged text costs no model calls.
+        self.cache_file = cache_file
+        self.disk = {}
+        if cache_file and cache_file.exists():
+            try:
+                self.disk = json.loads(cache_file.read_text(encoding="utf-8"))
+            except (ValueError, OSError):
+                self.disk = {}
+        self.disk_dirty = False
+        self.key_prefix = "%s\0%s\0%s\0" % (ep.get("model"), code, hashlib.sha256(PROMPT.encode()).hexdigest()[:12])
 
-    def _call(self, text):
+    def _disk_key(self, text):
+        return hashlib.sha256((self.key_prefix + text).encode()).hexdigest()
+
+    def save_cache(self):
+        if self.cache_file and self.disk_dirty:
+            self.cache_file.parent.mkdir(parents=True, exist_ok=True)
+            tmp = self.cache_file.with_suffix(".tmp")
+            tmp.write_text(json.dumps(self.disk, ensure_ascii=False), encoding="utf-8")
+            tmp.replace(self.cache_file)
+            self.disk_dirty = False
+
+    def _call(self, text, temperature=0):
         if self.dry_run:
             self.calls += 1
             return text
         prompt = PROMPT.format(name=self.name, code=self.code, text=text, placeholders=placeholder_note(text))
-        out = endpoint.chat(self.ep, self.api_key, prompt)
+        out = endpoint.chat(self.ep, self.api_key, prompt, temperature=temperature)
         self.calls += 1
         out = out.strip()
         # Small models sometimes wrap output in quotes or a code fence.
@@ -112,16 +144,27 @@ class Translator:
             return text
         if text in self.cache:
             return self.cache[text]
+        dkey = None if self.dry_run or not self.cache_file else self._disk_key(text)
+        if dkey in self.disk:
+            self.cache_hits += 1
+            self.cache[text] = self.disk[dkey]
+            return self.disk[dkey]
         want = sorted(PH_RE.findall(text))
-        for attempt in (1, 2):
-            out = self._call(text)
-            if sorted(PH_RE.findall(out)) == want and "\n" not in out.strip():
+        for temperature in RETRY_TEMPERATURES:
+            out = self._call(text, temperature)
+            # Far longer than the source usually means a refusal or commentary
+            # (seen: "Esc" -> "Je suis désolé, mais je ne peux pas répondre…").
+            too_long = len(out) > 3 * len(text) + 20
+            if sorted(PH_RE.findall(out)) == want and "\n" not in out.strip() and not too_long:
                 out = match_final_period(text, out)
                 self.cache[text] = out
+                if dkey:
+                    self.disk[dkey] = out
+                    self.disk_dirty = True
                 if (self.calls % 10) == 0:
                     log("  ... %d segments translated (line %d)" % (self.calls, line))
                 return out
-        self.issues.append((line, "placeholders lost or extra lines; left in English", text))
+        self.issues.append((line, "placeholders lost, extra lines or unexpected output; left in English", text))
         return text
 
     def plain(self, text, line):
@@ -370,6 +413,7 @@ def main():
     ap.add_argument("--lang-name", help="English name of the language, if not in the built-in list")
     ap.add_argument("--endpoint", help="saved endpoint to use instead of the current one (see endpoint.py list)")
     ap.add_argument("--dry-run", action="store_true", help="don't call the model; echo text back to test parsing")
+    ap.add_argument("--no-cache", action="store_true", help="ignore the on-disk cache of earlier model results")
     a = ap.parse_args()
 
     ep, api_key = {"name": "dry run", "model": "none"}, ""
@@ -399,7 +443,9 @@ def main():
 
     text = src.read_text(encoding="utf-8")
     lines = text.split("\n")
-    tr = Translator(code, name, ep, api_key)
+    cache_file = None if a.no_cache else repo / "tmp/translate-cache" / (
+        re.sub(r"[^\w.-]+", "_", str(ep.get("model"))) + ".json")
+    tr = Translator(code, name, ep, api_key, cache_file)
     tr.dry_run = a.dry_run
     log("Translating %s -> %s (%s) with %s on %s" % (rel, code, name, ep["model"], ep["name"]))
 
@@ -411,6 +457,8 @@ def main():
             result = do_body(lines, tr, 1)
     except endpoint.EndpointError as e:
         sys.exit("model endpoint error (%s): %s" % (ep["name"], e))
+    finally:
+        tr.save_cache()
 
     output = localize_links("\n".join(result), code, docs_root)
     output, anchor_notes = fix_anchors(lines, result, output)
@@ -418,6 +466,7 @@ def main():
 
     s_in, s_out = structure(text), structure(output)
     mismatches = {k: [s_in[k], s_out[k]] for k in s_in if s_in[k] != s_out[k]}
+    glossary_hits = glossary_lint.scan(output, glossary_lint.load_terms().get(code, []))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(output, encoding="utf-8")
 
@@ -426,8 +475,10 @@ def main():
         "output": str(out_path.resolve().relative_to(repo)) if out_path.resolve().is_relative_to(repo) else str(out_path),
         "language": "%s (%s)" % (name, code),
         "model_calls": tr.calls,
+        "cache_hits": tr.cache_hits,
         "untranslated_segments": [{"line": l, "problem": p, "text": t[:200]} for l, p, t in tr.issues],
         "structure_mismatches": mismatches,
+        "glossary_warnings": [{"line": l, "term": t, "text": x[:200]} for l, t, x in glossary_hits],
         "notes": anchor_notes,
     }
     print(json.dumps(report, indent=2, ensure_ascii=False))

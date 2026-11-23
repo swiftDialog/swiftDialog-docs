@@ -1,12 +1,12 @@
 ---
 title: Informationsfeld
 description: Anzeigen zusätzlicher Informationen in einem separaten Bereich
-translationSynced: 2026-11-20T10:36:34+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 ## Infobox – `--infobox`
 
-Die Infobox ist der Bereich unterhalb des Symbols, in dem das Symbol angezeigt wird.
+Die Infobox ist der Bereich unterhalb des Icons, in dem das Icon angezeigt wird.
 
 Es verwendet eine kleinere Schriftart in einer alternativen Farbe und eignet sich gut zur Anzeige von zusätzlichen Informationen, wie beispielsweise Systeminformationen.
 
@@ -20,6 +20,6 @@ Es verwendet eine kleinere Schriftart in einer alternativen Farbe und eignet sic
 
 ## Breite der Infobox - `--infoboxwidth`
 
-Standardmäßig hat die Infobox die gleiche Breite wie die Symbolspalte. `--infoboxwidth <number>` legt die Breite des Textbereichs der Infobox (in Punkten) unabhängig von der Symbolgröße fest, sodass Sie die Infobox verbreitern können, ohne das Symbol zu vergrößern.
+Standardmäßig hat die Infobox die gleiche Breite wie die Icon-Spalte. `--infoboxwidth <number>` legt die Breite des Textbereichs der Infobox (in Punkten) unabhängig von der Icon-Größe fest, sodass Sie die Infobox verbreitern können, ohne das Icon zu vergrößern.
 
 `--infoboxwidth 300`

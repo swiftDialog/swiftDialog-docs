@@ -1,7 +1,7 @@
 ---
 title: Neuerungen
 description: Aktuelle Funktionen und Updates in swiftDialog
-translationSynced: 2026-11-23T00:19:13+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 ## swiftDialog Version 2.5.6
@@ -35,7 +35,7 @@ Vielen Dank an @chrisgrande
 ### Die Option "buttonsize" wurde als Variable sowohl für die Kommandozeile als auch für die Konfigurationsdatei hinzugefügt
 
  - Unterstützung für Mini-, Klein- und Großtasten, wobei die in macOS integrierten Größen verwendet werden. Wenn keine bestimmte Größe angegeben wird oder die Angabe ungültig ist, wird standardmäßig die Größe für normale Schaltflächen verwendet.
- - Unterstützung für die Einstellung der Buttongröße im Bearbeitungsmodus, um Tests durchzuführen und JSON-Dateien zu generieren.
+ - Unterstützung für die Einstellung der Schaltflächengröße im Bearbeitungsmodus, um Tests durchzuführen und JSON-Dateien zu generieren.
 
 Das Aussehen der Schaltflächen wird auf `button1`, `button2` und die Infotaste angewendet. Es wird auch in den normalen und gestapelten Anordnungen von Schaltflächen verwendet.
 

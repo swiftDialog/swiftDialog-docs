@@ -1,7 +1,7 @@
 ---
 title: Bauernmodus
 description: Bearbeiten Sie die Eigenschaften und das Aussehen eines Dialogfensters und geben Sie die Ergebnisse als JSON-Konfigurationsdatei aus
-translationSynced: 2026-11-23T00:04:08+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 
@@ -22,10 +22,10 @@ Sie können das Ergebnis dann als **JSON** oder als eine ausführbare `dialog` *
 ### Grundlegend
  - [Titel](/de/builder/title/)
  - [Nachricht](/de/builder/message/)
- - [Symbol](/de/builder/icon/)
+ - [Icon](/de/builder/icon/)
  - [Seitenleiste](/de/builder/sidebar/)
  - [Fenster](/de/builder/window/)
- - [Knöpfe](/de/builder/buttons/)
+ - [Schaltflächen](/de/builder/buttons/)
 
 </div>
 
@@ -44,4 +44,4 @@ Sie können das Ergebnis dann als **JSON** oder als eine ausführbare `dialog` *
 
 ### Ausgabe
 
-Die Ansicht "Ausgabe" zeigt das aktuelle Design entweder im **JSON-Format** oder als **Befehlszeilenaufruf** – wechseln Sie zwischen diesen Optionen mit der Registerkartennavigation. Von dort aus können Sie den Inhalt in die **Zwischenablage kopieren** oder eine **Datei speichern**. Der Button "Exportbefehl" im Fußbereich kopiert die Befehlszeile von jeder beliebigen Stelle im Editor.
+Die Ansicht "Ausgabe" zeigt das aktuelle Design entweder im **JSON-Format** oder als **Befehlszeilenaufruf** – wechseln Sie zwischen diesen Optionen mit der Registerkartennavigation. Von dort aus können Sie den Inhalt in die **Zwischenablage kopieren** oder eine **Datei speichern**. Die Schaltfläche "Exportbefehl" im Fußbereich kopiert die Befehlszeile von jeder beliebigen Stelle im Editor.

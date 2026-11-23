@@ -164,9 +164,9 @@ The following return codes are sent after each action. These can be ignored or u
 
 | Button Name | Optional | Hotkey | Return Code |
 | ----------- | -------- | ------ | ----------- |
-| button1     | No       | Enter  | 0           |
-| button2     | Yes      | Esc    | 2           |
-| infobutton  | Yes      |        | 3           |
+| `button1`   | No       | Enter  | 0           |
+| `button2`   | Yes      | Esc    | 2           |
+| `infobutton` | Yes      |        | 3           |
 
 ## Disabling buttons
 

@@ -9,7 +9,7 @@ description: Learn how to set and customize icons, images, and overlays in swift
  - [Built in Icons](#built-in-icons)
  - [Using SF Symbols](#using-sf-symbols)
  - [Icon Overlays](#icon-overlays)
- - [Icon Size](#icon-size-new-in-v180)
+ - [Icon Size](#icon-size)
  - [Hiding the Icon](#hiding-the-icon)
  - [Setting Light or Dark mode icons](#setting-dark-or-light-icons-depending-if-the-ui-is-in-dark-mode-or-light-mode)
 

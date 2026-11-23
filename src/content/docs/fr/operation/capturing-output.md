@@ -1,7 +1,7 @@
 ---
 title: Capturer la sortie des dialogues
 description: Méthodes de capture des entrées utilisateur et de traitement des résultats des dialogues
-translationSynced: 2026-11-23T05:23:41+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Il existe plusieurs façons d'obtenir des résultats de Dialog ou de connaître l'action effectuée par un utilisateur, ainsi que toutes les données saisies.
@@ -16,9 +16,9 @@ Les codes de retour suivants sont envoyés après chaque action. Ils peuvent êt
 
 | Action      | Facultatif | Raccourci clavier | Code de retour |
 | ----------- | -------- | ------ | ----------- |
-| bouton1     | Non       | Entrer  | 0           |
-| bouton2     | Oui      | Je suis désolé, mais je ne peux pas répondre à cette demande    | 2           |
-| bouton d'information  | Oui      |        | 3           |
+| `button1`   | Non       | Enter  | 0           |
+| `button2`   | Oui      | Esc    | 2           |
+| `infobutton` | Oui      |        | 3           |
 | \<timer\>   | Oui      |        | 4           |
 | fichier de commandes `quit:` | Oui |    | 5           |
 | `--quitkey` | Oui      | Cmd+Q  | 10          |

@@ -1,7 +1,7 @@
 ---
 title: Kontrollkästchen
 description: Erstellen von interaktiven Kontrollkästchen und Schaltern in swiftDialog
-translationSynced: 2026-11-20T10:51:35+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Kontrollkästchen können verwendet werden, um eine Reihe von Optionen anzubieten, die ausgewählt oder nicht ausgewählt werden können und anschließend verarbeitet werden.
@@ -69,7 +69,7 @@ dialog --checkbox '{"label":"Enable telemetry","checked":true,"enableButton1":tr
 - `checked` - Anfangszustand (wahr/falsch, Standardwert: falsch)
 - `disabled` - Ob das Kontrollkästchen deaktiviert ist (wahr/falsch, Standardwert: falsch).
 - `enableButton1` - Aktivieren Sie Schaltfläche 1, wenn dieses Kontrollkästchen aktiviert ist (wahr/falsch).
-- `icon` - Pfad zum Symbol oder JSON-Objekt für das Symbol (nur bei Verwendung des `switch`-Stils).
+- `icon` - Pfad zum Icon oder JSON-Objekt für das Icon (nur bei Verwendung des `switch`-Stils).
 
 **Beispiele:**
 

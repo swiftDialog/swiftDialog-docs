@@ -1,7 +1,7 @@
 ---
 title: Inspektionsmodus
 description: Einführungsanleitung zur Inspektionsfunktion von swiftDialog – Überwachung von Installationen und Systemkonformität
-translationSynced: 2026-11-20T11:12:50+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 
@@ -77,7 +77,7 @@ Der Inspektionsmodus unterstützt ein neues `options`-Objekt in der JSON-Konfigu
 - `moveable` (boolesch) - Ermöglicht das Verschieben des Fensters
 - `ontop` (boolesch) - Das Fenster immer oberhalb aller anderen Fenster halten
 - `resizable` (boolesch) – Ermöglicht das Ändern der Größe des Fensters (impliziert `moveable`).
-- `windowbuttons` (String) – Fenster-Buttons aktivieren: `close`, `min`, `max` (durch Kommas getrennt).
+- `windowbuttons` (String) – Fenster-Schaltflächen aktivieren: `close`, `min`, `max` (durch Kommas getrennt).
 
 **Priorität:** Befehlszeilenparameter haben Vorrang vor JSON-Optionen.
 
@@ -109,7 +109,7 @@ Der Inspektionsmodus unterstützt ein neues `options`-Objekt in der JSON-Konfigu
 | `preset` | Zeichenkette | Nein | "Voreinstellung 1" | Visuelle Anordnung (Voreinstellung 1-7). |
 | `title` | Zeichenkette | Nein | "Systemprüfung" oder "Systeminspektion" | Fenstertitel |
 | `message` | Zeichenkette | Nein | - | Haupttext der Meldung |
-| `icon` | Zeichenkette | Nein | - | Pfad zum Symbol oder SF-Symbol (z.B. "sf=schild.fill"). |
+| `icon` | Zeichenkette | Nein | - | Pfad zum Icon oder SF-Symbol (z.B. "sf=schild.fill"). |
 | `size` | Zeichenkette | Nein | "Standard" | Fenstergröße: "kompakt", "Standard", "groß" |
 | `width` | Ganzzahl | Nein | - | Benutzerdefinierte Fensterbreite (überschreibt die voreingestellte Größe). |
 | `height` | Ganzzahl | Nein | - | Benutzerdefinierte Fensterhöhe (ersetzt die voreingestellte Größe). |
@@ -127,7 +127,7 @@ Der Inspektionsmodus unterstützt ein neues `options`-Objekt in der JSON-Konfigu
 
 | Schlüssel | Typ | Standardeinstellung | Beschreibung |
 |-----|------|---------|-------------|
-| `banner` | Zeichenkette | - | Pfad zum Bannerbild (ersetzt das Symbol). |
+| `banner` | Zeichenkette | - | Pfad zum Bannerbild (ersetzt das Icon). |
 | `bannerHeight` | Ganzzahl | 100 | Höhe des Banners in Pixeln |
 | `bannerTitle` | Zeichenkette | - | Titelüberlagerung auf dem Banner |
 | `highlightColor` | Zeichenkette | "#808080" | Akzentfarbe (Hexadezimalcode) |
@@ -149,7 +149,7 @@ Jedes Element im `items`-Array benötigt:
 | `displayName` | Zeichenkette | Ja | Anzeigename in der Benutzeroberfläche |
 | `guiIndex` | Ganzzahl | Ja | Sortierreihenfolge (beginnend bei 0). |
 | `paths` | Array | Ja | Dateipfade, die auf ihre Existenz überprüft werden sollen |
-| `icon` | Zeichenkette | Nein | Artikel-spezifisches Symbol |
+| `icon` | Zeichenkette | Nein | Artikel-spezifisches Icon |
 | `plistKey` | Zeichenkette | Nein | Schlüssel zur Validierung in einer Plist-Datei |
 | `expectedValue` | Zeichenkette | Nein | Erwarteter Wert der plist-Datei |
 | `evaluation` | Zeichenkette | Nein | Bewertungstyp: "gleich", "boolesch", "existiert", "enthält", "bereich" |
@@ -261,7 +261,7 @@ Für die Compliance-Berichterstellung, die von plist-Dateien gesteuert wird, fü
 - `compliance-summary` — Eine Übersichtsleiste mit dem Gesamtstatus sowie separaten Statistikkarten für jede Kategorie.
 - `findings-list` — Eine kategorisiert aufgegliederte, offengelegte Liste einzelner Prüfungen.
 
-Bento-Zellen binden außerdem automatisch an dieselben Daten: Die Untertitel und die Farbe der Symbole einer Zelle werden in Echtzeit aktualisiert, wobei keine zusätzlichen Schemafelder erforderlich sind. <br>
+Bento-Zellen binden außerdem automatisch an dieselben Daten: Die Untertitel und die Farbe der Icons einer Zelle werden in Echtzeit aktualisiert, wobei keine zusätzlichen Schemafelder erforderlich sind. <br>
 
 ## Vollständige Beispiele
 
@@ -343,7 +343,7 @@ export DIALOG_DEBUG=1
 1. **Einfach anfangen:** Beginnen Sie mit den Voreinstellungen und einer minimalen Konfiguration
 2. **Testpfade:** Überprüfen Sie, ob alle Dateipfade existieren oder in Zukunft existieren werden
 3. **Cache-Überwachung nutzen**: Eine Funktion zur Erkennung von Downloads hinzufügen `cachePaths`
-4. **Symbolverwaltung**: Speichern Sie Symbole an einem zentralen Ort mit `iconBasePath`
+4. **Icon-Verwaltung**: Speichern Sie Icons an einem zentralen Ort mit `iconBasePath`
 5. **Zustände von Schaltflächen:** Verwenden Sie `autoEnableButton` für eine bessere Benutzererfahrung
 6. **Geeignete Voreinstellungen:** Wählen Sie Voreinstellungen basierend auf dem Anwendungsfall:
    - Installationsverfolgung: Voreinstellung 1 oder 2 oder 3

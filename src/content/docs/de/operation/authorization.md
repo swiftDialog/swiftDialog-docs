@@ -1,7 +1,7 @@
 ---
 title: Autorisierung
 description: Einrichten von Autorisierungsschlüsseln zur Steuerung des Zugriffs auf swiftDialog
-translationSynced: 2026-11-20T09:52:49+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 ## Autorisierung 🔐
@@ -42,7 +42,7 @@ Alternativ können Sie eine Umgebungsvariable `DIALOG_AUTH_KEY` in Ihrer Umgebun
 
 Wenn der korrekte Schlüssel nicht angegeben wird, wird das Dialogfenster mit dem Exit-Code `30` beendet
 
-Wenn die Autorisierung erfolgreich ist, wird swiftDialog gestartet und ein kleines Schloss-Symbol erscheint in der oberen rechten Ecke, das eine autorisierte Dialogsitzung anzeigt.
+Wenn die Autorisierung erfolgreich ist, wird swiftDialog gestartet und ein kleines Schloss-Icon erscheint in der oberen rechten Ecke, das eine autorisierte Dialogsitzung anzeigt.
 
 <img src="https://github.com/bartreardon/swiftDialog/assets/3598965/4026888f-0183-4c5e-be8c-9fb137b0faf2" width="500">
 

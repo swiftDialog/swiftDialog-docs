@@ -1,7 +1,7 @@
 ---
 title: Demonstrationskripte
 description: Vollständiges Drehbuch für eine Demonstration zur Auswahl und Installation von Anwendungen
-translationSynced: 2026-11-23T00:10:09+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Eine umfassende Demo-Sammlung finden Sie unter https://github.com/swiftDialog/demo
@@ -74,11 +74,11 @@ Nachdem Sie die Demo-Umgebung erkundet und die Funktionen von swiftDialog versta
 - `05_images_banners.zsh` — `--image`, `--imagecaption`, `--bannerimage`, `--bannertitle`, `--bannertext`, `--background`, `--bgalpha`, `--bgposition`, `--bgfill`
 - `06_progress_timer.zsh` – `--progress` (absolut, Inkrement, Zurücksetzen, Fertigstellung), `--progresstext`, `--progresstextalignment`, `--timer`, `--hidetimerbar`, Fortschrittsmitteilungen für die Befehlsdatei
 - `07_text_fields.zsh` – `--textfield` (erforderlich, sicher, schnell, Wert, regulärer Ausdruck, Fehler beim regulären Ausdruck, Bestätigung, Dateiauswahl, Dateityp, Pfad, Name), `--textfieldlivevalidation`
-- `08_dropdowns.zsh` — `--selecttitle`, `--selectvalues`, `--selectdefault`, Modifikatoren (erforderlich, Radio-Button, durchsuchbar, Mehrfachauswahl, Name), Trennzeichen
+- `08_dropdowns.zsh` — `--selecttitle`, `--selectvalues`, `--selectdefault`, Modifikatoren (erforderlich, Optionsfelder, durchsuchbar, Mehrfachauswahl, Name), Trennzeichen
 - `09_checkboxes.zsh` – `--checkbox` (Namenszusatz), `--checkboxstyle` (Kontrollkästchen, Schalter, Größen)
 - `10_list_items.zsh` – `--listitem` (Status, Statusbeschreibung, benutzerdefinierte Symbole), `--liststyle`, `--enablelistselect`, Befehlsdatei (Liste:, Listenelement:, hinzufügen, löschen, Index).
 - `11_window_options.zsh` — `--width`, `--height`, `--big`, `--small`, `--position`, `--positionoffset`, `--moveable`, `--ontop`, `--resizable`, `--windowbuttons`, `--appearance`, `--showdockicon`, `--dockiconbadge`
-- `12_command_file.zsh` — Vollständige Befehlsdatei-Übersicht: Titel: (title:), Schriftart für Titel: (titlefont:), Meldung: (message:), (mit Möglichkeit zur Ergänzung: +append), Ausrichtung: (alignment:), Symbol: (icon:), Überlagerungssymbol: (overlayicon:), Transparenz des Symbols: (iconalpha:), Text für Schaltfläche 1: (button1text:), Schaltfläche 1: (button1:), Informationstext: (infotext:), Informationsfeld: (infobox:), Symbolposition: (icon: centre/left)
+- `12_command_file.zsh` — Vollständige Befehlsdatei-Übersicht: Titel: (title:), Schriftart für Titel: (titlefont:), Meldung: (message:), (mit Möglichkeit zur Ergänzung: +append), Ausrichtung: (alignment:), Icon: (icon:), Overlay-Icon: (overlayicon:), Transparenz des Icons: (iconalpha:), Text für Schaltfläche 1: (button1text:), Schaltfläche 1: (button1:), Informationstext: (infotext:), Informationsfeld: (infobox:), Icon-Position: (icon: centre/left)
 - `13_notifications.zsh` — `--notification`, `--subtitle`, `--identifier`, `--remove`
 - `14_mini_presentation.zsh` — `--mini` (mit Fortschrittsanzeige), `--presentation` (mit Listenpunkt, Infobox, Fortschrittsanzeige)
 - `15_web_video.zsh` – `--webcontent`, `--video` (youtube = Abkürzung), `--videocaption`, `--autoplay`

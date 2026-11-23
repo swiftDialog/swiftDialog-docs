@@ -29,6 +29,14 @@ Guidelines:
 
 [src/i18n/glossary.md](src/i18n/glossary.md) defines the key terms of these docs (dialog, icon, button, command file…): what each one means here, which everyday meanings to avoid, and the preferred translation in each language. Read it before translating, and add a line for your language when you settle on a term.
 
+A language's line can list words that must not be used, e.g. `de: Schaltfläche. Not "Taste", "Knopf" or "Knöpfe".` The scripts search translations for these words. Matches count from the start of a word, so `Knopf` also catches `Knopfgröße`. List any inflected form that changes the start of the word, like `Knöpfe`. To list possible slips across all translations:
+
+```sh
+python3 .claude/skills/translate-page/scripts/check_translations.py --glossary [--lang de]
+```
+
+These are warnings, not errors. Some matches are correct in context ("Taste" for a keyboard key), so check each one.
+
 ## Adding a new language
 
 `astro.config.mjs` doesn't need editing. Each language is a set of files:
@@ -87,7 +95,11 @@ Then draft a page:
 python3 .claude/skills/translate-page/scripts/translate_page.py basic-use/title de [--endpoint studio]
 ```
 
-It translates only the prose, keeps code and components unchanged, adds the language prefix to internal links, and prints a report of anything it couldn't translate. Always review its output before committing.
+It translates only the prose, keeps code and components unchanged, adds the language prefix to internal links, and prints a report of anything it couldn't translate, along with any glossary words to avoid (`glossary_warnings`). Always review its output before committing.
+
+Clean model results are cached in `tmp/translate-cache/` (git-ignored), keyed by model, language and text, so redrafting a page only sends new or changed text to the model. Pass `--no-cache` to ignore the cache.
+
+Identifiers in table cells (`button1`, option values, key names) belong in backticks in the English page. The script never sends inline code to the model, so they stay as they are.
 
 ## Keeping translations up to date
 

@@ -8,12 +8,15 @@ the later of its last git commit (or file time, if it has uncommitted edits) and
 checked even when the English change needed no translation change.
 
 Usage:
-  check_translations.py [--lang de] [--threshold 2h] [--diff] [--json] [page ...]
+  check_translations.py [--lang de] [--threshold 2h] [--diff] [--glossary] [--json] [page ...]
 
   page        optional slugs or paths to limit the check (e.g. basic-use/message)
   --lang      only check this language (default: every src/i18n/<lang>.json)
   --threshold how far the English may be ahead before flagging: 90m, 2h, 1d (default 2h)
   --diff      print the English changes since each stale translation was synced
+  --glossary  also list words the glossary says not to use (src/i18n/glossary.md).
+              These are warnings: some are fine in context, e.g. "Taste" for a
+              keyboard key. They don't change the exit code.
   --json      machine-readable output
 
 Exit code 0 = everything up to date, 2 = something needs checking.
@@ -25,6 +28,8 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+
+import glossary_lint
 
 REPO = Path(__file__).resolve().parents[4]
 DOCS = REPO / "src/content/docs"
@@ -92,6 +97,7 @@ def main():
     ap.add_argument("--lang")
     ap.add_argument("--threshold", default="2h")
     ap.add_argument("--diff", action="store_true")
+    ap.add_argument("--glossary", action="store_true")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
 
@@ -99,6 +105,8 @@ def main():
     langs = [a.lang] if a.lang else languages()
     wanted = {re.sub(r"\.mdx?$", "", p.replace("src/content/docs/", "")).strip("/") for p in a.pages}
 
+    terms = glossary_lint.load_terms() if a.glossary else {}
+    warnings = []
     results = []
     for code in langs:
         root = DOCS / code
@@ -109,6 +117,9 @@ def main():
                 continue
             en = DOCS / rel
             item = {"lang": code, "page": str(rel), "translation": str(tr.relative_to(REPO))}
+            if a.glossary:
+                for no, term, text in glossary_lint.scan(tr.read_text(encoding="utf-8"), terms.get(code, [])):
+                    warnings.append({"lang": code, "page": str(rel), "line": no, "term": term, "text": text[:200]})
             if not en.exists():
                 item.update(status="orphan", note="English page no longer exists")
                 results.append(item)
@@ -136,7 +147,10 @@ def main():
 
     stale = [r for r in results if r["status"] != "ok"]
     if a.json:
-        print(json.dumps({"threshold": a.threshold, "checked": len(results), "needs_checking": stale}, indent=2, ensure_ascii=False))
+        out = {"threshold": a.threshold, "checked": len(results), "needs_checking": stale}
+        if a.glossary:
+            out["glossary_warnings"] = warnings
+        print(json.dumps(out, indent=2, ensure_ascii=False))
     else:
         for code in langs:
             mine = [r for r in results if r["lang"] == code]
@@ -153,6 +167,10 @@ def main():
                     print("      " + c)
                 if a.diff and r.get("english_diff"):
                     print("\n".join("      | " + l for l in r["english_diff"].splitlines()))
+        if a.glossary:
+            print("\nglossary: %d possible slips (check each in context)" % len(warnings))
+            for w in warnings:
+                print("  %s/%s:%d  %s  | %s" % (w["lang"], w["page"], w["line"], w["term"], w["text"][:120]))
     sys.exit(2 if stale else 0)
 
 

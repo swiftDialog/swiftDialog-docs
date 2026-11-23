@@ -1,7 +1,7 @@
 ---
 title: Shell-Befehle
 description: Experimentelle Funktion zum Ausführen von Shell-Befehlen über Schaltflächenaktionen
-translationSynced: 2026-11-23T00:10:41+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Version 1.1.2 führt eine experimentelle Funktion über den Befehl `button1shellaction` ein
@@ -19,7 +19,7 @@ Es nimmt einen einzelnen String-Parameter entgegen und übergibt diesen an eine 
 
 ` --button1shellaction "say thank you for running dialog"`
 
-Derzeit gibt es keine Eingabevalidierung oder Ausgabebeschränkung. Wenn der angegebene Befehl mit einem Fehler beendet wird, beendet Dialog trotzdem `0` mit dem Exit-Code für Button 1. Der Status des Befehls wird auf dem Bildschirm angezeigt, einschließlich des Exit-Codes des Befehls, z. B.
+Derzeit gibt es keine Eingabevalidierung oder Ausgabebeschränkung. Wenn der angegebene Befehl mit einem Fehler beendet wird, beendet Dialog trotzdem `0` mit dem Exit-Code für Schaltfläche 1. Der Status des Befehls wird auf dem Bildschirm angezeigt, einschließlich des Exit-Codes des Befehls, z. B.
 
 ```
 .../Dialog.app/Contents/MacOS/Dialog --button1shellaction "bad command here"

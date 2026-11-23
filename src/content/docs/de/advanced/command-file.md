@@ -1,7 +1,7 @@
 ---
 title: Befehlsdatei
 description: Aktualisierung von Dialogen mit neuen Inhalten in Echtzeit mithilfe von Befehlsdateien
-translationSynced: 2026-11-20T10:55:40+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Einige Dialoginhalte können auch nach dem Start aktualisiert werden. Dies wird dadurch ermöglicht, dass Befehle an eine Befehlsdatei gesendet werden, die Dialog dann liest und interpretiert.
@@ -44,18 +44,18 @@ echo "<command>: <value>" >> /var/tmp/dialog.log
 
 ---
 
-## Symbol
+## Icon
 
 | Befehl | Beschreibung |
 |---|---|
-| `icon: <path\|url\|SF Symbol>` | Ändern Sie das angezeigte Symbol |
-| `icon: none` | Symbol ausblenden |
-| `icon: centre` / `icon: center` | Verschieben Sie das Symbol in die Mitte |
-| `icon: left` / `icon: default` | Verschieben Sie das Symbol zurück in die Standardposition links |
-| `icon: size: <num>` | Ändern Sie die Größe des Symbols |
-| `iconalpha: <float>` | Transparenz des Symbols einstellen (0.0 = transparent → 1.0 = undurchsichtig). |
-| `overlayicon: <path\|url\|SF Symbol>` | Legen Sie das Symbol für die Overlay-Funktion fest |
-| `overlayicon: none` | Verbergen Sie das Symbol für die Overlay-Funktion |
+| `icon: <path\|url\|SF Symbol>` | Ändern Sie das angezeigte Icon |
+| `icon: none` | Icon ausblenden |
+| `icon: centre` / `icon: center` | Verschieben Sie das Icon in die Mitte |
+| `icon: left` / `icon: default` | Verschieben Sie das Icon zurück in die Standardposition links |
+| `icon: size: <num>` | Ändern Sie die Größe des Icons |
+| `iconalpha: <float>` | Transparenz des Icons einstellen (0.0 = transparent → 1.0 = undurchsichtig). |
+| `overlayicon: <path\|url\|SF Symbol>` | Legen Sie das Icon für die Overlay-Funktion fest |
+| `overlayicon: none` | Verbergen Sie das Icon für die Overlay-Funktion |
 
 ---
 
@@ -81,7 +81,7 @@ echo "<command>: <value>" >> /var/tmp/dialog.log
 | `image: hide` | Das aktuelle Bild ausblenden |
 | `image: clear` | Entfernen Sie alle Bilder |
 | `imagecaption: <text>` | Platzieren Sie die Bildunterschrift unterhalb des angezeigten Bildes |
-| `video: <path\|url>` | Zeigt ein Video. Unterstützt Tastenkombinationen `youtube=<id>` und `vimeo=<id>`. |
+| `video: <path\|url>` | Zeigt ein Video. Unterstützt die Kurzformen `youtube=<id>` und `vimeo=<id>`. |
 | `video: none` | Entfernen Sie das Video |
 | `webcontent: <url>` | Eine URL in den Bereich für Webinhalte einfügen |
 | `webcontent: none` | Entfernen Sie die Web-Inhalte |
@@ -176,9 +176,9 @@ echo "listitem: index: 0, delete:" >> /var/tmp/dialog.log
 | `title: <text>` | Element nach Titel suchen |
 | `index: <int>` | Vergleichen Sie Elemente anhand ihres Index (beginnend bei 0). |
 | `subtitle: <text>` | Setzen Sie die Untertitel für das Element |
-| `icon: <path\|url\|SF Symbol>` | Legen Sie das Symbol für das Element fest |
-| `iconalpha: <float>` | Legt die Transparenz des Symbols für ein Element fest |
-| `status: <status>` | Legen Sie das Status-Symbol fest. Wählen Sie eines von `wait`, `success`, `fail`, `error`, `pending`, `progress` oder geben Sie einen Namen für ein SF-Symbol an (optional mit einer Farbzusatz, z. B. `lock.shield.fill-green`). |
+| `icon: <path\|url\|SF Symbol>` | Legen Sie das Icon für das Element fest |
+| `iconalpha: <float>` | Legt die Transparenz des Icons für ein Element fest |
+| `status: <status>` | Legen Sie das Status-Icon fest. Wählen Sie eines von `wait`, `success`, `fail`, `error`, `pending`, `progress` oder geben Sie einen Namen für ein SF-Symbol an (optional mit einer Farbzusatz, z. B. `lock.shield.fill-green`). |
 | `statustext: <text>` | Legen Sie den Text für die Statusanzeige fest |
 | `progress: <float>` | Einen Inline-Fortschrittswert festlegen (zeigt einen Fortschrittsbalken-Status an). |
 | `action: <url>` | Die URL, die geöffnet wird, wenn auf das Element geklickt wird |
@@ -219,18 +219,18 @@ echo "listitem: index: 0, delete:" >> /var/tmp/dialog.log
 
 ---
 
-## Symbolleiste-Symbol
+## Dock-Icon
 
 | Befehl | Beschreibung |
 |---|---|
-| `showdockicon: enable` / `showdockicon: true` / `showdockicon: 1` | Zeigen Sie das Dialog-Symbol in der Dock-Leiste an |
-| `showdockicon: <any other value>` | Verbergen Sie das Dialog-Symbol in der Dock-Leiste |
-| `dockicon: <file\|url>` | Legen Sie ein benutzerdefiniertes Bild als Symbol für die Anwendungsleiste fest |
+| `showdockicon: enable` / `showdockicon: true` / `showdockicon: 1` | Zeigen Sie das Dialog-Icon in der Dock-Leiste an |
+| `showdockicon: <any other value>` | Verbergen Sie das Dialog-Icon in der Dock-Leiste |
+| `dockicon: <file\|url>` | Legen Sie ein benutzerdefiniertes Bild als Icon für die Anwendungsleiste fest |
 | `dockicon: none` / `dockicon: default` | Setzen Sie das Standardsymbol für das Dialogfenster-Dock zurück |
-| `dockiconbadge: <text>` | Zeigen Sie ein Symbol auf dem Dock-Symbol an |
-| `dockiconbadge: none` / `dockiconbadge: remove` | Entfernen Sie das Symbol für die Anzahl der Elemente in der Dockleiste |
-| `bounce:` | Das Dock-Symbol einmal hüpfen lassen (nur informativ). |
-| `bounce: critical` | Das Dock-Symbol kontinuierlich hüpfen lassen, bis das Fenster in den Vordergrund gebracht wird |
+| `dockiconbadge: <text>` | Zeigen Sie ein Icon auf dem Dock-Icon an |
+| `dockiconbadge: none` / `dockiconbadge: remove` | Entfernen Sie das Icon für die Anzahl der Elemente in der Dockleiste |
+| `bounce:` | Das Dock-Icon einmal hüpfen lassen (nur informativ). |
+| `bounce: critical` | Das Dock-Icon kontinuierlich hüpfen lassen, bis das Fenster in den Vordergrund gebracht wird |
 
 ---
 

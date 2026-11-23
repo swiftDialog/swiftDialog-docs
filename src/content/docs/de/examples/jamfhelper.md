@@ -1,7 +1,7 @@
 ---
 title: jamfHelper-Support
 description: Die Verwendung von swiftDialog als direkter Ersatz für jamfHelper
-translationSynced: 2026-11-23T00:09:16+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Dialog kann jetzt mit dem neuen `--jh`-Flag grundlegende Befehlszeilenoptionen im Format von jamfHelper akzeptieren.
@@ -64,10 +64,10 @@ Umgewandelt in `--timer`.
 ### Nicht implementiert
 
 #### `-defaultButton [1 | 2]`
-Der Standard-Button ist immer Button 1
+Die Standard-Schaltfläche ist immer Schaltfläche 1
 
 #### `-cancelButton [1 | 2]`
-Der "Abbrechen"-Button ist immer der zweite Button (falls angezeigt).
+Die Schaltfläche "Abbrechen" ist immer die zweite Schaltfläche (falls angezeigt).
 
 #### `-showDelayOptions "int, int, int,..."`
 

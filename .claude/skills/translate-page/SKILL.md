@@ -58,7 +58,9 @@ python3 .claude/skills/translate-page/scripts/translate_page.py <page> <lang>
 
 - This uses the current endpoint (see "The model endpoint"). Exit 3 means none is set up: ask the user and add one, then rerun.
 - Only prose goes to the model. Code blocks, imports, JSX/HTML, inline code and URLs are copied unchanged. Root-relative links to doc pages get the `/<lang>/` prefix.
-- The script prints a JSON report. Exit 0 means clean. Exit 2 means the draft was written but has `untranslated_segments` (the model mangled placeholders, so the line stayed in English) or `structure_mismatches`. Exit 1 means nothing was written.
+- The script prints a JSON report. Exit 0 means clean. Exit 2 means the draft was written but has `untranslated_segments` (the model mangled placeholders, refused, or added commentary, so the line stayed in English) or `structure_mismatches`. Exit 1 means nothing was written.
+- `glossary_warnings` lists words the glossary says not to use in this language. They don't affect the exit code. Check each one in step 5.
+- Clean results are cached in `tmp/translate-cache/`, so redrafting only sends new or changed text to the model (`cache_hits` in the report). Pass `--no-cache` if a cached translation is bad and you want a fresh one.
 - If the endpoint's key variable isn't in the environment, the script reads it from the user's zsh/bash startup files. Never print or log the key.
 - The script tries Python's HTTP client first, then falls back to `/usr/bin/curl`. If both fail with "No route to host" on a LAN address while `curl` works from the user's own terminal, the cause is usually the command sandbox or macOS Local Network privacy, not the server. Rerun with local network access allowed.
 - If the endpoint is still unreachable, offer to switch to another saved endpoint or add a new one (see "Switching"). If the key is missing, tell the user which variable to set. Don't translate the page yourself unless they ask.
@@ -66,7 +68,7 @@ python3 .claude/skills/translate-page/scripts/translate_page.py <page> <lang>
 
 ## 5. Review the draft (this is the important part)
 
-First read the glossary, [src/i18n/glossary.md](../../../src/i18n/glossary.md). It defines what key terms mean in these docs and how each language translates them. Then read the English source and the draft side by side. A small local model gets the gist right but slips on details. Fix:
+First read the glossary, [src/i18n/glossary.md](../../../src/i18n/glossary.md). It defines what key terms mean in these docs and how each language translates them. Then read the English source and the draft side by side. Start with the report's `glossary_warnings`. Fix each one unless the word is correct in context, e.g. "Taste" or "touche" for a keyboard key, "Symbol" for an SF Symbol, or "symbolischer Link". A small local model gets the gist right but slips on details. Fix:
 
 - **Glossary terms.** Every glossary term must be translated by its documented meaning, using the preferred translation for this language, the same way everywhere on the page. Typical slips: a "dialog" rendered as a conversation, "icon" rendered so it clashes with SF Symbols, or two different words for the same term on one page. If a term has no line for this language yet, choose a translation, use it consistently, add the line to the glossary, and tell the user. If you hit a word that needs a precise meaning and isn't in the glossary, suggest an entry to the user rather than adding one yourself.
 - **Untranslated segments** listed in the report. Translate them yourself and keep inline code and links unchanged.
@@ -84,6 +86,7 @@ Edit the draft in place. Keep the structure the same as the English page: same s
 ## 6. Verify
 
 - `pnpm build` must succeed. MDX errors name the file and line.
+- `check_translations.py --glossary --lang <lang> <page>` lists no glossary words left on the page, except ones that are correct in context.
 - The script sets `translationSynced` in the frontmatter to the time of the draft. Leave it in place; the check mode relies on it.
 - Spot-check that no English prose is left (`grep` for a few distinctive English phrases from the source). English inside inline code or code blocks is expected; leave it.
 
@@ -126,4 +129,4 @@ In every case, finish by setting `translationSynced` in the translation's frontm
 
 ## 4. Verify and report
 
-Run `pnpm build`, then run the check again; the pages you handled should no longer be listed. Report which pages you updated, which needed no change, and anything a native speaker should look at.
+Run `pnpm build`, then run the check again with `--glossary`. The pages you handled should no longer be listed, and you should have checked any glossary warnings on them. Report which pages you updated, which needed no change, and anything a native speaker should look at.

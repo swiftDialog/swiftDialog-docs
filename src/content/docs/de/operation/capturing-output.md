@@ -1,7 +1,7 @@
 ---
 title: Erfassung der Dialogausgabe
 description: Methoden zur Erfassung von Benutzereingaben und zur Verarbeitung von Dialogergebnissen
-translationSynced: 2026-11-20T09:45:50+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Es gibt verschiedene Möglichkeiten, Informationen aus einem Dialog zu erhalten oder herauszufinden, welche Aktion ein Benutzer ausgeführt hat oder welche Daten eingegeben wurden.
@@ -16,9 +16,9 @@ Die folgenden Rückgabecodes werden nach jeder Aktion gesendet. Diese können ig
 
 | Aktion      | Optional | Tastenkombination | Rückgabecode |
 | ----------- | -------- | ------ | ----------- |
-| button1     | Nein       | Enter  | 0           |
-| button2     | Ja      | Esc    | 2           |
-| infobutton  | Ja      |        | 3           |
+| `button1`   | Nein       | Enter  | 0           |
+| `button2`   | Ja      | Esc    | 2           |
+| `infobutton` | Ja      |        | 3           |
 | \<timer\>   | Ja      |        | 4           |
 | Befehlsdatei `quit:` | Ja |    | 5           |
 | `--quitkey` | Ja      | `cmd+q`  | 10          |

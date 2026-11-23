@@ -1,16 +1,16 @@
 ---
 title: Baumodus – Textfelder
 description: Bearbeiten Sie die Eigenschaften und das Erscheinungsbild eines Dialogfensters und geben Sie die Ergebnisse als JSON-Konfigurationsdatei aus
-translationSynced: 2026-11-23T00:08:05+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Konfigurieren Sie `--textfield` Einträge
 
 <img width="500" alt="image" src="/builder/builder_textfields.png" />
 
-Klicken Sie auf den `[+]`-Button, um einen neuen Eintrag hinzuzufügen
+Klicken Sie auf die `[+]`-Schaltfläche, um einen neuen Eintrag hinzuzufügen
 
-Klicken Sie auf das Papierkorb-Symbol, um einen Eintrag zu löschen
+Klicken Sie auf das Papierkorb-Icon, um einen Eintrag zu löschen
 
 Ziehen Sie den Griff (☰) links von einer Zeile, um die Einträge neu anzuordnen
 
@@ -36,7 +36,7 @@ Setzt das `confirm`-Flag. Durch Aktivierung dieser Option wird ein zusätzliches
 
 #### Datei auswählen
 
-Aktiviert den `fileselect`-Knopf
+Aktiviert die `fileselect`-Schaltfläche
 
 ##### Dateityp
 

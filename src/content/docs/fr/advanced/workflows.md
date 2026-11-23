@@ -1,7 +1,7 @@
 ---
 title: Workflow de swiftDialog
 description: Flux de dialogue multi-étapes dans swiftDialog
-translationSynced: 2026-11-23T04:15:12+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 > **NOTE :** La fonctionnalité "Workflow" a été introduite dans la version 3.1 de swiftDialog.
@@ -182,7 +182,7 @@ Pour un champ booléen unique, utilisez la notation abrégée `ifTrue` / `ifFals
 }
 ```
 
-Vous pouvez également utiliser `map` avec les touches `"true"` et `"false"` si vous le préférez, mais `ifTrue`/`ifFalse` est plus lisible.
+Vous pouvez également utiliser `map` avec les clés `"true"` et `"false"` si vous le préférez, mais `ifTrue`/`ifFalse` est plus lisible.
 
 ### Remplacement statique de `nextpage`
 

@@ -1,22 +1,23 @@
 ---
-title: Anpassen des Symbols
-description: Erfahren Sie, wie Sie Symbole, Bilder und Überlagerungen in swiftDialog einrichten und anpassen können.
+title: Anpassen des Icons
+description: Erfahren Sie, wie Sie Icons, Bilder und Überlagerungen in swiftDialog einrichten und anpassen können.
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 ##### Inhaltsverzeichnis
  - [Grundlegende Verwendung](#grundlegende-nutzung)
  - [Etwas fortgeschrittenere Anwendung](#etwas-fortgeschrittene-anwendung)
- - [Integrierte Symbole](#integrierte-symbole)
+ - [Integrierte Icons](#integrierte-icons)
  - [Verwendung von SF Symbols](#die-verwendung-von-sf-symbols)
- - [Symbolüberlagerungen](#symbolüberlagerungen)
- - [Symbolgröße](#symbolgröße)
- - [Das Symbol ausblenden](#das-symbol-ausblenden)
- - [Einrichten von hellen oder dunklen Symbolen, je nachdem, ob sich die UI im Dunkelmodus oder Hellmodus befindet](#anpassung-der-symbole-an-das-farbschema-der-benutzeroberfläche-entweder-dunkle-symbole-bei-aktiviertem-dark-mode-oder-helle-symbole-bei-aktiviertem-light-mode)
+ - [Icon-Überlagerungen](#icon-überlagerungen)
+ - [Icon-Größe](#icon-größe)
+ - [Das Icon ausblenden](#das-icon-ausblenden)
+ - [Einrichten von hellen oder dunklen Icons, je nachdem, ob sich die UI im Dunkelmodus oder Hellmodus befindet](#anpassung-der-icons-an-das-farbschema-der-benutzeroberfläche-entweder-dunkle-icons-bei-aktiviertem-dark-mode-oder-helle-icons-bei-aktiviertem-light-mode)
 
 ***
 
 
-Verwenden Sie die Kommandozeilenoption `-i` oder `--icon`, um anzugeben, welches Symbol oder Bild Sie im Bereich der Symbolbeschriftung anzeigen möchten.
+Verwenden Sie die Kommandozeilenoption `-i` oder `--icon`, um anzugeben, welches Icon oder Bild Sie im Bereich der Icon-Beschriftung anzeigen möchten.
 
 ### Anwendung:
 
@@ -25,7 +26,7 @@ Verwenden Sie die Kommandozeilenoption `-i` oder `--icon`, um anzugeben, welches
 
 ## Grundlegende Nutzung
 
-swiftDialog akzeptiert Bilder in den Formaten `png` und `jpg` und zeigt das angegebene Bild im Bereich für die Symbolanzeige.
+swiftDialog akzeptiert Bilder in den Formaten `png` und `jpg` und zeigt das angegebene Bild im Bereich für die Icon-Anzeige.
 
 Die Bilder werden so skaliert, dass sie in den dafür vorgesehenen Anzeigebereich passen, der eine Breite von 170 Punkt und eine Höhe von 260 Punkt hat.
 
@@ -34,7 +35,7 @@ Die Bilder werden so skaliert, dass sie in den dafür vorgesehenen Anzeigebereic
 <img src="https://user-images.githubusercontent.com/3598965/111853793-912e3880-8970-11eb-852f-3d5f7e5d2119.png" width=450>
 
 ## Etwas fortgeschrittene Anwendung
-swiftDialog akzeptiert einen Pfad zu einer Anwendung und verwendet das Anwendungs-Symbol als Bild.
+swiftDialog akzeptiert einen Pfad zu einer Anwendung und verwendet das Anwendungs-Icon als Bild.
 
 e.g. `--icon /Applications/Safari.app`
 
@@ -46,25 +47,25 @@ e.g. `--icon "https://user-images.githubusercontent.com/3598965/111854068-84f6ab
 
 <img src="https://user-images.githubusercontent.com/3598965/111854089-a5bf0080-8971-11eb-95fe-a720206bb10a.png" width=450>
 
-## Transparenz der Symbole einstellen
+## Transparenz der Icons einstellen
 
 Verwenden Sie `--iconalpha`, um einen Transparenzwert festzulegen.
 
 Der Wertebereich reicht von `0.0` (vollständig transparent) bis `1.0` (vollständig undurchsichtig).
 
-## Alternativesymbol (Dunkelmodus)
+## Alternatives Icon (Dunkelmodus)
 
-Verwenden Sie `:dark=` und geben Sie ein alternatives Symbol oder einen alternativen Pfad an, der verwendet werden soll, wenn der Benutzer den Dunkelmodus aktiviert hat.
+Verwenden Sie `:dark=` und geben Sie ein alternatives Icon oder einen alternativen Pfad an, der verwendet werden soll, wenn der Benutzer den Dunkelmodus aktiviert hat.
 
 e.g. `--icon /path/to/light.png:dark=/path/to/dark.png`
 
-## Integrierte Symbole
+## Integrierte Icons
 
-swiftDialog verfügt über mehrere integrierte Symbole, die mit der Option `--icon` verwendet werden können.
+swiftDialog verfügt über mehrere integrierte Icons, die mit der Option `--icon` verwendet werden können.
 
 `--icon info`
 
-![Info-Symbol](https://user-images.githubusercontent.com/3598965/111854259-5e853f80-8972-11eb-9476-e2c5ceed3da9.png)
+![Info-Icon](https://user-images.githubusercontent.com/3598965/111854259-5e853f80-8972-11eb-9476-e2c5ceed3da9.png)
 
 `--icon caution`
 
@@ -80,7 +81,7 @@ swiftDialog verfügt über mehrere integrierte Symbole, die mit der Option `--ic
 
 ## Mit `text=`
 
-Sie können das Präfix `text=` auch verwenden, um Text im Bereich des Symbols anzuzeigen. Dies ist nützlich, um ein einzelnes Zeichen oder ein Emoji darzustellen.
+Sie können das Präfix `text=` auch verwenden, um Text im Bereich des Icons anzuzeigen. Dies ist nützlich, um ein einzelnes Zeichen oder ein Emoji darzustellen.
 
 e.g. `--icon text=👍`
 
@@ -101,7 +102,7 @@ Bei der Angabe von SF-Symbolen für Icons oder Overlay-Icons stehen zusätzliche
 
 Besondere Farbe `"auto"`.
 
-Wenn das Symbol zusammen mit einem mehrfarbigen SF-Symbol verwendet wird, wird das Standard-Farbschema des Symbols angewendet. Wenn es jedoch mit einem einfarbigen SF-Symbol verwendet wird, wird standardmäßig Schwarz verwendet, und der dunkle Modus wird nicht berücksichtigt.
+Bei einem mehrfarbigen SF-Symbol wird das Standard-Farbschema des Symbols angewendet. Wenn es jedoch mit einem einfarbigen SF-Symbol verwendet wird, wird standardmäßig Schwarz verwendet, und der dunkle Modus wird nicht berücksichtigt.
 
 e.g. `dialog -s -i SF=airplane.circle.fill,colour=auto`
 
@@ -142,16 +143,16 @@ Derzeit wird nur eingeschränkte Unterstützung für die folgenden Animationstyp
  - "Puls"
  - "pulse.bylayer"
 
-### JSON-Symbolobjekte
+### JSON-Icon-Objekte
 
-Symbole können auch als JSON-Objekte definiert werden, um eine präzisere Steuerung zu ermöglichen. Dies ist besonders nützlich für komplexe Symbolkonfigurationen mit mehreren Eigenschaften.
+Icons können auch als JSON-Objekte definiert werden, um eine präzisere Steuerung zu ermöglichen. Dies ist besonders nützlich für komplexe Icon-Konfigurationen mit mehreren Eigenschaften.
 
 **Syntax:**
 ```bash
 dialog --icon '{"sf":"gear","colour":"blue","weight":"bold"}'
 ```
 
-**Unterstützte Tasten:**
+**Unterstützte Schlüssel:**
 - `sf` / `name` / `symbol` - Name des SF-Symbols.
 - `path` / `icon` / `value` - Dateipfad zu einem Bild oder einer Anwendung.
 - `weight` - Symbolstärke (dünn, leicht, normal, mittel, schwer, fett)
@@ -159,7 +160,7 @@ dialog --icon '{"sf":"gear","colour":"blue","weight":"bold"}'
 - `colour2` / `color2` - Sekundäre Farbe für Farbverläufe.
 - `palette` - Farbpalette für mehrfarbige Symbole.
 - `animation` - Animationstyp für animierte Symbole (macOS 14 oder neuer).
-- `bgcolour` / `bgcolor` - Hintergrundfarbe für Overlay-Symbole.
+- `bgcolour` / `bgcolor` - Hintergrundfarbe für Overlay-Icons.
 - `auto` - Spezieller Wert für automatische Farbauswahl.
 - `light` / `dark` - Varianten für hellen/dunklen Modus (verschachteltes Icon-Objekt).
 
@@ -188,9 +189,9 @@ dialog --icon '{"sf":"rainbow","colour":"auto","animation":"variable"}'
 dialog --overlayicon '{"sf":"exclamationmark","colour":"yellow","bgcolour":"none"}'
 ```
 
-Funktioniert in: `--icon`, `--overlayicon`, `--listitem` (Symbolfeld), `--checkbox` (Symbolfeld).
+Funktioniert in: `--icon`, `--overlayicon`, `--listitem` (Icon-Feld), `--checkbox` (Icon-Feld).
 
-**Hinweis:** Wenn das Symbolfeld in `--listitem` oder `--checkbox` verwendet wird, akzeptiert es verschachtelte JSON-Objekte:
+**Hinweis:** Wenn das Icon-Feld in `--listitem` oder `--checkbox` verwendet wird, akzeptiert es verschachtelte JSON-Objekte:
 
 ```bash
 dialog --listitem '{"title":"Download","status":"wait","icon":{"sf":"gear","colour":"blue","animation":"variable"}}'
@@ -199,13 +200,13 @@ dialog --checkbox '{"label":"Enable","icon":{"sf":"checkmark.circle","colour":"g
 
 
 
-## Symbolüberlagerungen
+## Icon-Überlagerungen
 
-Verwenden Sie die Kommandozeilenoption `-y` oder `--overlayicon `, um anzugeben, welches Symbol oder Bild Sie als Überlagerung für das Hauptsymbol wünschen.
+Verwenden Sie die Kommandozeilenoption `-y` oder `--overlayicon `, um anzugeben, welches Icon oder Bild Sie als Überlagerung für das Haupt-Icon wünschen.
 
 Die Overlays werden mit halber Auflösung angezeigt und in der unteren rechten Ecke des Hauptbereichs für Icon-Darstellungen platziert. Mit dieser Option können Sie Bilder kombinieren, um eine Anzeige zu erstellen.
 
-Überlagerungs-Symbole verwenden die gleichen Bildtypen und Positionen wie der Parameter `--icon`, einschließlich der vordefinierten Optionen und der SF-Symbole.
+Overlay-Icons verwenden die gleichen Bildtypen und Positionen wie der Parameter `--icon`, einschließlich der vordefinierten Optionen und der SF-Symbole.
 
 
 Beispiel:
@@ -214,7 +215,7 @@ Beispiel:
 
 `-i caution -y /Applications/Safari.app`
 
-![Warnsymbol mit Safari-Overlay-Symbol](https://user-images.githubusercontent.com/3598965/111854381-16b2e800-8973-11eb-9cf9-c2b1d8d8b6b7.png)
+![Warn-Icon mit Safari-Overlay-Icon](https://user-images.githubusercontent.com/3598965/111854381-16b2e800-8973-11eb-9cf9-c2b1d8d8b6b7.png)
 
 Beispiel 2:
 
@@ -222,11 +223,11 @@ Beispiel 2:
 
 `-i /Applications/Google\ Chrome.app -y warning`
 
-![Chrome-Symbol mit Warnhinweis-Overlay](https://user-images.githubusercontent.com/3598965/111888622-2e9d7100-8a32-11eb-9693-e53bb2f42692.png)
+![Chrome-Icon mit Warnhinweis-Overlay](https://user-images.githubusercontent.com/3598965/111888622-2e9d7100-8a32-11eb-9693-e53bb2f42692.png)
 
 ### Hintergrund überlagern bei Verwendung von SF-Symbolen
 
-Bei der Verwendung von SF Symbols wird ein leicht transparentes, eckiges Element hinzugefügt, um das Symbol hervorzuheben und es von dem Hauptsymbol abzugrenzen. Dies ist notwendig, da viele Symbole Elemente enthalten, die sich nicht gut als Überlagerung eignen.
+Bei der Verwendung von SF Symbols wird ein leicht transparentes, eckiges Element hinzugefügt, um das Symbol hervorzuheben und es von dem Haupt-Icon abzugrenzen. Dies ist notwendig, da viele Symbole Elemente enthalten, die sich nicht gut als Überlagerung eignen.
 
 ![image](https://user-images.githubusercontent.com/3598965/173157681-0dd05429-35db-4872-89a1-8a8e42bf44a4.png)
 
@@ -234,9 +235,9 @@ Das Erscheinungsbild des Hintergrunds kann mit einem `bgcolor=`-Modifikator ange
 
 ![image](https://user-images.githubusercontent.com/3598965/173157715-46fda24b-2cfb-417b-835a-ed452888546d.png)
 
-## Symbolgröße
+## Icon-Größe
 
-`--iconsize <float>` Die Symbolgröße wird auf die angegebene Breite angepasst. Die Standardbreite ist `170`.
+`--iconsize <float>` Die Icon-Größe wird auf die angegebene Breite angepasst. Die Standardbreite ist `170`.
 
 Beispiel 1:
 
@@ -251,11 +252,11 @@ Beispiel 2:
 
 ![image](https://user-images.githubusercontent.com/3598965/137573587-0e11823b-dc12-4756-ab4c-8442c4d5f050.png)
 
-## Symbolposition
+## Icon-Position
 
 `--centreicon` oder `--centericon`
 
-Ändert die Position des Symbols, sodass es zentriert wird.
+Ändert die Position des Icons, sodass es zentriert wird.
 
 ![image](https://user-images.githubusercontent.com/3598965/159693524-551b863d-33db-4af0-b971-a9a08161d525.png)
 
@@ -263,9 +264,9 @@ Kann auch während der Ausführung von swiftDialog über eine Konfigurationsdate
 
 `echo "icon: centre" >> /var/tmp/dialog.log`
 
-## Das Symbol ausblenden
+## Das Icon ausblenden
 
-Das Symbol kann vollständig entfernt werden, indem einer der folgenden Befehle verwendet wird:
+Das Icon kann vollständig entfernt werden, indem einer der folgenden Befehle verwendet wird:
 
 `--hideicon`
 
@@ -273,7 +274,7 @@ oder
 
 `--icon none`
 
-## Anpassung der Symbole an das Farbschema der Benutzeroberfläche, entweder dunkle Symbole bei aktiviertem Dark Mode oder helle Symbole bei aktiviertem Light Mode
+## Anpassung der Icons an das Farbschema der Benutzeroberfläche, entweder dunkle Icons bei aktiviertem Dark Mode oder helle Icons bei aktiviertem Light Mode
 
 Mit Ausnahme einiger SF-Symbole bietet swiftDialog keine integrierte Funktionalität zum Umschalten zwischen Icons für den Dunkel- und Hellmodus.
 

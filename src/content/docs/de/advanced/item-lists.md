@@ -1,7 +1,7 @@
 ---
 title: Elementlisten
-description: Erstellen dynamischer, sortierter Listen mit Statusanzeigen und Symbolen
-translationSynced: 2026-11-20T10:53:05+00:00
+description: Erstellen dynamischer, sortierter Listen mit Statusanzeigen und Icons
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Listen können verwendet werden, um eine angemessene Anzahl von Elementen in einer geordneten Liste anzuzeigen. Wenn die Liste den sichtbaren Bereich überschreitet, wird sie scrollbar.
@@ -15,7 +15,7 @@ Es gibt drei Möglichkeiten, eine Elementliste zu erstellen:
 
 Geben Sie einen oder mehrere `--listitem <text>` Einträge als Befehlszeilenargument an. Die Liste wird in der angegebenen Reihenfolge erstellt.
 
-Symbole für Listenelemente können über Befehlszeilenargumente eingestellt werden `--listitem "<text>,icon=<image>"`, jedoch müssen Sie für erweiterte Optionen JSON verwenden.
+Icons für Listenelemente können über Befehlszeilenargumente eingestellt werden `--listitem "<text>,icon=<image>"`, jedoch müssen Sie für erweiterte Optionen JSON verwenden.
 
 ### 2) JSON
 
@@ -33,7 +33,7 @@ Die grundlegende Methode ist eine einfache Möglichkeit, eine Liste von Elemente
 
 #### Fortgeschritten
 
-"Erweitert" ermöglicht es Ihnen, eine Liste zu initialisieren und optional ein Symbol, einen Status und einen Status-Text festzulegen
+"Erweitert" ermöglicht es Ihnen, eine Liste zu initialisieren und optional ein Icon, einen Status und einen Status-Text festzulegen
 
 ```json
 {
@@ -47,9 +47,9 @@ Die grundlegende Methode ist eine einfache Möglichkeit, eine Liste von Elemente
 
 ##### Statusoptionen
 
-Der Status der Listenelemente kann einer der folgenden Werte sein: `wait`, `success`, `fail`, `error`, `pending` oder `progress`, und es wird ein entsprechendes Symbol im Statusbereich angezeigt.
+Der Status der Listenelemente kann einer der folgenden Werte sein: `wait`, `success`, `fail`, `error`, `pending` oder `progress`, und es wird ein entsprechendes Icon im Statusbereich angezeigt.
 
-Wenn `progress` als Status verwendet wird, wird ein kreisförmiger Fortschrittsbalken als Status-Symbol angezeigt. Durch Anhängen einer Zahl, z. B. `progress: 20`, wird der Fortschrittsbalken animiert, um die entsprechende Position anzuzeigen, die den zu füllenden Prozentsatz repräsentiert. Der Fortschrittsbalken akzeptiert beliebige Werte zwischen `0` und `100`
+Wenn `progress` als Status verwendet wird, wird ein kreisförmiger Fortschrittsbalken als Status-Icon angezeigt. Durch Anhängen einer Zahl, z. B. `progress: 20`, wird der Fortschrittsbalken animiert, um die entsprechende Position anzuzeigen, die den zu füllenden Prozentsatz repräsentiert. Der Fortschrittsbalken akzeptiert beliebige Werte zwischen `0` und `100`
 
 <img width="599" alt="image" src="https://user-images.githubusercontent.com/3598965/182604151-3eabe9b5-3f77-4949-9b88-c522676e3314.png">
 

@@ -1,10 +1,10 @@
 ---
 title: Voreinstellung 1 – Bereitstellung
 description: Konfiguration für die Verwendung von Voreinstellung 1 im Inspektionsmodus
-translationSynced: 2026-11-20T22:13:16+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
-Traditionelles Seitenleisten-Layout mit Symbol, Fortschrittsbalken und Elementliste. Am besten geeignet für Standard-Anwendungsinstallationen.
+Traditionelles Seitenleisten-Layout mit Icon, Fortschrittsbalken und Elementliste. Am besten geeignet für Standard-Anwendungsinstallationen.
 
 <img width="500" alt="image" src="/inspect/preset_1.png" />
 

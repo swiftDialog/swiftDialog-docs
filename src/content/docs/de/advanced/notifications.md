@@ -1,7 +1,7 @@
 ---
 title: Mitteilungen
 description: Das Senden von Systemmitteilungen mit swiftDialog anstelle der Anzeige von Dialogfenstern
-translationSynced: 2026-11-20T10:59:49+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 ## Benachrichtigungen
@@ -73,7 +73,7 @@ Beim Anzeigen eines Bildes kann der Benutzer den Inhalt der Benachrichtigung erw
 
 ![image](https://user-images.githubusercontent.com/3598965/201508803-29a1a02a-450f-4952-8991-9348dd754b38.png)
 
-_Hinweis: Sie können das Standard-Symbol, das mit der Benachrichtigung angezeigt wird, __nicht__ ersetzen. Bilder, die mit `--icon` hinzugefügt werden, werden innerhalb der Benachrichtigung angezeigt._
+_Hinweis: Sie können das Standard-Icon, das mit der Benachrichtigung angezeigt wird, __nicht__ ersetzen. Bilder, die mit `--icon` hinzugefügt werden, werden innerhalb der Benachrichtigung angezeigt._
 
 ## Eine Aktion einrichten
 
@@ -128,7 +128,7 @@ dialog --notification --style alert --title "Alert" --message "Action required" 
 
 ### Warum sollte man Pseudo-Benachrichtigungen verwenden?
 
-- **Unterstützung für benutzerdefinierte Symbole** – Das Symbol, das in der Benachrichtigung angezeigt wird, lässt sich vollständig anpassen, und zwar mithilfe von `--icon`, einschließlich SF Symbols, URLs, Dateipfaden und App-Bundles. Im Gegensatz zu Systembenachrichtigungen ist dafür nicht erforderlich, das Symbol des Dialog.app-Bundles festzulegen und den NotificationCenter neu zu starten.
+- **Unterstützung für benutzerdefinierte Icons** – Das Icon, das in der Benachrichtigung angezeigt wird, lässt sich vollständig anpassen, und zwar mithilfe von `--icon`, einschließlich SF Symbols, URLs, Dateipfaden und App-Bundles. Im Gegensatz zu Systembenachrichtigungen ist dafür nicht erforderlich, das Icon des Dialog.app-Bundles festzulegen und den NotificationCenter neu zu starten.
 - **Kein MDM-Profil erforderlich** – Die simulierten Benachrichtigungen werden nicht über das macOS-Benachrichtigungszentrum angezeigt, daher sind weder eine MobileConfig-Datei noch spezielle Berechtigungen für Benachrichtigungen erforderlich.
 - **Eingebettete Bilder** — Verwenden Sie `--image`, um ein Bild innerhalb des Benachrichtigungstexts anzuzeigen.
 - **Inline-Formatierung mit Markdown** — Der `--message` Inhalt unterstützt die Inline-Formatierung mit Markdown.
@@ -159,7 +159,7 @@ dialog --notification --style pseudo --title "Update Available" --message "Versi
 dialog --notification --style pseudo-alert --title "Restart Required" --message "Please save your work and restart"
 ```
 
-### Benutzerdefiniertes Symbol und benutzerdefiniertes Bild
+### Benutzerdefiniertes Icon und benutzerdefiniertes Bild
 
 <img width="400" alt="image" src="/images/deployment-install-complete.png" />
 
@@ -169,7 +169,7 @@ dialog --notification --style pseudo --title "Deployment" --message "Software in
     --image "/Applications/Keynote.app"
 ```
 
-### Aktionen-Buttons
+### Aktionsschaltflächen
 
 Wenn `--button2text` oder `--button2action` angegeben ist, erscheint eine Aktionsleiste am unteren Rand der Benachrichtigung mit zwei Schaltflächen:
 
@@ -195,11 +195,11 @@ Für den Stil `pseudo-banner` wird die Benachrichtigung standardmäßig nach 6 S
 dialog --notification --style pseudo-banner --title "Reminder" --message "Meeting in 5 minutes" --timer 15
 ```
 
-### Schließen-Symbol
+### Schließen-Schaltfläche
 
 <img width="400" alt="image" src="/images/restart-hover-button.png" />
 
-Wenn der Benutzer mit dem Mauszeiger über eine Pseudo-Benachrichtigung fährt, erscheint ein Schließen-Symbol (×) in der oberen linken Ecke. Ein Klick auf dieses Symbol schließt die Benachrichtigung mit dem gleichen Verhalten wie bei einem Timeout (sie verschwindet, wird mit dem Code 0 beendet, es werden keine Aktionen ausgeführt).
+Wenn der Benutzer mit dem Mauszeiger über eine Pseudo-Benachrichtigung fährt, erscheint eine Schließen-Schaltfläche (×) in der oberen linken Ecke. Ein Klick darauf schließt die Benachrichtigung mit dem gleichen Verhalten wie bei einem Timeout (sie verschwindet, wird mit dem Code 0 beendet, es werden keine Aktionen ausgeführt).
 
 ### Echtzeit-Zeitstempel
 
@@ -368,11 +368,11 @@ Bei der Bereitstellung mit `--style alert`, setzen Sie `AlertType` auf `2` im Ei
 
 ## Aktualisierung des Standardsymbols für Benachrichtigungen
 
-Benachrichtigungen verwenden standardmäßig das SwiftDialog-Symbol. Wenn Sie das Erscheinungsbild ändern und ein anderes Symbol verwenden möchten, beispielsweise ein unternehmensspezifisches Logo, können Sie die folgenden Schritte ausführen, um das App-Symbol durch ein für Ihre Zwecke geeigneteres Symbol zu ersetzen.
+Benachrichtigungen verwenden standardmäßig das SwiftDialog-Icon. Wenn Sie das Erscheinungsbild ändern und ein anderes Icon verwenden möchten, beispielsweise ein unternehmensspezifisches Logo, können Sie die folgenden Schritte ausführen, um das App-Icon durch ein für Ihre Zwecke geeigneteres Icon zu ersetzen.
 
 > #### Unterstützung ab macOS 26.4
 >
-> In macOS 26.4 funktioniert das Aktualisieren des App-Bundlesymbols und damit auch des Symbol für Benachrichtigungen nicht mehr korrekt. Wenn die Markenidentität wichtig ist, verwenden Sie die neue, pseudo-Benachrichtigungsfunktion. Diese bietet eine ähnliche Benutzeroberfläche wie Systembenachrichtigungen, verwendet aber nicht das macOS-System für Benachrichtigungen und ist daher möglicherweise nicht für alle Situationen geeignet.
+> In macOS 26.4 funktioniert das Aktualisieren des App-Bundle-Icons und damit auch des Icons für Benachrichtigungen nicht mehr korrekt. Wenn die Markenidentität wichtig ist, verwenden Sie die neue, pseudo-Benachrichtigungsfunktion. Diese bietet eine ähnliche Benutzeroberfläche wie Systembenachrichtigungen, verwendet aber nicht das macOS-System für Benachrichtigungen und ist daher möglicherweise nicht für alle Situationen geeignet.
 
 ### Voraussetzungen
 
@@ -403,9 +403,9 @@ Benachrichtigungen verwenden standardmäßig das SwiftDialog-Symbol. Wenn Sie da
 
 ### Schritte
 
-  1. Kopieren Sie das Bild Ihres neuen Symbols in den Ordner `/Library/Application Support/Dialog/Dialog.png` (Achtung: Groß- und Kleinschreibung ist wichtig).
+  1. Kopieren Sie das Bild Ihres neuen Icons in den Ordner `/Library/Application Support/Dialog/Dialog.png` (Achtung: Groß- und Kleinschreibung ist wichtig).
   2. Installieren Sie swiftDialog mit dem `.pkg` Installationsprogramm.
 
-Nachdem die Ersetzung `Dialog.png` durchgeführt wurde, ersetzt das Installationsprogramm das standardmäßige Symbol durch das angegebene Bild. Benachrichtigungen verwenden dann dieses benutzerdefinierte Bild als Symbol.
+Nachdem die Ersetzung `Dialog.png` durchgeführt wurde, ersetzt das Installationsprogramm das standardmäßige Icon durch das angegebene Bild. Benachrichtigungen verwenden dann dieses benutzerdefinierte Bild als Icon.
 
  ![Screenshot 2022-11-14 at 9:55 am](https://user-images.githubusercontent.com/3598965/201548926-669bc9e0-8257-4bb1-ac1f-0e23ff82f378.png)

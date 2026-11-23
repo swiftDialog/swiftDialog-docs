@@ -1,7 +1,7 @@
 ---
 title: Fenstergröße und -verhalten
 description: Steuerung der Positionierung, Größe und des visuellen Erscheinungsbilds von Dialogfenstern
-translationSynced: 2026-11-20T10:42:50+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Das Standardverhalten des Dialogfensters ist, sich in der Mitte des Bildschirms zu positionieren und nicht verschiebbar zu sein. Andere Fenster können darüber platziert werden. Dieses Verhalten kann mit den folgenden Befehlszeilenoptionen geändert werden.
@@ -77,9 +77,9 @@ Wenn das Argument `--progress` verwendet wird, wird der Bereich für die Schaltf
 
 Andere Stile als `--mini` haben keine besonderen Eigenschaften, und das visuelle Erscheinungsbild kann durch die Verwendung verschiedener Parameter zur Einstellung von Fenstereigenschaften erreicht werden.
 
-`centered`, `alert` und `caution` verwenden den Wert aus `--title` und fügen ihn als Überschrift zum Nachrichtenbereich hinzu, deaktivieren dann aber die Überschrift. Dadurch wird die Überschrift unter dem angezeigten zentralen Symbol platziert.
+`centered`, `alert` und `caution` verwenden den Wert aus `--title` und fügen ihn als Überschrift zum Nachrichtenbereich hinzu, deaktivieren dann aber die Überschrift. Dadurch wird die Überschrift unter dem angezeigten zentralen Icon platziert.
 
-    "mini" ist funktional äquivalent zu "--mini". "centered" legt alle Optionen für zentrierte Inhalte fest. "alert" öffnet ein vordefiniertes Dialogfenster mit den Maßen 300x300 und zentriertem Inhalt. "caution" und "warning" funktionieren wie "alert", verwenden aber ein entsprechendes Symbol
+    "mini" ist funktional äquivalent zu "--mini". "centered" legt alle Optionen für zentrierte Inhalte fest. "alert" öffnet ein vordefiniertes Dialogfenster mit den Maßen 300x300 und zentriertem Inhalt. "caution" und "warning" funktionieren wie "alert", verwenden aber ein entsprechendes Icon
 
 Beispiel: `dialog --style alert`
 

@@ -1,7 +1,7 @@
 ---
 title: Bannerbilder
 description: Anzeige von Bildern am oberen Rand von Dialogfenstern, optional mit Titeltext
-translationSynced: 2026-11-20T10:42:25+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Verwenden Sie die Befehlszeilenoption `-n` oder `--bannerimage`, um ein Bild anzugeben, das oben im Dialogfenster angezeigt werden soll.
@@ -10,7 +10,7 @@ Anwendung:
 
 `--bannerimage <file | url | colour= >`
 
-Die Verwendung eines Bannerbilds deaktiviert die Anzeige des Bereichs für das Symbolbild. Dies entspricht der Verwendung der `--hideicon`-Option
+Die Verwendung eines Bannerbilds deaktiviert die Anzeige des Bereichs für das Icon-Bild. Dies entspricht der Verwendung der `--hideicon`-Option
 
 ## Grundlegende Nutzung
 

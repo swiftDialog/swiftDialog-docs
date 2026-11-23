@@ -1,7 +1,7 @@
 ---
 title: Präsentation
 description: Erstellung von Dialogfenstern für den Präsentationsmodus, die laufende Prozesse und Aufgaben darstellen
-translationSynced: 2026-11-20T10:47:50+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 ## Präsentationsmodus
@@ -27,8 +27,8 @@ Sie können optional die folgenden Modifikatoren verwenden:
    - Der Text ist vertikal zentriert
  - `--background color=<color|hex>` um die Hintergrundfarbe festzulegen
    - Wenn keine Farbe angegeben ist, wird die vom System definierte Akzentfarbe verwendet
- - `--icon <image>` um ein Symbol in der oberen linken Ecke anzuzeigen
- - `--iconsize <int>` um die Größe des Symbols festzulegen.
+ - `--icon <image>` um ein Icon in der oberen linken Ecke anzuzeigen
+ - `--iconsize <int>` um die Größe des Icons festzulegen.
 
 ### Bild
 

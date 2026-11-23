@@ -1,7 +1,7 @@
 ---
 title: Beispielhafte Jamf-Skripte
 description: Grundlegende Jamf Pro-Skriptvorlage zum Anzeigen von Dialogfenstern mit Parametern
-translationSynced: 2026-11-23T00:09:00+00:00
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 ## Grundlegendes Skript
@@ -12,11 +12,11 @@ Dieses Skript kann in Ihre Jamf Pro-Instanz integriert und als generisches Skrip
 
  - Parameter 4: Titel
  - Parameter 5: Nachricht
- - Parameter 6: Symbol
+ - Parameter 6: Icon
  - Parameter 7: Überlagerung
  - Parameter 8: Text für Schaltfläche 1
  - Parameter 9: Text für Schaltfläche 2
- - Parameter 10: Text für den Info-Button
+ - Parameter 10: Text für die Info-Schaltfläche
  - Parameter 11: Zusätzliche Informationen. Kann einer der folgenden Werte sein:
     - `--moveable`
     - `--ontop`

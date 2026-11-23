@@ -1,6 +1,7 @@
 ---
 title: Anpassen des Nachrichtenbereichs
 description: Erfahren Sie, wie Sie den Nachrichten-Text, die Schrifteigenschaften und die Positionierung in swiftDialog einstellen und anpassen können.
+translationSynced: 2026-11-23T08:35:52+00:00
 ---
 
 Verwenden Sie die Kommandozeilenoption `-m` oder `--message`, um anzugeben, was Sie im Nachrichtenbereich des Dialogfensters anzeigen möchten.
@@ -11,7 +12,7 @@ Beispiel:
 
 `-m "This is the detail of an Important Message that you should read"`
 
-Der Nachrichtenbereich kann entweder 2/3 der Breite des Dialogfensters einnehmen oder die volle Breite, falls der Bereich mit den Symbolen nicht angezeigt wird.
+Der Nachrichtenbereich kann entweder 2/3 der Breite des Dialogfensters einnehmen oder die volle Breite, falls der Bereich mit den Icons nicht angezeigt wird.
 
 Nachrichten werden automatisch umbrochen, wenn sie die Breite des Anzeigebereichs überschreiten, und sie werden gescrollt, wenn sie die gesamte verfügbare Anzeigefläche übersteigen.
 
@@ -32,7 +33,7 @@ Beispiel:
 
 ## Nachrichten-Positionierung
 
-`--messagealignment` und `--messageposition` ermöglichen es, festzulegen, an welcher Stelle im Dialogfeld die Nachricht angezeigt wird. Dies ist nützlich, um Dialogfelder zu erstellen, in denen die Nachricht sowohl vertikal als auch horizontal zentriert ist.
+`--messagealignment` und `--messageposition` ermöglichen es, festzulegen, an welcher Stelle im Dialog die Nachricht angezeigt wird. Dies ist nützlich, um Dialoge zu erstellen, in denen die Nachricht sowohl vertikal als auch horizontal zentriert ist.
 
 <img width="200" alt="image" src="/images/lorem_ipsum_3.png" />
 

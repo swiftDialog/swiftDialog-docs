@@ -154,8 +154,8 @@ def post_json(url, payload, key, timeout=300):
     return json.loads(r.stdout)
 
 
-def chat(ep, key, prompt, timeout=300):
-    data = post_json(ep["url"], {"model": ep["model"], "temperature": 0,
+def chat(ep, key, prompt, timeout=300, temperature=0):
+    data = post_json(ep["url"], {"model": ep["model"], "temperature": temperature,
                                  "messages": [{"role": "user", "content": prompt}]}, key, timeout)
     try:
         return data["choices"][0]["message"]["content"]
