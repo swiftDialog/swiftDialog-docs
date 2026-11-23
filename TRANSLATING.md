@@ -33,7 +33,7 @@ Guidelines:
 
 `astro.config.mjs` doesn't need editing. Each language is a set of files:
 
-1. `src/i18n/fr.json`: registers the language and holds its sidebar labels.
+1. `src/i18n/<lang>.json`: registers the language and holds its sidebar labels.
    ```json
    {
      "label": "Français",
@@ -43,8 +43,9 @@ Guidelines:
    }
    ```
    The file name is the URL prefix (`fr.json` → `/fr/`). `label` is the name shown in the language picker.
-2. `src/content/i18n/fr.json`: custom UI strings. Start with `{}` (see below).
-3. `src/content/docs/fr/`: translated pages, added over time.
+2. `src/content/i18n/<lang>.json`: custom UI strings. Start with `{}` (see below).
+3. `src/i18n/glossary.md`: add a line for the new language for every glossary term (e.g. `fr: boîte de dialogue`). Read the glossary first and choose one consistent translation per term. This should be done before translating pages, since page reviews check glossary consistency.
+4. `src/content/docs/<lang>/`: translated pages, added over time.
 
 ## Custom UI strings
 

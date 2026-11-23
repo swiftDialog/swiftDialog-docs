@@ -142,7 +142,8 @@ def post_json(url, payload, key, timeout=300):
         f.write(body)
         f.flush()
         try:
-            r = subprocess.run(["curl", "-sS", "--fail-with-body", "-m", str(timeout), "-K", "-",
+            r = subprocess.run(["curl", "-sS", "--fail-with-body", "--connect-timeout", "10",
+                                "-m", str(timeout), "-K", "-",
                                 "--data-binary", "@" + f.name, url],
                                input=conf, capture_output=True, text=True, timeout=timeout + 10)
         except (OSError, subprocess.TimeoutExpired) as e:
