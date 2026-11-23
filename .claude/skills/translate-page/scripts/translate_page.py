@@ -133,12 +133,28 @@ class Translator:
                                                                      placeholders=placeholder_note(text))}],
             "temperature": 0,
         }).encode()
-        req = urllib.request.Request(API_URL, data=body, headers={
-            "Content-Type": "application/json",
-            "Authorization": "Bearer " + self.api_key,
-        })
-        with urllib.request.urlopen(req, timeout=300) as r:
-            data = json.load(r)
+        # macOS application firewall blocks python3's direct socket connections but
+        # allows curl (Apple-signed binary), so we shell out to curl for the HTTP transport.
+        try:
+            with urllib.request.urlopen(
+                urllib.request.Request(API_URL, data=body, headers={
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + self.api_key,
+                }),
+                timeout=300,
+            ) as r:
+                data = json.load(r)
+        except (urllib.error.URLError, OSError):
+            r = subprocess.run(
+                ["curl", "-s", "-m", "300", "-X", "POST", API_URL,
+                 "-H", "Content-Type: application/json",
+                 "-H", "Authorization: Bearer " + self.api_key,
+                 "-d", body.decode()],
+                capture_output=True, text=True, timeout=300,
+            )
+            if r.returncode != 0:
+                raise urllib.error.URLError(f"curl failed: {r.stderr[:200]}")
+            data = json.loads(r.stdout)
         self.calls += 1
         out = data["choices"][0]["message"]["content"].strip()
         # Small models sometimes wrap output in quotes or a code fence.
