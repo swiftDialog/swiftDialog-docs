@@ -15,6 +15,10 @@ export default defineConfig({
       // English is served from the site root ("/"); each src/i18n/<lang>.json adds "/<lang>/".
       defaultLocale: 'root',
       locales: buildLocales(languages),
+      // Head override sends first-time visitors to their browser's language. See src/components/Head.astro.
+      components: {
+        Head: './src/components/Head.astro',
+      },
       logo: {
         src: './src/assets/dialog_logo.png',
         replacesTitle: false,
