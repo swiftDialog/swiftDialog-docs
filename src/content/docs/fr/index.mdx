@@ -175,23 +175,23 @@ import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components'
 ## Exemple de démarrage rapide
 
 ```bash
-# Simple notification
-dialog --title "Welcome" \
-       --message "Hello from swiftDialog!" \
+# Notification simple
+dialog --title "Bienvenue" \
+       --message "Bonjour depuis swiftDialog !" \
        --icon "SF=star.fill"
 
-# User input form
-dialog --title "User Information" \
-       --message "Please enter your details:" \
-       --textfield "Name,prompt=Enter your name" \
-       --textfield "Email,prompt=Enter your email" \
-       --button1text "Submit"
+# Formulaire de saisie utilisateur
+dialog --title "Informations utilisateur" \
+       --message "Veuillez saisir vos coordonnées :" \
+       --textfield "Name,prompt=Entrez votre nom" \
+       --textfield "Email,prompt=Entrez votre e-mail" \
+       --button1text "Soumettre"
 
-# Progress indicator
-dialog --title "Installing Software" \
-       --message "Please wait while we set things up..." \
+# Indicateur de progression
+dialog --title "Installation du logiciel" \
+       --message "Veuillez patienter pendant l'installation..." \
        --progress 10 \
-       --progresstext "Starting installation..."
+       --progresstext "L'installation démarre..."
 ```
 
 ---

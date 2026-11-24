@@ -1,0 +1,233 @@
+---
+title: swiftDialog ドキュメント
+description: macOS管理者向けの、最新のダイアログ表示ユーティリティです。
+template: splash
+hero:
+  title: swiftDialog
+  tagline: |
+    macOSの管理者向けに、コマンドラインから美しくカスタマイズ可能なダイアログを表示するユーティリティです。
+  image:
+    file: ~/assets/dialog_logo.png
+  actions:
+    - text: はじめに
+      link: /ja/getting-started/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: GitHubで確認する
+      link: https://github.com/swiftDialog/swiftDialog
+      icon: external
+---
+
+import DownloadButton from '~/components/DownloadButton.astro';
+import ReleaseHeading from '~/components/ReleaseHeading.astro';
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components'
+
+<div style="max-width: 1400px; margin: 0 auto; padding: 2rem;">
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; align-items: flex-start;">
+
+<div>
+
+<ReleaseHeading />
+
+<DownloadButton repo="swiftDialog/swiftDialog" />
+
+</div>
+
+<div>
+
+## クイックリンク
+
+- **[インストールガイド](/ja/getting-started/installation/)** - 数分でインストールを開始できます
+- **[コマンドリファレンス](/ja/advanced/command-line-options/)** - すべてのCLIオプション
+- **[ギャラリー](/ja/examples/showcase/)** - 他のユーザーが構築したものを見る
+- **[JSON設定](/ja/advanced/json-configuration/)** - 詳細設定
+- **[コミュニティサポート](https://www.macadmins.org/slack)** - #swiftdialogチャンネルに参加
+
+</div>
+
+</div>
+
+---
+
+## ドキュメント
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### はじめに
+
+- [導入](/ja/getting-started/introduction/)
+- [インストール](/ja/getting-started/installation/)
+- [システム要件](/ja/getting-started/requirements/)
+- [最初のダイアログ](/ja/getting-started/introduction/#swiftdialog-を実行する)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 基本的な設定
+
+- [タイトル](/ja/basic-use/title/)
+- [メッセージコンテンツ](/ja/basic-use/message/)
+- [アイコンとシンボル](/ja/basic-use/icon/)
+- [ボタン](/ja/basic-use/buttons/)
+- [マークダウン](/ja/basic-use/markdown/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 表示コンテンツ
+
+- [画像](/ja/basic-use/images/)
+- [動画](/ja/basic-use/video/)
+- [ウェブページ](/ja/basic-use/web-content/)
+- [バナー画像](/ja/advanced/banner-images/)
+- [背景画像](/ja/advanced/background-images/)
+
+</div>
+
+</div>
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### ユーザー入力
+
+- [テキストフィールド](/ja/advanced/textfields/)
+- [チェックボックス](/ja/advanced/checkboxes/)
+- [ドロップダウンリスト](/ja/advanced/select-lists/)
+- [アイテムリスト](/ja/advanced/item-lists/)
+- [ラジオボタン](/ja/advanced/select-lists/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 高度な機能
+
+- [JSON設定](/ja/advanced/json-configuration/)
+- [ライブアップデート](/ja/advanced/command-file/)
+- [タイマー](/ja/advanced/timer-progress/)
+- [通知](/ja/advanced/notifications/)
+- [フルスクリーン](/ja/advanced/full-screen/)
+- [プレゼンテーション](/ja/advanced/presentation/)
+- [ウィンドウサイズ調整](/ja/advanced/window-size/)
+- [レイアウト制御](/ja/advanced/layout/)
+- [検査モード](/ja/advanced/inspect-mode/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 展開
+
+- [ログインウィンドウ](/ja/operation/login-window/)
+- [承認](/ja/operation/authorization/)
+- [終了コード](/ja/operation/exit-codes/)
+- [出力のキャプチャ](/ja/operation/capturing-output/)
+- [設定項目](/ja/operation/preferences/)
+- [変数](/ja/operation/builtin-variables/)
+
+</div>
+
+</div>
+
+---
+
+## 例と統合
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### サンプルスクリプト
+
+- [デモアプリケーション](/ja/examples/demo-scripts/) - 機能充実のサンプルアプリケーション
+- [Jamf Pro スクリプト](/ja/examples/jamf-scripts/) - MDM統合
+- [更新通知](/ja/examples/nudge-update/) - ナッジ形式の更新
+- [jamfHelper の代替](/ja/examples/jamfhelper/) - 移行ガイド
+- [シェルコマンド](/ja/examples/shell-commands/) - 高度な実行
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### リソースとツール
+
+- [ダイアログビルダー](/ja/builder/builder/) - ビジュアル設定ツール
+- [コミュニティ紹介](/ja/examples/showcase/) - 実際の活用事例
+- [よくある問題](/ja/operation/gotchas/) - トラブルシューティングガイド
+- [ヘルプシステム](/ja/operation/help-message/) - 組み込みドキュメント
+- [新機能情報](/ja/reference/whats-new/) - 最新機能
+
+</div>
+
+</div>
+
+---
+
+## クイックスタート例
+
+```bash
+# シンプルな通知
+dialog --title "ようこそ" \
+       --message "こんにちは、swiftDialogです！" \
+       --icon "SF=star.fill"
+
+# ユーザー入力フォーム
+dialog --title "ユーザー情報" \
+       --message "詳細を入力してください：" \
+       --textfield "Name,prompt=お名前を入力してください" \
+       --textfield "Email,prompt=メールアドレスを入力してください" \
+       --button1text "送信"
+
+# 進捗インジケーター
+dialog --title "ソフトウェアをインストール中" \
+       --message "セットアップするまでしばらくお待ちください..." \
+       --progress 10 \
+       --progresstext "インストールを開始しています..."
+```
+
+---
+
+## コミュニティとサポート
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="text-align: center; align-self: flex-start;">
+
+### GitHub
+
+[問題を報告](https://github.com/swiftDialog/swiftDialog/issues)
+[機能をリクエスト](https://github.com/swiftDialog/swiftDialog/issues/new)
+[貢献](https://github.com/swiftDialog/swiftDialog)
+
+</div>
+
+<div style="text-align: center; align-self: flex-start;">
+
+### コミュニティ
+
+MacAdmins Slack の #swiftdialog チャネルに参加してください。
+活発なコミュニティサポートが得られます
+
+</div>
+
+<div style="text-align: center;">
+
+### ドキュメント
+
+[GitHub Wiki](https://github.com/swiftDialog/swiftDialog/wiki)
+[API リファレンス](/ja/advanced/command-line-options/)
+[ビデオチュートリアル](https://www.youtube.com/results?search_query=swiftdialog)
+
+</div>
+
+</div>
+
+</div>
