@@ -6,11 +6,11 @@ translationSynced: 2026-11-23T01:52:14+00:00
 
 ## Méthodes d'installation
 
-### Installateur de paquets (recommandé)
+### Paquet d'installation (recommandé)
 
-La manière la plus simple d'installer swiftDialog est d'utiliser le programme d'installation **.pkg** disponible sur la [page des versions](https://github.com/swiftDialog/swiftDialog/releases).
+La manière la plus simple d'installer swiftDialog est d'utiliser le paquet d'installation **.pkg** disponible sur la [page des versions](https://github.com/swiftDialog/swiftDialog/releases).
 
-L'installateur placera swiftDialog à `/usr/local/bin/dialog`, qui devrait se trouver dans le `$PATH` par défaut sous macOS.
+Le paquet d'installation placera swiftDialog à `/usr/local/bin/dialog`, qui devrait se trouver dans le `$PATH` par défaut sous macOS.
 
 ### Installation manuelle
 
@@ -41,7 +41,7 @@ dialog --title "Test" --message "swiftDialog is installed!"
 
 ## Mise à jour de swiftDialog
 
-Pour mettre à jour swiftDialog, il suffit de télécharger et d'installer la dernière version. Le programme d'installation remplacera la version existante.
+Pour mettre à jour swiftDialog, il suffit de télécharger et d'installer la dernière version. Le paquet d'installation remplacera la version existante.
 
 Vous pouvez vérifier la présence de mises à jour de manière programmatique en utilisant :
 
@@ -59,11 +59,11 @@ sudo rm /usr/local/bin/dialog
 
 ## Déploiement via MDM (Mobile Device Management)
 
-swiftDialog peut être déployé via des solutions de gestion des appareils mobiles (MDM) telles que Jamf Pro, Mosyle ou Kandji. Il suffit de déployer le fichier d'installation .pkg sur les appareils gérés.
+swiftDialog peut être déployé via des solutions de gestion des appareils mobiles (MDM) telles que Jamf Pro, Mosyle ou Iru. Il suffit de déployer le paquet d'installation .pkg sur les appareils gérés.
 
-### Exemple de politique Jamf
+### Exemple de règle Jamf
 
 1. Téléchargez le fichier .pkg de swiftDialog vers Jamf Pro
-2. Établir une politique de déploiement pour ce paquet
+2. Établissez une règle de déploiement pour ce paquet
 3. Adaptez les paramètres à vos appareils
-4. Définir un déclencheur (enregistrement, récurrent, auto-service, etc.).
+4. Définissez un déclencheur (Inscription terminée, Check-in récurrent, Self Service, etc.).

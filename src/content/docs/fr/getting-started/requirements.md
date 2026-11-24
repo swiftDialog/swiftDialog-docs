@@ -10,7 +10,7 @@ swiftDialog est une application binaire universelle développée avec SwiftUI.
 
 ### 3.0+
 - **Version minimale de macOS requise :** macOS 15 (Sonoma)
-- **Architecture :** Binaire universel (Intel et silicium Apple)
+- **Architecture :** Binaire universel (Intel et Apple Silicon)
 - **Framework :** SwiftUI
 
 ### 2.3+

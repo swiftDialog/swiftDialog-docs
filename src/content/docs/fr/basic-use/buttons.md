@@ -11,7 +11,7 @@ Les boutons sont affichés dans la partie inférieure de la fenêtre de dialogue
 ![Zone des boutons de dialogue](https://user-images.githubusercontent.com/3598965/111854511-b4a6b280-8973-11eb-943d-e9843a6dc0fa.png)
 
 ## Bouton 1 : Le bouton par défaut
-Par défaut, un seul bouton est affiché, avec le libellé "**OK**". Le bouton par défaut est toujours présent, est associé à la touche **_Enter_** et permet de quitter l'application Dialog avec le code de sortie `0`
+Par défaut, un seul bouton est affiché, avec le libellé "**D'accord**". Le bouton par défaut est toujours présent, est associé à la touche **_Enter_** et permet de quitter l'application Dialog avec le code de sortie `0`
 
 L'étiquette du bouton par défaut peut être modifiée avec n'importe quelle quantité de texte en utilisant l'option `--button1text`
 
@@ -26,7 +26,7 @@ L'action peut également être modifiée en utilisant l'option `--button1action`
 e.g. `--button1action "https://github.com/"`
 
 ## Bouton 2 : Le bouton d'annulation
-Le deuxième bouton est masqué par défaut. Il peut être affiché en utilisant l'option `-2` ou `--button2`, qui fera apparaître le bouton avec le libellé par défaut "**Cancel**". Le deuxième bouton est associé à la touche **_Esc_** et permet de quitter l'application Dialog avec le code de sortie `2`
+Le deuxième bouton est masqué par défaut. Il peut être affiché en utilisant l'option `-2` ou `--button2`, qui fera apparaître le bouton avec le libellé par défaut "**Annuler**". Le deuxième bouton est associé à la touche **_Esc_** et permet de quitter l'application Dialog avec le code de sortie `2`
 
 L'étiquette du deuxième bouton peut être modifiée avec n'importe quelle quantité de texte en utilisant l'option `--button2text`. Lorsque vous utilisez cette option, vous n'avez pas besoin d'utiliser l'option `--button2`. L'affichage du bouton est implicite si vous modifiez l'étiquette textuelle.
 
@@ -40,8 +40,8 @@ Exemple :
 
 Le bouton 2 ne possède aucune autre fonction programmée
 
-## Le bouton "Pour plus d'informations"
-Le bouton "Plus d'informations" est masqué par défaut. Il peut être affiché en utilisant l'option `-3` ou `--infobutton`, ce qui fera apparaître le bouton avec le libellé par défaut "**More Information**". Cliquer sur le bouton fermera swiftDialog et renverra un code de sortie de `3`
+## Le bouton "Plus d'informations"
+Le bouton "Plus d'informations" est masqué par défaut. Il peut être affiché en utilisant l'option `-3` ou `--infobutton`, ce qui fera apparaître le bouton avec le libellé par défaut "**Plus d'information**". Cliquer sur le bouton fermera swiftDialog et renverra un code de sortie de `3`
 
 Si l'argument `--infobuttonaction` est présent, cliquer sur le bouton "Plus d'informations" ne déclenchera que l'action `--infobuttonaction`, et la fenêtre swiftDialog ne se fermera pas automatiquement. Si l'argument `--quitoninfo` est ajouté, le comportement de fermeture sera rétabli.
 
@@ -78,8 +78,8 @@ Propriétés facultatives fournies sous forme de valeurs séparées par des virg
  - mode de rendu : l'un des modes suivants : hierarchical, monochrome, multicolour, palette. Par défaut : monochrome
  - palette : ajoutez deux ou trois couleurs en utilisant le format suivant : palette=colour1-colour2-colour3
    - Par exemple : palette = red-green-blue
- - taille : au format size=<num>
- - couleur : au format color=<text|hex>
+ - size : au format size=<num>
+ - color : au format color=<text|hex>
    - Si le mode de rendu multicolore est activé, la couleur est ignorée
 
 Exemple :

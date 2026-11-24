@@ -24,7 +24,7 @@ Utilisez l'option de ligne de commande `--titlefont` pour définir les propriét
 
 ### Syntaxe CSV
 
-Les propriétés de la police sont exprimées sous la forme de `property=value`, et plusieurs propriétés sont séparées par une virgule
+Les propriétés de la police sont exprimées sous la forme de `propriété=valeur`, et plusieurs propriétés sont séparées par une virgule.
 
 Les propriétés pouvant être modifiées sont les suivantes :
  * `colour=<hex_value>` (alternativement `color=<hex_value>`)

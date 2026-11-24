@@ -59,7 +59,7 @@ sudo rm /usr/local/bin/dialog
 
 ## Bereitstellung über Mobile Device Management (MDM)
 
-swiftDialog kann über Mobile Device Management (MDM)-Lösungen wie Jamf Pro, Mosyle oder Kandji bereitgestellt werden. Installieren Sie einfach das .pkg-Installationsprogramm auf Ihren verwalteten Geräten.
+swiftDialog kann über Mobile Device Management (MDM)-Lösungen wie Jamf Pro, Mosyle oder Iru bereitgestellt werden. Installieren Sie einfach das .pkg-Installationsprogramm auf Ihren verwalteten Geräten.
 
 ### Beispiel für eine Jamf-Richtlinie
 

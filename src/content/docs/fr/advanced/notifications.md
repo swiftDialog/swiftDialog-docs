@@ -404,8 +404,8 @@ Les notifications utiliseront l'icône par défaut de swiftDialog. Si vous souha
 ### Étapes
 
   1. Copiez l'image de l'icône de remplacement dans le dossier `/Library/Application Support/Dialog/Dialog.png` (respectez la casse).
-  2. Installez swiftDialog à partir du programme d'installation .pkg.
+  2. Installez swiftDialog à partir du paquet d'installation .pkg.
 
-Une fois le fichier de remplacement `Dialog.png` mis en place, le programme d'installation remplacera l'icône intégrée par l'image spécifiée. Les notifications utiliseront alors cette image personnalisée comme icône.
+Une fois le fichier de remplacement `Dialog.png` mis en place, le paquet d'installation remplacera l'icône intégrée par l'image spécifiée. Les notifications utiliseront alors cette image personnalisée comme icône.
 
  ![Screenshot 2022-11-14 at 9 55 20 am](https://user-images.githubusercontent.com/3598965/201548926-669bc9e0-8257-4bb1-ac1f-0e23ff82f378.png)

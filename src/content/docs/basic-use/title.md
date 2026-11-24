@@ -23,7 +23,7 @@ Use the `--titlefont` command line option to set title font properties.
 
 ### CSV Syntax
 
-Font properties are expressed in the form of `property=value` and multiple properties are separated by a comma
+Font properties are expressed in the form of `property=value` and multiple properties are separated by a comma.
 
 Properties available for modification are:
  * `colour=<hex_value>` (alternatly `color=<hex_value>`)

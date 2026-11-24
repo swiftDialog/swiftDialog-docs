@@ -1,7 +1,7 @@
 ---
 title: Erste Schritte mit swiftDialog
 description: Einführung in swiftDialog, ein modernes macOS-Dialog-Dienstprogramm für Administratoren
-translationSynced: 2026-11-20T09:10:01+00:00
+translationSynced: 2026-11-24T10:56:44+00:00
 ---
 
 `dialog -s --title "Welcome to swiftDialog" --message "Hi There.  <br>It's really nice to see you 🙂"`

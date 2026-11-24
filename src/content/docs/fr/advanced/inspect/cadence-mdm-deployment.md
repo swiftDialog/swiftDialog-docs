@@ -22,7 +22,7 @@ Le système MDM effectue les tâches (installation de logiciels, déploiement de
 
 **Entraînement hybride :** la plupart des entrées sont interrogées nativement (pas d'orchestrateur, fonctionne hors ligne ou à l'écran de connexion) ; quelques entrées `source:"ipc"` sont avancées par un script MDM pour ce qui ne peut pas être observé directement. Le verbe IPC est `cadence:satisfy:<id>` (aussi `advance` et `goto`).
 
-`timeout` Dans le cas où une tâche ne se termine jamais, le système avance automatiquement à l'étape suivante, ce qui empêche une politique défaillante de bloquer l'interface utilisateur.
+`timeout` Dans le cas où une tâche ne se termine jamais, le système avance automatiquement à l'étape suivante, ce qui empêche une règle défaillante de bloquer l'interface utilisateur.
 
 ## Deux phases
 
@@ -74,7 +74,7 @@ L'entrée `compliance` est `source:"ipc"` : un script MDM effectue la vérificat
 2. **Profil (mobileconfig)** : configuration du lanceur, notamment les paramètres de configuration par session et les options de la fenêtre de connexion.
    (Le lanceur lit ses propres préférences gérées de la même manière — sous `/Library/Managed Preferences/`.)
 3. **LaunchAgents** (appareil + fenêtre de connexion) pour démarrer swiftDialog dans la session appropriée.
-4. **GitOps / politiques :** les profils et les logiciels que les passerelles de validation contrôlent, ainsi que le petit script qui...
+4. **GitOps / règles :** les profils et les logiciels que les passerelles de validation contrôlent, ainsi que le petit script qui...
    émet `cadence:satisfy` pour toute `source:"ipc"` entrée.
 
 Générez les fichiers de configuration mobile (mobileconfig) et les éléments liés à GitOps à l'aide des outils `contour` / `fleet-gitops`, qui valident le profil par rapport au schéma d'Apple.

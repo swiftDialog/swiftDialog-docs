@@ -87,7 +87,7 @@ App Auto-Patch a été développé sur un concept similaire à celui du projet P
 
    ![Dernier commit GitHub (branche)](https://img.shields.io/github/last-commit/dan-snelson/dialog-scripts/main)
 
- - [Configuration de votre Mac ](https://github.com/setup-your-mac/Setup-Your-Mac) : simplifiez la configuration initiale de l'appareil grâce à swiftDialog et aux événements personnalisés de la politique Jamf Pro
+ - [Configuration de votre Mac ](https://github.com/setup-your-mac/Setup-Your-Mac) : simplifiez la configuration initiale de l'appareil grâce à swiftDialog et aux événements personnalisés des règles Jamf Pro
 
    ![Dernier commit GitHub (branche)](https://img.shields.io/github/last-commit/setup-your-mac/Setup-Your-Mac/main)
 

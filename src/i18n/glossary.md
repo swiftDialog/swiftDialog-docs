@@ -14,7 +14,7 @@ Text in `code` is never translated, whatever this glossary says. See TRANSLATING
 
 Product, feature and Apple names stay as they are in every language:
 
-swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset names (Deployment, Cards, Compact List, Toast, Unified, Guidance) · SF Symbols · Markdown · Jamf Pro · jamfHelper · Nudge · MDM · macOS · SwiftUI
+swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset names (Deployment, Cards, Compact List, Toast, Unified, Guidance) · SF Symbols · Markdown · Jamf Pro · jamfHelper · Nudge · MDM · macOS · SwiftUI · Apple Silicon
 
 ## Terms
 
@@ -60,6 +60,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Schaltfläche. Not "Taste", "Knopf", "Knöpfe" or "Button".
 - fr: bouton. Not "touche" or "bouton physique".
 - ja: ボタン. Not "キー" or "押しボタン".
+- **Rule:** a default button label in quotes ("OK", "Cancel", "More Information") is the text the app shows, so copy it from the app's localisation for that language (`swiftDialog/dialog/extras/Localisations/<lang>.lproj/Localizable.strings`), not a free translation. If the app has no localisation for the language, keep the English label.
 
 ### info button
 - **Means:** the optional extra button, usually bottom-left, set with `--infobuttontext`.
@@ -164,3 +165,16 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Workflow
 - fr: workflow
 - ja: ワークフロー
+
+### installer package
+- **Means:** the `.pkg` file from the releases page that installs swiftDialog.
+- de: Installationsprogramm (".pkg-Installationsprogramm")
+- fr: paquet d'installation. Not "programme d'installation" or "installateur".
+- ja: インストーラー (".pkgインストーラー")
+
+### policy (Jamf)
+- **Means:** a Jamf Pro policy, the object that runs scripts or installs packages on managed Macs. Also used loosely for the equivalent in other MDMs.
+- **Not:** a rule document, such as an acceptable use policy.
+- de: Richtlinie
+- fr: règle. Not "politique" (keep that for documents, such as an acceptable use policy).
+- ja: ポリシー

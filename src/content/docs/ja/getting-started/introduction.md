@@ -1,7 +1,7 @@
 ---
 title: swiftDialog の使い始め
 description: swiftDialogのご紹介：これは、macOSの管理者向けの、最新のダイアログ表示ユーティリティです。
-translationSynced: 2026-11-23T22:02:01+00:00
+translationSynced: 2026-11-24T10:56:44+00:00
 ---
 
 `dialog -s --title "Welcome to swiftDialog" --message "Hi There.  <br>It's really nice to see you 🙂"`

@@ -59,7 +59,7 @@ sudo rm /usr/local/bin/dialog
 
 ## MDM（モバイルデバイス管理）による展開。
 
-swiftDialogは、Jamf Pro、Mosyle、またはKandjiといったモバイルデバイス管理（MDM）ソリューションを通じて展開できます。 簡単に言うと、.pkgインストーラーを管理対象のデバイスにインストールするだけです。
+swiftDialogは、Jamf Pro、Mosyle、またはIruといったモバイルデバイス管理（MDM）ソリューションを通じて展開できます。 簡単に言うと、.pkgインストーラーを管理対象のデバイスにインストールするだけです。
 
 ### Jamf ポリシーの例。
 

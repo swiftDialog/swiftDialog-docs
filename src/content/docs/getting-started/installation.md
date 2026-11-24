@@ -58,7 +58,7 @@ sudo rm /usr/local/bin/dialog
 
 ## Deployment via MDM
 
-swiftDialog can be deployed through Mobile Device Management (MDM) solutions like Jamf Pro, Mosyle, or Kandji. Simply deploy the .pkg installer to your managed devices.
+swiftDialog can be deployed through Mobile Device Management (MDM) solutions like Jamf Pro, Mosyle, or Iru. Simply deploy the .pkg installer to your managed devices.
 
 ### Example Jamf Policy
 

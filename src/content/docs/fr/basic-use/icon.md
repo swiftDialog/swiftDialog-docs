@@ -17,7 +17,7 @@ translationSynced: 2026-11-23T08:35:52+00:00
 ***
 
 
-Utilisez l'option de ligne de commande `-i` ou `--icon` pour spécifier quelle icône ou image vous souhaitez afficher dans la zone du titre de l'icône.
+Utilisez l'option de ligne de commande `-i` ou `--icon` pour spécifier quelle icône ou image vous souhaitez afficher dans la zone d'affichage de l'icône.
 
 ### Utilisation :
 
@@ -30,7 +30,7 @@ swiftDialog accepte les images aux formats `png` et `jpg` et affiche l'image sp�
 
 Les images seront redimensionnées pour s'adapter à la zone d'affichage, qui mesure 170 points de largeur par 260 points de hauteur.
 
-`png` est préférable, mais si `jpg` est spécifié, les images seront présentées avec des coins légèrement arrondis pour un rendu moins agressif.
+Le format `png` est préférable, mais si le format `jpg` est spécifié, les images seront présentées avec des coins légèrement arrondis pour un rendu moins agressif.
 
 <img src="https://user-images.githubusercontent.com/3598965/111853793-912e3880-8970-11eb-852f-3d5f7e5d2119.png" width=450>
 
@@ -143,7 +143,7 @@ Le support pour les types d'animation suivants est limité pour le moment :
  - "pulse"
  - "pulse.bylayer"
 
-### Objets iconiques au format JSON
+### Spécifier des icônes au format JSON
 
 Les icônes peuvent également être spécifiées sous forme d'objets JSON pour un contrôle plus précis. Cela est particulièrement utile pour les configurations d'icônes complexes qui comportent plusieurs propriétés.
 
@@ -227,7 +227,7 @@ Exemple 2 :
 
 ### Superposer un arrière-plan lors de l'utilisation des symboles SF
 
-Lors de l'utilisation des symboles SF, un cercle légèrement transparent est ajouté pour faire ressortir le symbole par rapport à l'icône principale, car de nombreux symboles contiennent des éléments qui ne fonctionnent pas bien en superposition.
+Lors de l'utilisation des symboles SF, un carré arrondi légèrement transparent est ajouté pour faire ressortir le symbole par rapport à l'icône principale, car de nombreux symboles contiennent des éléments qui ne fonctionnent pas bien en superposition.
 
 ![image](https://user-images.githubusercontent.com/3598965/173157681-0dd05429-35db-4872-89a1-8a8e42bf44a4.png)
 

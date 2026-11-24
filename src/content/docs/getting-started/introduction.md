@@ -15,7 +15,7 @@ There are a number of options available that can be used to customise what you w
 
 ## Running swiftDialog
 
-The **.pkg** installer from the [releases](https://github.com/swiftDialog/swiftDialog/releases) page will install swiftDialog to `/usr/local/bin/dialog` which should also be in the default `$PATH` on macOS
+The **.pkg** installer from the [releases](https://github.com/swiftDialog/swiftDialog/releases) page will install swiftDialog to `/usr/local/bin/dialog` which should also be in the default `$PATH` on macOS.
 
 To call dialog from your script, you can use the full path or rely on `$PATH`
 

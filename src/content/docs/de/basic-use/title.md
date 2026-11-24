@@ -1,6 +1,7 @@
 ---
 title: Anpassen des Titels
 description: Erfahren Sie, wie Sie den Titeltext und die Schriftart-Eigenschaften in swiftDialog festlegen und anpassen können.
+translationSynced: 2026-11-24T10:57:11+00:00
 ---
 
 ## Einstellungen: Titeltext

@@ -8,7 +8,7 @@ translationSynced: 2026-11-23T03:02:46+00:00
 
 Les images peuvent être affichées et, par défaut, elles remplacent la zone de message.
 
-`--imagecaption` est disponible pour une courte description d'une ligne pour chaque image. Si une `--message` est également présente, elle sera affichée sous les images et les légendes.
+L'argument `--imagecaption` permet d'ajouter une courte description d'une ligne pour chaque image. Si l'argument `--message` est également présent, le message sera affiché sous les images et les légendes.
 
 ```
 -g, --image  <file> | <url>
@@ -19,7 +19,7 @@ Les images peuvent être affichées et, par défaut, elles remplacent la zone de
     Text that will appear underneath the displayed image.
 ```
 
-Tout format d'image pris en charge peut être utilisé, soit comme entrée `<file>`, soit comme entrée `<url>`
+Tout format d'image pris en charge peut être utilisé, soit via un fichier `<file>`, soit via une adresse internet `<url>`
 
 Exemple :
 
@@ -31,7 +31,7 @@ Dans tous les cas où une image peut être utilisée, il est désormais possible
 
 ### Plusieurs images
 
-Spécifier plus d'une image `--image` affichera les images dans un carrousel, avec des flèches de navigation pour passer à l'image suivante ou précédente, et une indication de l'image actuellement affichée dans la séquence.
+Si plus d'une image est spécifiée, l'argument `--image` affichera les images dans un carrousel, avec des flèches de navigation pour passer à l'image suivante ou précédente, et une indication de l'image actuellement affichée dans la séquence.
 
 <img width="932" alt="image" src="https://user-images.githubusercontent.com/3598965/148642555-96247bff-8d95-414d-bf96-1fe28e27ed9c.png">
 

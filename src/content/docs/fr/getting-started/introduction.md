@@ -16,7 +16,7 @@ Il existe plusieurs options qui peuvent être utilisées pour personnaliser l'af
 
 ## Exécution de swiftDialog
 
-Le programme d'installation **.pkg** de la page [versions](https://github.com/swiftDialog/swiftDialog/releases) installera swiftDialog à l'emplacement `/usr/local/bin/dialog`, qui devrait également figurer dans le `$PATH` par défaut sous macOS
+Le paquet d'installation **.pkg** de la page [versions](https://github.com/swiftDialog/swiftDialog/releases) installera swiftDialog à l'emplacement `/usr/local/bin/dialog`, qui devrait également figurer dans le `$PATH` par défaut sous macOS.
 
 Pour appeler dialog depuis votre script, vous pouvez utiliser le chemin d'accès complet ou vous appuyer sur `$PATH`
 
