@@ -67,7 +67,7 @@ Convertido a `--timer`.
 El botón predeterminado es siempre el botón número 1
 
 #### `-cancelButton [1 | 2]`
-El botón de "Cancelar" siempre es el botón número 2 (si se muestra).
+El botón de "Cancel" siempre es el botón número 2 (si se muestra).
 
 #### `-showDelayOptions "int, int, int,..."`
 

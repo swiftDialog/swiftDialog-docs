@@ -11,7 +11,7 @@ Los botones se muestran en la parte inferior de la ventana de diálogo
 ![Área de botones de diálogo](https://user-images.githubusercontent.com/3598965/111854511-b4a6b280-8973-11eb-943d-e9843a6dc0fa.png)
 
 ## Botón 1: El botón predeterminado
-Por defecto, se muestra un único botón con la etiqueta "**Aceptar**". El botón predeterminado siempre está presente, está asociado a la tecla **_Enter_** y cierra la aplicación de diálogo con el código de salida `0`
+Por defecto, se muestra un único botón con la etiqueta "**OK**". El botón predeterminado siempre está presente, está asociado a la tecla **_Enter_** y cierra la aplicación de diálogo con el código de salida `0`
 
 La etiqueta del botón predeterminado se puede modificar con una cantidad arbitraria de texto utilizando la opción `--button1text`
 
@@ -26,7 +26,7 @@ En esta etapa, las acciones se limitan a abrir una URL en el navegador predeterm
 e.g. `--button1action "https://github.com/"`
 
 ## Botón 2: El botón de cancelar
-El segundo botón está oculto de forma predeterminada. Se puede mostrar utilizando la opción `-2` o `--button2`, que mostrará el botón con la etiqueta predeterminada de "**Cancelar**". El segundo botón está asignado a la tecla **_Esc_** y cierra la aplicación de diálogo con el código de salida `2`
+El segundo botón está oculto de forma predeterminada. Se puede mostrar utilizando la opción `-2` o `--button2`, que mostrará el botón con la etiqueta predeterminada de "**Cancel**". El segundo botón está asignado a la tecla **_Esc_** y cierra la aplicación de diálogo con el código de salida `2`
 
 La etiqueta del segundo botón se puede modificar con una cantidad arbitraria de texto utilizando la opción `--button2text`. Cuando se utiliza esta opción, no es necesario invocar la opción `--button2`. La visualización del botón se muestra automáticamente si se está modificando la etiqueta de texto.
 
@@ -40,10 +40,10 @@ Aquí hay un ejemplo:
 
 El botón 2 no tiene ninguna otra función implementada
 
-## El botón "Más información"
-El botón "Más información" está oculto por defecto. Se puede mostrar utilizando la opción `-3` o `--infobutton`, lo que hará que el botón aparezca con la etiqueta predeterminada de "**Más información**". Al hacer clic en el botón, se cerrará la ventana swiftDialog con un código de salida de `3`
+## El botón "More Information"
+El botón "More Information" está oculto por defecto. Se puede mostrar utilizando la opción `-3` o `--infobutton`, lo que hará que el botón aparezca con la etiqueta predeterminada de "**More Information**". Al hacer clic en el botón, se cerrará la ventana swiftDialog con un código de salida de `3`
 
-Si el argumento `--infobuttonaction` está presente, al hacer clic en el botón "Más información", solo se ejecutará la acción `--infobuttonaction` y swiftDialog no se cerrará automáticamente. Si se añade el argumento `--quitoninfo`, se restaurará el comportamiento de cierre.
+Si el argumento `--infobuttonaction` está presente, al hacer clic en el botón "More Information", solo se ejecutará la acción `--infobuttonaction` y swiftDialog no se cerrará automáticamente. Si se añade el argumento `--quitoninfo`, se restaurará el comportamiento de cierre.
 
 La etiqueta del botón de información puede modificarse con una cantidad arbitraria de texto utilizando la opción `--infobuttontext`. Al utilizar esta opción, no es necesario activar la opción `--infobutton`. La visualización del botón se realiza automáticamente si se modifica la etiqueta de texto.
 

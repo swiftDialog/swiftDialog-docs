@@ -117,7 +117,7 @@ El modo de inspección admite un nuevo `options` objeto en la configuración JSO
 | `scanInterval` | Entero | No | 2 | Intervalo de escaneo del sistema de archivos en segundos |
 | `button1text` | Cadena | No | "De acuerdo" | Texto del botón principal |
 | `button1disabled` | Booleano | No | falso | Deshabilitar el botón principal inicialmente |
-| `button2text` | Cadena | No | "Cancelar" | Texto del botón secundario |
+| `button2text` | Cadena | No | "Cancel" | Texto del botón secundario |
 | `button2visible` | Booleano | No | cierto | Mostrar botón secundario |
 | `autoEnableButton` | Booleano | No | cierto | Botón de activación automática al finalizar |
 | `autoEnableButtonText` | Cadena | No | "De acuerdo" | Texto del botón cuando la función está habilitada automáticamente |
