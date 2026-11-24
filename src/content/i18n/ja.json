@@ -1,1 +1,9 @@
-{}
+{
+  "release.latest": "最新リリース",
+  "release.preview": "最新プレビュー リリース",
+  "download.latest": "最新をダウンロード",
+  "download.dmg": "DMG をダウンロード",
+  "download.pkg": "GitHub からダウンロード (PKG)",
+  "download.dmgGithub": "GitHub からダウンロード (DMG)",
+  "download.releaseNotes": "リリースノート →"
+}
