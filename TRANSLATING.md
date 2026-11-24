@@ -53,7 +53,27 @@ These are warnings, not errors. Some matches are correct in context ("Taste" for
    The file name is the URL prefix (`fr.json` → `/fr/`). `label` is the name shown in the language picker.
 2. `src/content/i18n/<lang>.json`: custom UI strings. Start with `{}` (see below).
 3. `src/i18n/glossary.md`: add a line for the new language for every glossary term (e.g. `fr: boîte de dialogue`). Read the glossary first and choose one consistent translation per term. This should be done before translating pages, since page reviews check glossary consistency.
-4. `src/content/docs/<lang>/`: translated pages, added over time.
+4. `src/i18n/notes/<lang>.md`: notes for this language (see below). Base its style decisions on Apple's own documentation in that language: the `translate-page` skill's style survey (`/translate-page style <lang>`) reads a few Apple support pages and proposes register, tone and terminology.
+5. `src/content/docs/<lang>/`: translated pages, added over time.
+
+## Language notes
+
+Each language has a notes file, `src/i18n/notes/<lang>.md`. It's where decisions and review history live, so they don't get lost in a chat session:
+
+```markdown
+# <Language> (<lang>) translation notes
+
+## Style decisions
+<!-- Apply to every page. Register (formal/informal address), tone, conventions. -->
+
+## Notes for reviewers
+<!-- Written while translating: things a native speaker should check, by page. -->
+
+## Reviewer feedback
+<!-- One entry per round of feedback: date, source, the points raised, and what was done about each. -->
+```
+
+Read it before translating a page. When a native speaker sends feedback, record it there first, then act on it.
 
 ## Custom UI strings
 

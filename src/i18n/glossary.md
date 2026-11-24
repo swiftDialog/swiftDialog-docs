@@ -25,6 +25,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Dialog. "dialog window" → Dialogfenster. Not "Dialogfeld".
 - fr: boîte de dialogue. "dialog window" → fenêtre de dialogue. Not "conversation".
 - ja: ダイアログ. "dialog window" → ダイアログウィンドウ. Not "会話" (conversation).
+- es: diálogo. "dialog window" → ventana de diálogo. Not "conversación".
 
 ### message
 - **Means:** the main body text of a dialog, set with `--message`. "Message area" is the part of the dialog where it appears.
@@ -32,6 +33,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Nachricht. "message area" → Nachrichtenbereich.
 - fr: message. "message area" → zone de message.
 - ja: メッセージ. "message area" → メッセージ領域.
+- es: mensaje. "message area" → área de mensaje.
 
 ### title
 - **Means:** the heading text at the top of a dialog, set with `--title`.
@@ -39,6 +41,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Titel
 - fr: titre
 - ja: タイトル
+- es: título
 
 ### icon
 - **Means:** the image shown on the left of a dialog (`--icon`), or in a notification or list item. It can be an image file, an app icon or an SF Symbol.
@@ -47,12 +50,14 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Icon. Not "Symbol" (reserved for SF Symbols).
 - fr: icône. Not "symbole" (réservé aux SF Symbols).
 - ja: アイコン. Not "シンボル" (SF Symbols用).
+- es: ícono. Not "símbolo" (reserved for SF Symbols).
 
 ### overlay icon
 - **Means:** a small second image drawn over the bottom-right corner of the icon (`--overlayicon`).
 - de: Overlay-Icon
 - fr: icône de superposition
 - ja: オーバーレイアイコン
+- es: ícono de superposición
 
 ### button
 - **Means:** a clickable on-screen control in the dialog (`--button1text`, `--button2text`, `--infobuttontext`).
@@ -60,6 +65,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Schaltfläche. Not "Taste", "Knopf", "Knöpfe" or "Button".
 - fr: bouton. Not "touche" or "bouton physique".
 - ja: ボタン. Not "キー" or "押しボタン".
+- es: botón. Not "tecla" or "botón físico".
 - **Rule:** a default button label in quotes ("OK", "Cancel", "More Information") is the text the app shows, so copy it from the app's localisation for that language (`swiftDialog/dialog/extras/Localisations/<lang>.lproj/Localizable.strings`), not a free translation. If the app has no localisation for the language, keep the English label.
 
 ### info button
@@ -67,36 +73,42 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Info-Schaltfläche
 - fr: bouton d'info
 - ja: 情報ボタン
+- es: botón de información
 
 ### info box
 - **Means:** the panel of extra text shown below the icon (`--infobox`).
 - de: Infobox
 - fr: encadré d'info
 - ja: 情報ボックス
+- es: cuadro de información
 
 ### checkbox
 - **Means:** a tick-box input in the dialog (`--checkbox`).
 - de: Kontrollkästchen
 - fr: case à cocher
 - ja: チェックボックス
+- es: casilla de verificación
 
 ### text field
 - **Means:** a single-line text input in the dialog (`--textfield`).
 - de: Textfeld
 - fr: champ de texte
 - ja: テキストフィールド
+- es: campo de texto
 
 ### select list
 - **Means:** a drop-down or radio-button choice in the dialog (`--selectvalues`).
 - de: Auswahlliste
 - fr: liste de sélection
 - ja: 選択リスト
+- es: lista de selección
 
 ### item list
 - **Means:** a list of rows showing items with a status, such as apps being installed (`--listitem`).
 - de: Elementliste
 - fr: liste d'éléments
 - ja: 項目リスト
+- es: lista de elementos
 
 ### banner
 - **Means:** an image or coloured strip across the top of a dialog (`--bannerimage`).
@@ -104,12 +116,14 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Banner
 - fr: bannière
 - ja: バナー
+- es: banner
 
 ### progress bar
 - **Means:** the bar showing progress through a task (`--progress`).
 - de: Fortschrittsbalken
 - fr: barre de progression
 - ja: 進捗バー
+- es: barra de progreso
 
 ### command file
 - **Means:** a text file that swiftDialog watches while it runs. A script writes commands to it to update the open dialog (`--commandfile`).
@@ -117,6 +131,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Befehlsdatei
 - fr: fichier de commandes
 - ja: コマンドファイル
+- es: archivo de comandos
 
 ### key
 - **Means:** the name of a field in JSON, a command-file command or a list of settings, e.g. "the `colour` key" or "supported keys". In "map keys" it is the value a choice is compared against.
@@ -125,6 +140,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Schlüssel. Not "Taste".
 - fr: clé. Not "touche".
 - ja: キー. Not "キーボードのキー".
+- es: clave. Not "tecla".
 
 ### option
 - **Means:** a command-line argument such as `--title` (also called "argument" or "flag" in the docs).
@@ -132,6 +148,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Option
 - fr: option
 - ja: オプション
+- es: opción
 
 ### notification
 - **Means:** a macOS system notification sent by swiftDialog (`--notification`), shown in Notification Center.
@@ -139,12 +156,14 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Mitteilung. This is Apple's German term for macOS notifications.
 - fr: notification. C'est le terme d'Apple pour les notifications macOS.
 - ja: 通知. macOS用語に従う.
+- es: notificación. Término de Apple para notificaciones macOS.
 
 ### exit code
 - **Means:** the number `dialog` returns when it closes, which tells the calling script which button was pressed.
 - de: Exit-Code
 - fr: code de sortie
 - ja: 終了コード
+- es: código de salida
 
 ### login window
 - **Means:** the macOS login screen. swiftDialog can display over it.
@@ -152,6 +171,7 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Anmeldefenster
 - fr: fenêtre d'ouverture de session (terme d'Apple pour l'écran de connexion)
 - ja: ログインウィンドウ
+- es: ventana de inicio de sesión (término de Apple para la pantalla de inicio de sesión)
 
 ### preset
 - **Means:** one of the ready-made Inspect Mode layouts.
@@ -159,18 +179,21 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Preset
 - fr: préset
 - ja: プリセット
+- es: ajuste preestablecido
 
 ### workflow
 - **Means:** a sequence of dialogs or steps driven by a script.
 - de: Workflow
 - fr: workflow
 - ja: ワークフロー
+- es: flujo de trabajo
 
 ### installer package
 - **Means:** the `.pkg` file from the releases page that installs swiftDialog.
 - de: Installationsprogramm (".pkg-Installationsprogramm")
 - fr: paquet d'installation. Not "programme d'installation" or "installateur".
 - ja: インストーラー (".pkgインストーラー")
+- es: paquete de instalación (".pkg")
 
 ### policy (Jamf)
 - **Means:** a Jamf Pro policy, the object that runs scripts or installs packages on managed Macs. Also used loosely for the equivalent in other MDMs.
@@ -178,3 +201,4 @@ swiftDialog · Dialog (the app, `Dialog.app`) · Inspect Mode · the preset name
 - de: Richtlinie
 - fr: règle. Not "politique" (keep that for documents, such as an acceptable use policy).
 - ja: ポリシー
+- es: política. Not "regla" (keep that for documents).

@@ -1,0 +1,9 @@
+{
+  "download.latest": "Descargar última versión",
+  "download.dmg": "Descargar DMG",
+  "download.pkg": "Descargar desde GitHub (PKG)",
+  "download.dmgGithub": "Descargar desde GitHub (DMG)",
+  "download.releaseNotes": "Notas de la versión →",
+  "release.latest": "Última versión",
+  "release.preview": "Última versión preliminar"
+}
