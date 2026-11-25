@@ -52,6 +52,10 @@ These are warnings, not errors. Some matches are correct in context ("Taste" for
    ```
    The file name is the URL prefix (`fr.json` → `/fr/`). `label` is the name shown in the language picker.
 2. `src/content/i18n/<lang>.json`: custom UI strings. Start with `{}` (see below).
+   The file name must match the `lang` tag inside `src/i18n/<code>.json`, not the URL
+   prefix code. E.g. for Simplified Chinese the URL prefix is `zh-hans` but `lang` is
+   `zh-CN`, so the file is `src/content/i18n/zh-CN.json`. Use a tag Starlight ships
+   (such as `zh-CN` or `pt-BR`) so Starlight's built-in UI strings match.
 3. `src/i18n/glossary.md`: add a line for the new language for every glossary term (e.g. `fr: boîte de dialogue`). Read the glossary first and choose one consistent translation per term. This should be done before translating pages, since page reviews check glossary consistency.
 4. `src/i18n/notes/<lang>.md`: notes for this language (see below). Base its style decisions on Apple's own documentation in that language: the `translate-page` skill's style survey (`/translate-page style <lang>`) reads a few Apple support pages and proposes register, tone and terminology.
 5. `src/content/docs/<lang>/`: translated pages, added over time.
