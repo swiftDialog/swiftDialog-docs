@@ -51,6 +51,7 @@ These are warnings, not errors. Some matches are correct in context ("Taste" for
    }
    ```
    The file name is the URL prefix (`fr.json` → `/fr/`). `label` is the name shown in the language picker.
+   `lang` is the BCP-47 tag, and Starlight looks up UI strings and sidebar labels by it. Use a tag Starlight ships translations for, such as `zh-CN` or `pt-BR`, not a script tag like `zh-hans`: i18next rewrites `zh-hans` as `zh-Hans`, and nothing matches. When `lang` differs from the file name, the UI strings file in step 2 is named after `lang` (`src/content/i18n/zh-CN.json`), while the URL prefix stays `/zh-hans/`.
 2. `src/content/i18n/<lang>.json`: custom UI strings. Start with `{}` (see below).
    The file name must match the `lang` tag inside `src/i18n/<code>.json`, not the URL
    prefix code. E.g. for Simplified Chinese the URL prefix is `zh-hans` but `lang` is

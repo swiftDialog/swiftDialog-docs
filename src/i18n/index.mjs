@@ -42,10 +42,11 @@ export function localizeSidebar(sidebar, languages) {
       const isGroup = Array.isArray(entry.items);
       const key = isGroup ? entry.label : entry.slug;
       const translations = { ...entry.translations };
-      for (const { code, groups = {}, pages = {} } of languages) {
+      for (const { code, lang, groups = {}, pages = {} } of languages) {
         const label = (isGroup ? groups : pages)[key];
         if (label) {
-          translations[code] = label;
+          // Starlight looks sidebar translations up by BCP-47 tag (`lang`), not by URL prefix.
+          translations[lang ?? code] = label;
           used.add(`${code}:${isGroup ? 'groups' : 'pages'}:${key}`);
         }
       }
