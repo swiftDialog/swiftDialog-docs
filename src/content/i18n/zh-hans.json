@@ -1,0 +1,9 @@
+{
+  "download.latest": "下载最新版本",
+  "download.dmg": "下载 DMG",
+  "download.pkg": "从 GitHub 下载 (PKG)",
+  "download.dmgGithub": "从 GitHub 下载 (DMG)",
+  "download.releaseNotes": "发行说明 →",
+  "release.latest": "最新版本",
+  "release.preview": "最新预览版"
+}

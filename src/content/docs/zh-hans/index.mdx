@@ -1,0 +1,235 @@
+---
+title: swiftDialog 文档
+description: 一个现代的 macOS 对话框工具，专为管理员设计
+template: splash
+hero:
+  title: swiftDialog
+  tagline: |
+    一个现代的 macOS 对话框工具，专为管理员设计，可以从命令行显示精美且可自定义的对话框。
+  image:
+    file: ~/assets/dialog_logo.png
+  actions:
+    - text: 开始使用
+      link: /zh-hans/getting-started/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: 在 GitHub 上查看
+      link: https://github.com/swiftDialog/swiftDialog
+      icon: external
+translationSynced: 2026-11-25T04:42:55+00:00
+---
+
+import DownloadButton from '~/components/DownloadButton.astro';
+import ReleaseHeading from '~/components/ReleaseHeading.astro';
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components'
+
+<div style="max-width: 1400px; margin: 0 auto; padding: 2rem;">
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; align-items: flex-start;">
+
+<div>
+
+<ReleaseHeading />
+
+<DownloadButton repo="swiftDialog/swiftDialog" />
+
+</div>
+
+<div>
+
+## 快速链接
+
+- **[安装指南](/zh-hans/getting-started/installation/)** - 几分钟即可开始使用
+- **[命令参考](/zh-hans/advanced/command-line-options/)** - 完整的命令行选项
+- **[示例展示](/zh-hans/examples/showcase/)** - 看看其他人构建了什么
+- **[JSON 配置](/zh-hans/advanced/json-configuration/)** - 高级配置
+- **[社区支持](https://www.macadmins.org/slack)** - 加入 #swiftdialog
+
+</div>
+
+</div>
+
+---
+
+## 文档
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### 入门
+
+- [简介](/zh-hans/getting-started/introduction/)
+- [安装](/zh-hans/getting-started/installation/)
+- [系统要求](/zh-hans/getting-started/requirements/)
+- [您的第一个对话](/zh-hans/getting-started/introduction/#running-swiftdialog)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 基本配置
+
+- [对话标题](/zh-hans/basic-use/title/)
+- [消息内容](/zh-hans/basic-use/message/)
+- [图标与符号](/zh-hans/basic-use/icon/)
+- [按钮](/zh-hans/basic-use/buttons/)
+- [Markdown](/zh-hans/basic-use/markdown/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 显示内容
+
+- [图片](/zh-hans/basic-use/images/)
+- [视频](/zh-hans/basic-use/video/)
+- [网页](/zh-hans/basic-use/web-content/)
+- [横幅图片](/zh-hans/advanced/banner-images/)
+- [背景图片](/zh-hans/advanced/background-images/)
+
+</div>
+
+</div>
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### 用户输入
+
+- [文本字段](/zh-hans/advanced/textfields/)
+- [复选框](/zh-hans/advanced/checkboxes/)
+- [下拉菜单](/zh-hans/advanced/select-lists/)
+- [项目列表](/zh-hans/advanced/item-lists/)
+- [单选按钮](/zh-hans/advanced/select-lists/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 高级功能
+
+- [JSON 配置](/zh-hans/advanced/json-configuration/)
+- [实时更新](/zh-hans/advanced/command-file/)
+- [定时器](/zh-hans/advanced/timer-progress/)
+- [通知](/zh-hans/advanced/notifications/)
+- [全屏显示](/zh-hans/advanced/full-screen/)
+- [演示](/zh-hans/advanced/presentation/)
+- [窗口大小调整](/zh-hans/advanced/window-size/)
+- [布局控制](/zh-hans/advanced/layout/)
+- [检查模式](/zh-hans/advanced/inspect-mode/)
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 部署
+
+- [登录窗口](/zh-hans/operation/login-window/)
+- [授权](/zh-hans/operation/authorization/)
+- [退出码](/zh-hans/operation/exit-codes/)
+- [输出捕获](/zh-hans/operation/capturing-output/)
+- [偏好设置](/zh-hans/operation/preferences/)
+- [变量](/zh-hans/operation/builtin-variables/)
+
+</div>
+
+</div>
+
+---
+
+## 示例与集成
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="align-self: flex-start;">
+
+### 示例脚本
+
+- [完整演示应用程序](/zh-hans/examples/demo-scripts/) - 包含所有功能的示例
+- [Jamf Pro 脚本](/zh-hans/examples/jamf-scripts/) - MDM 集成
+- [更新通知](/zh-hans/examples/nudge-update/) - 提示式更新
+- [jamfHelper 替代方案](/zh-hans/examples/jamfhelper/) - 迁移指南
+- [Shell 命令](/zh-hans/examples/shell-commands/) - 高级用法
+
+</div>
+
+<div style="align-self: flex-start;">
+
+### 资源与工具
+
+- [对话构建器](/zh-hans/builder/builder/) - 可视化配置工具
+- [社区展示](/zh-hans/examples/showcase/) - 实际应用案例
+- [常见问题](/zh-hans/operation/gotchas/) - 故障排除指南
+- [帮助系统](/zh-hans/operation/help-message/) - 内置文档
+- [最新功能](/zh-hans/reference/whats-new/) - 最新特性
+
+</div>
+
+</div>
+
+---
+
+## 快速入门示例
+
+```bash
+# 简单通知
+dialog --title "欢迎" \
+       --message "你好，来自 swiftDialog！" \
+       --icon "SF=star.fill"
+
+# 用户输入表单
+dialog --title "用户信息" \
+       --message "请输入您的详细信息：" \
+       --textfield "姓名,prompt=请输入您的姓名" \
+       --textfield "电子邮件,prompt=请输入您的电子邮件" \
+       --button1text "提交"
+
+# 进度指示器
+dialog --title "正在安装软件" \
+       --message "请稍候，我们正在设置..." \
+       --progress 10 \
+       --progresstext "正在开始安装..."
+```
+
+---
+
+## 社区与支持
+
+<div className="not-content" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin: 2rem 0; align-items: flex-start;">
+
+<div style="text-align: center; align-self: flex-start;">
+
+### GitHub
+
+[报告问题](https://github.com/swiftDialog/swiftDialog/issues)
+[请求新功能](https://github.com/swiftDialog/swiftDialog/issues/new)
+[参与贡献](https://github.com/swiftDialog/swiftDialog)
+
+</div>
+
+<div style="text-align: center; align-self: flex-start;">
+
+### 社区
+
+[MacAdmins Slack](https://www.macadmins.org/slack)
+加入 #swiftdialog 频道
+活跃的社区支持
+
+</div>
+
+<div style="text-align: center;">
+
+### 文档
+
+[GitHub Wiki](https://github.com/swiftDialog/swiftDialog/wiki)
+[API 参考](/zh-hans/advanced/command-line-options/)
+[视频教程](https://www.youtube.com/results?search_query=swiftdialog)
+
+</div>
+
+</div>
+
+</div>
