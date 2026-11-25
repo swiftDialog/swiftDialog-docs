@@ -9,13 +9,23 @@
 - Option keys users type stay in English as list labels too (`size`, `color`); descriptive labels such as "modo de renderizado" are translated.
 - Proper names of external resources (GitHub repositories, blog posts) stay in English.
 
+## Key translation decisions
+
+- icon → ícono (not símbolo, which is reserved for SF Symbols)
+- button → botón (not tecla, which is for keyboard keys)
+- key → clave (for JSON/settings keys), tecla (for keyboard keys)
+- policy (Jamf) → política (not regla, which is for documents/rules)
+- installer package → paquete de instalación
+- Default button labels ("OK", "Cancel", "More Information") kept in English since swiftDialog has no Spanish localisation
+
 ## Apple reference
 
 Pending: read Apple's Spanish documentation (https://support.apple.com/es-es/guide/deployment/welcome/web, https://support.apple.com/es-es/guide/terminal/welcome/mac) to confirm terminology for buttons, checkboxes, menus, and Apple silicon.
 
 ## Notes for reviewers
 
-None recorded. The Spanish pages were translated before this file existed.
+- Tone/register consistency (formal "usted" was used throughout)
+- A few judgment calls where English terms were kept (Nudge, SF Symbols names, CLI flags)
 
 ## Reviewer feedback
 
