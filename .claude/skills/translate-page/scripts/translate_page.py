@@ -466,7 +466,7 @@ def main():
 
     s_in, s_out = structure(text), structure(output)
     mismatches = {k: [s_in[k], s_out[k]] for k in s_in if s_in[k] != s_out[k]}
-    glossary_hits = glossary_lint.scan(output, glossary_lint.load_terms().get(code, []))
+    glossary_hits = glossary_lint.scan(output, glossary_lint.load_terms().get(code, []), glossary_lint.load_preferred().get(code, []))
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(output, encoding="utf-8")
 

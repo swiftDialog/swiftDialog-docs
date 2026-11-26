@@ -106,6 +106,7 @@ def main():
     wanted = {re.sub(r"\.mdx?$", "", p.replace("src/content/docs/", "")).strip("/") for p in a.pages}
 
     terms = glossary_lint.load_terms() if a.glossary else {}
+    keep = glossary_lint.load_preferred() if a.glossary else {}
     warnings = []
     results = []
     for code in langs:
@@ -118,7 +119,7 @@ def main():
             en = DOCS / rel
             item = {"lang": code, "page": str(rel), "translation": str(tr.relative_to(REPO))}
             if a.glossary:
-                for no, term, text in glossary_lint.scan(tr.read_text(encoding="utf-8"), terms.get(code, [])):
+                for no, term, text in glossary_lint.scan(tr.read_text(encoding="utf-8"), terms.get(code, []), keep.get(code, [])):
                     warnings.append({"lang": code, "page": str(rel), "line": no, "term": term, "text": text[:200]})
             if not en.exists():
                 item.update(status="orphan", note="English page no longer exists")

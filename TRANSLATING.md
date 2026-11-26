@@ -58,6 +58,12 @@ These are warnings, not errors. Some matches are correct in context ("Taste" for
    `zh-CN`, so the file is `src/content/i18n/zh-CN.json`. Use a tag Starlight ships
    (such as `zh-CN` or `pt-BR`) so Starlight's built-in UI strings match.
 3. `src/i18n/glossary.md`: add a line for the new language for every glossary term (e.g. `fr: boîte de dialogue`). Read the glossary first and choose one consistent translation per term. This should be done before translating pages, since page reviews check glossary consistency.
+   To add every line in one go, put them in a JSON file (term heading → line text) and run:
+   ```sh
+   python3 .claude/skills/translate-page/scripts/glossary_add.py <lang> entries.json
+   python3 .claude/skills/translate-page/scripts/glossary_add.py --check <lang>   # lists terms with no line yet
+   ```
+   For languages written without spaces between words (Chinese, Japanese), a forbidden word inside the preferred term doesn't count: with `对话框`, "Not "对话"" only flags `对话` on its own. Don't list the preferred word itself as forbidden; the check can't tell the two uses apart.
 4. `src/i18n/notes/<lang>.md`: notes for this language (see below). Base its style decisions on Apple's own documentation in that language: the `translate-page` skill's style survey (`/translate-page style <lang>`) reads a few Apple support pages and proposes register, tone and terminology.
 5. `src/content/docs/<lang>/`: translated pages, added over time.
 

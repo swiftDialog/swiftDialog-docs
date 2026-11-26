@@ -46,7 +46,7 @@ Translate **one page at a time**. A local model (TranslateGemma, on whichever ma
 
 ## 2. Make sure the locale exists
 
-Check that `src/i18n/<lang>.json` exists (each file there registers one language). If it doesn't, add the locale as TRANSLATING.md describes ("Adding a new language"), and tell the user you did.
+Check that `src/i18n/<lang>.json` exists (each file there registers one language). If it doesn't, add the locale as TRANSLATING.md describes ("Adding a new language"), and tell the user you did. Add the language's glossary lines with `scripts/glossary_add.py <lang> <entries.json>` (one JSON object, term heading → line text) rather than one edit per term, and finish with `glossary_add.py --check <lang>`. If you can only edit files, not run commands, add them by hand and say that `--check` still needs running.
 
 Then read the language's notes file, `src/i18n/notes/<lang>.md`. Its **Style decisions** (register, tone, conventions) apply to every page, and its **Reviewer feedback** says what native speakers have already corrected. If the file doesn't exist, create it from the template in TRANSLATING.md.
 
