@@ -15,7 +15,7 @@
 
 ## Notes for reviewers
 
-All 76 English pages have been translated to pt-BR. Build passes. Glossary check: 0 slips requiring action (all 57 flagged words are correct in context — "tecla" = keyboard keys, "símbolo" = SF Symbols, "regra" = workflow/IPC rules).
+All 76 English pages plus the index.mdx landing page have been translated to pt-BR (77 total, matching English). Build passes. Glossary check: 0 slips requiring action (all 57 flagged words are correct in context — "tecla" = keyboard keys, "símbolo" = SF Symbols, "regra" = workflow/IPC rules).
 
 Pages reviewed and fixed during translation:
 - getting-started/introduction: fixed broken markdown links, "dialog" → "caixa de diálogo" (not "função de diálogo"), decimal comma "72,3" → "72.3".
